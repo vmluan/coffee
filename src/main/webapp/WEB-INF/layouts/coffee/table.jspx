@@ -126,5 +126,34 @@
     <script type="text/javascript" src="/resources/jqwidgets/jqxdropdownlist.js"><jsp:text/></script>
     <script type="text/javascript" src="/resources/jqwidgets/jqxdragdrop.js"><jsp:text/></script>
     
-	
+	<script type="text/javascript">
+		 var table = new Object();
+		 var encounters = new Array();
+		
+		table.tableNumber =  '${table.tableNumber}';	
+		table.customerName = '${table.customerName}';
+		
+
+		var i = 0;
+		<c:forEach var="encounter" items ="${table.encounters}">
+			
+			var encounter = new Object();
+			var product = new Object();
+			
+			product.productName = '${encounter.product.productName}';
+			product.productID = '${encounter.product.productID}';
+			product.productPrice = '${encounter.product.productPrice}';
+			
+			encounter.product = product;
+			encounter.quantity = '${encounter.quantity}';
+			encounters[i] = encounter;
+			i = i +1;
+		
+			
+		   
+		</c:forEach>
+		
+		 table.encounters = encounters;
+	</script>
+
 </html>

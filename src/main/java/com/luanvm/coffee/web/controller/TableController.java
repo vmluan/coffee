@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Set;
 
-import javax.xml.ws.Response;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -15,17 +15,16 @@ import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.itextpdf.text.pdf.hyphenation.TernaryTree.Iterator;
 import com.luanvm.coffee.domain.Product;
 import com.luanvm.coffee.domain.TH_Encounter;
 import com.luanvm.coffee.domain.TH_Table;
 import com.luanvm.coffee.domain.TH_TableStatus;
-import com.luanvm.coffee.repository.TableRepository;
 import com.luanvm.coffee.service.EncounterService;
 import com.luanvm.coffee.service.ProductService;
 import com.luanvm.coffee.service.TableService;
@@ -57,7 +56,7 @@ public class TableController {
 		}
 		return "tables/new";
 	}
-	
+	//create new table with encounters
 	@Transactional
 	@RequestMapping(params = "form", method = RequestMethod.POST)
 	public String saveTable(Model ciModel,@RequestBody final  TH_Table table) {
@@ -86,6 +85,21 @@ public class TableController {
 			tableService.save(table);
 		}
 		return "tables/new";
+	}
+	// update
+
+	@RequestMapping(value = "/{id}", params = "form", method = RequestMethod.GET)
+	public String updateForm(@PathVariable("id") Integer id, Model uiModel, HttpServletRequest httpServletRequest) {
+		
+		TH_Table table = tableService.findById(id);
+		
+		
+		Set<TH_Encounter> encounters = table.getEncounters();
+		
+		uiModel.addAttribute("table", table);
+		uiModel.addAttribute("encounters", encounters);
+		
+		return "tables/update";
 	}	
 	
 

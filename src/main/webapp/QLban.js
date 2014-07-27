@@ -161,7 +161,7 @@ alert(jsonData);
                         '<div class="jqx-rc-t draggable-demo-product-header jqx-widget-header-' + theme + ' jqx-fill-state-normal-' + theme + '">' +
                         '<div class="draggable-demo-product-header-label"> ' + name + '</div></div>' +
                         '<div class="jqx-fill-state-normal-' + theme + ' draggable-demo-product-price">Price: <strong>$' + product.price + '</strong></div>' +
-                        '<img src="images/t-shirts/' + product.pic + '" alt='
+                        '<img src="/images/t-shirts/' + product.pic + '" alt='
                         + name + '" class="jqx-rc-b" />' +
                         '</div>');
             };
@@ -199,14 +199,37 @@ alert(jsonData);
             };
 
             function init() {
+				// alert(table);
+
                 theme = getDemoTheme();
                 render();
                 addClasses();
                 addEventListeners();
+				 if(table){
+					loadItem();
+					document.getElementById('tableNumber').value = table.tableNumber;
+					document.getElementById('customerName').value = table.customerName;
+				 }				
             };
 
+		//load item to the list.
+		function loadItem(){
+			
+			for(i =0; i<= table.encounters.length-1; i++){
+				var item = new Object();
+				item.price = table.encounters[i].product.productPrice;
+				item.name = table.encounters[i].product.productName;
+				
+				addItem({ price: parseInt(item.price), name: item.name });
+			}
+
+			
+		};			
+
             function addItem(item) {
+				
                 var index = getItemIndex(item.name);
+			//	alert(index);
                 if (index >= 0) {
                     cartItems[index].count += 1;
                     updateGridRow(index, cartItems[index]);
@@ -221,6 +244,7 @@ alert(jsonData);
                          'id="draggable-demo-row-' + id + '">X</div>',
 						 id: item.ID
                         };
+						
                     cartItems.push(item);
                     addGridRow(item);
                 }
@@ -283,6 +307,7 @@ alert(jsonData);
                     $(event.args.target).css('border', '2px solid #000');
                     onCart = true;
                     $(this).jqxDragDrop('dropAction', 'none');
+					
                 });
                 $('.draggable-demo-product').bind('dropTargetLeave', function (event) {
                     $(event.args.target).css('border', '2px solid #aaa');
@@ -310,8 +335,10 @@ alert(jsonData);
 
             return {
                 init: init
-            }
+            };
+			
         } ($));
+
 
         $(document).ready(function () {
             cart.init();

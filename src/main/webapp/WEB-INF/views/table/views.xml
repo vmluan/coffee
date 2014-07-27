@@ -5,5 +5,9 @@
         <put-attribute name="body"
             value="/WEB-INF/views/table/new.jspx" />
     </definition>
-                      
+   
+    <definition extends="table" name="tables/update">
+        <put-attribute name="body"
+            value="/WEB-INF/views/table/update.jspx" />
+    </definition>                      
 </tiles-definitions>
