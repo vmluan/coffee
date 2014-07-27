@@ -41,4 +41,10 @@ public class DefaultProductService implements ProductService {
 	public Page<Product> findAllByPage(Pageable pageable) {
 		return productRepository.findAll(pageable);
 	}
+
+	@Override
+	public Product findByName(String productName) {
+		return productRepository.findProductByName(productName).get(0);
+	}
+	
 }

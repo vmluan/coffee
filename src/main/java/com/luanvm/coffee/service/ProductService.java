@@ -15,6 +15,8 @@ public interface ProductService {
 	
 	Product save(Product TH_Product);
 	
-	Page<Product> findAllByPage(Pageable pageable);	
+	Page<Product> findAllByPage(Pageable pageable);
+	
+	Product findByName(String productName);
 	
 }

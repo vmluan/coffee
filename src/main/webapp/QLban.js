@@ -1,20 +1,21 @@
         function submitBan(){
 		
+		//alert($.trim('  string with spaces at the ends   '));
 		var productsDiv = document.getElementById('contenttablejqxgrid');
-		var myObject = new Object();
-		myObject.name = "John";
-		myObject.age = 12;
-		myObject.pets = ["cat", "dog"];
-		
-		var myArray = new Array();
-		
-
-
-
+		var encounters = new Array();
 		var productsChildren = productsDiv.children;
-
+		
+		var tableNumber = document.getElementById('tableNumber').value;
+		var customerName = document.getElementById('customerName').value;
+		
+		if (!tableNumber){
+			alert("Vui long nhap so ban");
+			return;
+		}
 		for(i =0; i< productsChildren.length-1; i++){
-			var object = new Object();
+			var product = new Object();
+			var encounter = new Object();
+			
 			var rowID = 'row' + i + 'jqxgrid';
 			var rowDiv = productsChildren[i];
 			
@@ -24,25 +25,33 @@
 			var id = 0;
 			var quantity = rowDiv.children[1].textContent
 			
-			object.productName = name;
-			object.productID = id;
-			//object.quantity = quantity;
+			product.productName = $.trim(name);
+			product.productID = id;
+			
+			encounter.product = product;
+			encounter.quantity = quantity;
 			
 			if(name){
 				
-				myArray[i] = object
+				encounters[i] = encounter
 				}
 		}
-		//var myString = JSON.stringify(myArray[0]);
-		//var myString = '{"encounters":[{"productName":"shail1","productID":"2"},{"productName":"shail2","productID":"3"}]}		'
-				var myString = '{"encounters":[{"product":{"productName":"shail1","productID":"1"},"quantity": "2"}]}';	
 
-		alert(myString);
+		//var jsonData = JSON.stringify(myArray[0]);
+		//var jsonData = '{"encounters":[{"productName":"shail1","productID":"2"},{"productName":"shail2","productID":"3"}]}		'
+	//			var jsonData = '{"encounters":[{"product":{"productName":"shail1","productID":"1"},"quantity": "2"}]}';
+		var table =new Object();
+		table.encounters = encounters;
+		table.customerName = customerName;
+		table.tableNumber = tableNumber;
+		var jsonData = JSON.stringify(table);
+
+alert(jsonData);
 		 $.ajax({
 		   url: 'quanlyban?form',
 		   type: 'POST',
 		   contentType:'application/json',
-		   data: myString,
+		   data: jsonData,
 		   dataType:'json',
 		   success: function(data){
 			 //On ajax success do this
@@ -54,15 +63,15 @@
 				
 				if (xhr.status == 200) {
 
-					alert(ajaxOptions);
+					alert("Them ban thanh cong");
+					location.reload();
 				}
 				else {
 					alert(xhr.status);
 					alert(thrownError);
 				}
 			}
-		 });
-	
+		 });	
 	
 };
 		
@@ -70,39 +79,39 @@
             theme = $.jqx.theme;
             var productsOffset = 3,
                 products = {
-                    'Retro Rock T-shirt': {
+                    'Cafe sua': {
                         pic: 'black-retro-rock-band-guitar-controller.png',
                         price: 15
                     },
-                    'Lucky T-shirt': {
+                    'Cafe den': {
                         pic: 'bright-green-gettin-lucky-in-kentucky.png',
                         price: 18
                     },
-                    'Loading T-shirt': {
+                    'Tra lipton': {
                         pic: 'brown-loading-bar-computer-geek.png',
                         price: 25
                     },
-                    'Cool Story T-shirt': {
+                    'Bac xiu': {
                         pic: 'cool-story-bro.png',
                         price: 20
                     },
-                    'The beard T-shirt': {
+                    'Sua chua da': {
                         pic: 'fear-the-beard.png',
                         price: 17
                     },
-                    'Don\'t care T-shirt': {
+                    'Yomost': {
                         pic: 'honey-badger-don-t-care.png',
                         price: 19
                     },
-                    'Guitar T-shirt': {
+                    'Sua tuoi co gai Ha Lan': {
                         pic: 'scott-pilgrim-red-rock-band.png',
                         price: 24
                     },
-                    'Dodgers T-shirt': {
+                    'Da chanh': {
                         pic: '2-sided-dodgers-bankrupt-t-shirt-ash.png',
                         price: 21
                     },
-                    'Misfits T-shirt': {
+                    'Cam vat': {
                         pic: 'misfits-sf-giants-white.png',
                         price: 21
                     }
@@ -161,14 +170,15 @@
                 $("#jqxgrid").jqxGrid(
                 {
                     height: 335,
-                    width: 230,
+                    width: 290,
                     
                     keyboardnavigation: false,
                     selectionmode: 'none',
                     columns: [
                       { text: 'Ten', dataField: 'name', width: 120 },
                       { text: 'SL', dataField: 'count', width: 50 },
-                      { text: 'Xoa', dataField: 'remove', width: 60 }
+                      { text: 'Xoa', dataField: 'remove', width: 60 },
+					  { text: 'ID', dataField: 'id', width: 60 }
                     ]
                 });
                 $("#jqxgrid").bind('cellclick', function (event) {
@@ -208,7 +218,8 @@
                             price: item.price,
                             index: id,
                             remove: '<div style="text-align: center; cursor: pointer; width: 53px;"' +
-                         'id="draggable-demo-row-' + id + '">X</div>'
+                         'id="draggable-demo-row-' + id + '">X</div>',
+						 id: item.ID
                         };
                     cartItems.push(item);
                     addGridRow(item);

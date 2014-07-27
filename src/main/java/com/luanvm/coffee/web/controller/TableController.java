@@ -64,11 +64,15 @@ public class TableController {
 		Locale locale = LocaleContextHolder.getLocale();
 		System.out.println("===========================================");
 		Set<TH_Encounter> encounters = table.getEncounters();
+		long totalMoney = 0;
+		
 		if (encounters != null){
 			for (TH_Encounter encounter : encounters){
 			
 				System.out.println("===========" + encounter.getQuantity());
-				Product product = productService.findById(encounter.getProduct().getProductID());
+				//Product product = productService.findById(encounter.getProduct().getProductID());
+				Product product = productService.findByName(encounter.getProduct().getProductName());
+				totalMoney = totalMoney + (encounter.getQuantity() * product.getProductPrice());
 				encounter.setProduct(product);
 				encounter.setEncounterTime(new Date());
 				encounterService.save(encounter);
@@ -77,6 +81,7 @@ public class TableController {
 			table.setEncounters(encounters);
 			table.setOpenTime(new Date());
 			table.setStatus(TH_TableStatus.DRINKING);
+			table.setTotalMoney(totalMoney);
 			
 			tableService.save(table);
 		}
