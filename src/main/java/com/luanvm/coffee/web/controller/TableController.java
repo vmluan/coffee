@@ -100,7 +100,51 @@ public class TableController {
 		uiModel.addAttribute("encounters", encounters);
 		
 		return "tables/update";
-	}	
+	}
+	@Transactional
+	@RequestMapping(value = "/{id}", params = "form", method = RequestMethod.POST)
+	public String saveForm(@PathVariable("id") Integer id, Model ciModel
+			,@RequestBody final  TH_Table table
+			, HttpServletRequest httpServletRequest) {
+		
+		System.out.println("====================================== save form");
+		
+		//we need to update table and its encounters
+		
+
+		
+		
+		
+		Set<TH_Encounter> encounters = table.getEncounters();
+		//update encounters. Actually, we dont update encounters. we just create new encounters and set them for the table
+		// what happen with old encounter records? it will a garbage. Need to fix it!!!!!
+		
+		long totalMoney = 0;
+		if (encounters != null){
+			for (TH_Encounter encounter : encounters){
+			
+				Product product = productService.findByName(encounter.getProduct().getProductName());
+				totalMoney = totalMoney + (encounter.getQuantity() * product.getProductPrice());
+				encounter.setProduct(product);
+				encounter.setEncounterTime(new Date());
+				encounterService.save(encounter);
+				
+			}
+			//update table first
+			TH_Table existingTable = tableService.findById(table.getTableID());
+			
+			existingTable.setCustomerName(table.getCustomerName());
+			existingTable.setTableNumber(table.getTableNumber());
+			existingTable.setEncounters(encounters);
+			existingTable.setTotalMoney(totalMoney);
+			
+			tableService.save(existingTable);
+		
+		}
+		
+		
+		return "tables/update";
+	}
 	
 
 }

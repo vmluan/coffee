@@ -32,6 +32,6 @@ update ban so ${table.tableNumber }
         </div>
 						<button
 					class="btn btn-lg btn-success tap-hoa-done-button"
-					onclick="submitBan();">Submit </button>
+					onclick="submitBan('${table.tableID}');">Submit </button>
         <div style="clear: both;"></div>
 </div>

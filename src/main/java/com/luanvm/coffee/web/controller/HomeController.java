@@ -9,6 +9,7 @@
 
 package com.luanvm.coffee.web.controller;
 
+import java.util.List;
 import java.util.Locale;
 
 import org.apache.commons.lang.StringUtils;
@@ -24,6 +25,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.luanvm.coffee.domain.TH_Table;
+import com.luanvm.coffee.service.TableService;
+
 @Controller
 @RequestMapping(value = "/")
 public class HomeController extends BaseController{
@@ -32,6 +36,10 @@ public class HomeController extends BaseController{
 
 	@Autowired
 	MessageSource messageSource;
+	
+	@Autowired
+	private TableService tableService;
+	
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String getHomePage(Model ciModel,@RequestParam(value="lang", required=false)String id) {
@@ -40,7 +48,10 @@ public class HomeController extends BaseController{
 			if(id.equalsIgnoreCase(com.luanvm.coffee.helper.Constants.VIETNAMESE))
 				locale.setDefault(new Locale(id));
 		}
-//		return "home";
+		List<TH_Table> tablesOfDay;
+		
+		tablesOfDay = tableService.findAll();
+		ciModel.addAttribute("table", tablesOfDay);
 		return "taphoa";
 	}
 	

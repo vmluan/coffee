@@ -1,4 +1,4 @@
-        function submitBan(){
+        function submitBan(tableID){
 		
 		//alert($.trim('  string with spaces at the ends   '));
 		var productsDiv = document.getElementById('contenttablejqxgrid');
@@ -44,11 +44,23 @@
 		table.encounters = encounters;
 		table.customerName = customerName;
 		table.tableNumber = tableNumber;
+		
+		
+		var url, urlGet, urlPost;
+		urlGet = '/quanlyban?form';
+		
+		if(tableID){
+			urlPost = '/quanlyban/' + tableID + '?form';
+			url = urlPost;
+			table.tableID = tableID;
+		}else
+			url = urlGet;
+			
 		var jsonData = JSON.stringify(table);
 
 alert(jsonData);
 		 $.ajax({
-		   url: 'quanlyban?form',
+		   url: url,
 		   type: 'POST',
 		   contentType:'application/json',
 		   data: jsonData,

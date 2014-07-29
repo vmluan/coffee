@@ -132,6 +132,7 @@
 		
 		table.tableNumber =  '${table.tableNumber}';	
 		table.customerName = '${table.customerName}';
+		table.tableID = '${table.tableID}';
 		
 
 		var i = 0;

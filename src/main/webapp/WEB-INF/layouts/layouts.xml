@@ -40,7 +40,11 @@
 <!-- 			value="/WEB-INF/views/taphoa/footer.jspx" />			 -->
 <!-- 	</definition> -->
 	
-	<definition name="taphoa" template="/WEB-INF/layouts/taphoa/taphoa_original.jspx">			
+	<definition name="taphoa" template="/WEB-INF/layouts/taphoa/taphoa_original.jspx">
+		<put-attribute name="header"
+			value="/WEB-INF/views/admin/common/header.jspx" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/admin/common/footer.jspx" />	
 	</definition>
 	
 	<definition name="table" template="/WEB-INF/layouts/coffee/table.jspx">
