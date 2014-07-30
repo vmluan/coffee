@@ -51,7 +51,6 @@
 		<div id="main">
   	        <tiles:insertAttribute name="header" ignore="true" />
 	    	<tiles:insertAttribute name="body"/> 
-		    <tiles:insertAttribute name="footer" ignore="true"/>
 		</div>	
 		
 	</body>
@@ -117,6 +116,11 @@
 	<script type="text/javascript" src="/resources/scripts/demos.js">
 		<jsp:text/>
 	</script>
+	
+	<script type="text/javascript" src="/resources/products.js">
+		<jsp:text/>
+	</script>
+		
 	<script type="text/javascript" src="/resources/QLban.js">
 		<jsp:text/>
 	</script>

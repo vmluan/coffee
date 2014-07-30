@@ -7,7 +7,6 @@
     <jsp:output omit-xml-declaration="yes"/>  
         <div id="catalog" class="draggable-demo-catalog jqx-rc-all"></div>
 		
-update ban so ${table.tableNumber }
         <div class="draggable-demo-cart-wrapper jqx-rc-all">
 		   <div class="form-group col-xs2 col-sm-4">
 			  <label for="name">Ban so</label>

@@ -44,6 +44,7 @@ width: 100%;
             border: 1px solid #666;
             width: 75%;
             padding: 5px;
+			overFlow: auto;
 		//	position: fixed;
 			
         }
@@ -52,7 +53,7 @@ width: 100%;
             position: relative;
             width: 100%;
             border: 1px solid #bbb;
-            height: 457px;
+            height: 580px;
             float: left;
         }
         .draggable-demo-product-image

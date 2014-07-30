@@ -90,44 +90,7 @@ alert(jsonData);
 		var cart = (function ($) {
             theme = $.jqx.theme;
             var productsOffset = 3,
-                products = {
-                    'Cafe sua': {
-                        pic: 'black-retro-rock-band-guitar-controller.png',
-                        price: 15
-                    },
-                    'Cafe den': {
-                        pic: 'bright-green-gettin-lucky-in-kentucky.png',
-                        price: 18
-                    },
-                    'Tra lipton': {
-                        pic: 'brown-loading-bar-computer-geek.png',
-                        price: 25
-                    },
-                    'Bac xiu': {
-                        pic: 'cool-story-bro.png',
-                        price: 20
-                    },
-                    'Sua chua da': {
-                        pic: 'fear-the-beard.png',
-                        price: 17
-                    },
-                    'Yomost': {
-                        pic: 'honey-badger-don-t-care.png',
-                        price: 19
-                    },
-                    'Sua tuoi co gai Ha Lan': {
-                        pic: 'scott-pilgrim-red-rock-band.png',
-                        price: 24
-                    },
-                    'Da chanh': {
-                        pic: '2-sided-dodgers-bankrupt-t-shirt-ash.png',
-                        price: 21
-                    },
-                    'Cam vat': {
-                        pic: 'misfits-sf-giants-white.png',
-                        price: 21
-                    }
-                },
+                products = sampleProducts, // sampleProducts is defined in products.js field
             theme, onCart = false, cartItems = [], totalPrice = 0;
 
             function render() {
@@ -154,7 +117,7 @@ alert(jsonData);
                     product = products[name];
                     image = createProduct(name, product);
                     image.appendTo(catalog);
-                    if (counter !== 0 && counter % 3 === 0) {
+                    if (counter !== 0 && counter % 4 === 0) {
                         top += 147; // image.outerHeight() + productsOffset;
                         left = 0;
                     }
@@ -229,10 +192,12 @@ alert(jsonData);
 			
 			for(i =0; i<= table.encounters.length-1; i++){
 				var item = new Object();
-				item.price = table.encounters[i].product.productPrice;
+				item.price = parseInt(table.encounters[i].product.productPrice);
 				item.name = table.encounters[i].product.productName;
 				
-				addItem({ price: parseInt(item.price), name: item.name });
+				
+				for (j=1; j <=table.encounters[i].quantity; j++)
+					addItem({ price: parseInt(item.price), name: item.name });
 			}
 
 			
