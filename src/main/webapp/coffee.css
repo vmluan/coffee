@@ -37,7 +37,8 @@ width: 100%;
             border: 2px dashed #aaa;
             padding: 5px;
             width: 100%;
-            margin: auto;
+            //margin: auto;
+			margin-top: 5px;
         }
         .draggable-demo-shop 
         {
@@ -118,7 +119,8 @@ width: 100%;
         {
             float: right;
             border: 1px solid #aaa;
-            height: 457px;
+            //height: 457px;
+			height: 580px;
             width: 40%;
         }
         .draggable-demo-total

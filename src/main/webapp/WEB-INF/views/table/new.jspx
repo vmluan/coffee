@@ -5,10 +5,14 @@
 	 class="draggable-demo-shop jqx-rc-all" id="shop">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>  
-        <div id="catalog" class="draggable-demo-catalog jqx-rc-all"></div>
+        <div id="catalog" class="draggable-demo-catalog jqx-rc-all">
+		
+				
+		</div>
 		
 
         <div class="draggable-demo-cart-wrapper jqx-rc-all">
+		
 		   <div class="form-group col-xs2 col-sm-4">
 			  <label for="name">Ban so</label>
 			  <input type="text" class="form-control" id="tableNumber" 
@@ -18,10 +22,15 @@
 			  <label for="name">Ten KH</label>
 			  <input type="text" class="form-control" id="customerName" 
 				 placeholder="ten KH"/>
-		   </div>			
-            <div class="draggable-demo-title jqx-rc-t">Danh sach Thuc Uong</div>
+				 
+		   </div>
+					   
+            <div class="draggable-demo-title jqx-rc-t">Danh sach Thuc Uong
+				<div id='jqxWidget'></div>
+			</div>
                 <div id='cart' class="draggable-demo-cart jqx-rc-all">
                     <div id="jqxgrid"></div>
+										
                 </div>
                 <div class="draggable-demo-total">Tong: <strong><span id="total">$ 0</span></strong>
 									
