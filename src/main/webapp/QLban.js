@@ -92,6 +92,8 @@ alert(jsonData);
             var productsOffset = 3,
                 products = sampleProducts,
             theme, onCart = false, cartItems = [], totalPrice = 0;
+			
+			var sttID;
 
             function render() {
                 productsRendering();
@@ -150,10 +152,12 @@ alert(jsonData);
                     keyboardnavigation: false,
                     selectionmode: 'none',
                     columns: [
+						{ text: '', dataField: 'stt', width: 30 },
                       { text: 'Ten', dataField: 'name', width: 120 },
                       { text: 'SL', dataField: 'count', width: 50 },
-                      { text: 'Xoa', dataField: 'remove', width: 60 },
-					  { text: 'ID', dataField: 'id', width: 60 }
+                      { text: 'Xoa', dataField: 'remove', width: 40 },
+					  { text: 'Tang', dataField: 'add', width: 40 }
+					  
                     ]
                 });
                 $("#jqxgrid").bind('cellclick', function (event) {
@@ -170,6 +174,15 @@ alert(jsonData);
                         }
                         updatePrice(-item.price);
                     }
+					else if (event.args.datafield == 'add'){
+                        var item = cartItems[index];
+                        if (item.count > 0) {
+                            item.count += 1;
+                            updateGridRow(index, item);
+                        }
+
+                        updatePrice(item.price);					
+					}
                 });
 				
 			//add dropdownlist
@@ -243,9 +256,11 @@ alert(jsonData);
                             count: 1,
                             price: item.price,
                             index: id,
-                            remove: '<div style="text-align: center; cursor: pointer; width: 53px;"' +
+                            remove: '<div style="text-align: center; cursor: pointer; width: 40px;"' +
                          'id="draggable-demo-row-' + id + '">X</div>',
-						 id: item.ID
+							 add: '<div style="text-align: center; cursor: pointer; width: 40px;"' +
+							 'id="draggable-demo-row-' + id + '">+</div>',
+						 stt: id + 1
                         };
 						
                     cartItems.push(item);
