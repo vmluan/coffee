@@ -1,4 +1,4 @@
-        function submitBan(tableID){
+        function submitBan(tableID, PAID){
 		
 		//alert($.trim('  string with spaces at the ends   '));
 		var productsDiv = document.getElementById('contenttablejqxgrid');
@@ -21,9 +21,9 @@
 			
 			var rowDivName = rowDiv.children[0];
 			
-			var name = rowDiv.children[0].textContent
+			var name = rowDiv.children[1].textContent
 			var id = 0;
-			var quantity = rowDiv.children[1].textContent
+			var quantity = rowDiv.children[2].textContent
 			
 			product.productName = $.trim(name);
 			product.productID = id;
@@ -44,6 +44,8 @@
 		table.encounters = encounters;
 		table.customerName = customerName;
 		table.tableNumber = tableNumber;
+		if(PAID)
+			table.status = PAID;
 		
 		
 		var url, urlGet, urlPost;
@@ -120,14 +122,14 @@ alert(jsonData);
                     image = createProduct(name, product);
                     image.appendTo(catalog);
                     if (counter !== 0 && counter % 4 === 0) {
-                        top += 147; // image.outerHeight() + productsOffset;
+                        top += 140; // image.outerHeight() + productsOffset;
                         left = 0;
                     }
                     image.css({
                         left: left,
                         top: top
                     });
-                    left += 127; // image.outerWidth() + productsOffset;
+                    left += 115; // image.outerWidth() + productsOffset;
                     counter += 1;
                 }
                 $('.draggable-demo-product').jqxDragDrop({ dropTarget: $('#cart'), revert: true });
@@ -146,15 +148,16 @@ alert(jsonData);
             function gridRendering() {
                 $("#jqxgrid").jqxGrid(
                 {
-                    height: 335,
-                    width: 290,
+                    height: 300,
+                    //width: 290,
+					width: 400,
                     
                     keyboardnavigation: false,
                     selectionmode: 'none',
                     columns: [
-						{ text: '', dataField: 'stt', width: 30 },
-                      { text: 'Ten', dataField: 'name', width: 120 },
-                      { text: 'SL', dataField: 'count', width: 50 },
+						{ text: '', dataField: 'stt', width: 40 },
+                      { text: 'Ten', dataField: 'name', width: 200 },
+                      { text: 'SL', dataField: 'count', width: 70 },
                       { text: 'Xoa', dataField: 'remove', width: 40 },
 					  { text: 'Tang', dataField: 'add', width: 40 }
 					  

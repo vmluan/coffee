@@ -23,6 +23,12 @@ public class Product implements Serializable {
 	
 	@Column(name = "price")
 	private long productPrice;
+	
+	@Column(name = "piclocation")
+	private String picLocation;
+	
+	@Column(name = "iscommon")
+	private boolean isCommon;
 
 	public Integer getProductID() {
 		return productID;
@@ -47,8 +53,31 @@ public class Product implements Serializable {
 	public void setProductPrice(long productPrice) {
 		this.productPrice = productPrice;
 	}
-	
+
+	public String getPicLocation() {
+		return picLocation;
+	}
+
+	public void setPicLocation(String picLocation) {
+		this.picLocation = picLocation;
+	}
+
+	public boolean isCommon() {
+		return isCommon;
+	}
+
+	public void setCommon(boolean isCommon) {
+		this.isCommon = isCommon;
+	}
 	
 
-	
+
+	@Override
+	public String toString(){
+		return "'" + productName + "':" + "{"
+				+ "pic: " +"'" + picLocation + "'"
+				+","
+				+ "price: " + String.valueOf(productPrice)
+				+ "}";
+	}
 }

@@ -47,7 +47,14 @@
 			<c:forEach var="currentTable" items="${table}">
 				<div class="col-xs-6 col-sm-3 placeholder">
 					<a href="quanlyban/${currentTable.tableID}?form">
-						<img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail"/>
+					<c:choose>
+						<c:when test="${currentTable.status == 'PAID'}">
+							<img data-src="holder.js/200x200/auto/industrial" class="img-responsive" alt="Generic placeholder thumbnail"/>
+						</c:when>
+						<c:otherwise>
+							<img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail"/>
+						</c:otherwise>
+					</c:choose>	
 					</a>	
 				  <h4>${currentTable.tableNumber} - ${currentTable.customerName}</h4>
 				  <span class="text-muted">${currentTable.totalMoney} VND</span>

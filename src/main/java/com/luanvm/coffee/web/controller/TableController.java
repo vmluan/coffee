@@ -137,6 +137,7 @@ public class TableController {
 			existingTable.setTableNumber(table.getTableNumber());
 			existingTable.setEncounters(encounters);
 			existingTable.setTotalMoney(totalMoney);
+			existingTable.setStatus(table.getStatus());
 			
 			tableService.save(existingTable);
 		

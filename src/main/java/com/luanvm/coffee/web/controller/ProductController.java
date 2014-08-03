@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.luanvm.coffee.domain.Product;
+import com.luanvm.coffee.helper.ProductHepler;
 import com.luanvm.coffee.service.ProductService;
 
 @Controller
@@ -41,6 +44,17 @@ public class ProductController {
 		List<Product> products = productService.findAll();
 		ciModel.addAttribute("products", products);
 		return "products/list";
+	}
+	
+	@RequestMapping(value = "/setjson")
+	public String generateJsonFile(HttpServletRequest httpServletRequest){
+		
+		List<Product> products = productService.findAll();
+		
+		ProductHepler productHepler = new ProductHepler();
+		String location = httpServletRequest.getSession().getServletContext().getRealPath("/");
+		productHepler.generateProductJson(products, location);
+		return "products/list"; 
 	}
 	
 
