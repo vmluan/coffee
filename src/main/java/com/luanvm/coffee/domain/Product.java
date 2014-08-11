@@ -8,8 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
 @Entity
 @Table(name = "th_product", catalog = "coffee")
 public class Product implements Serializable {
@@ -29,6 +30,20 @@ public class Product implements Serializable {
 	
 	@Column(name = "iscommon")
 	private boolean isCommon;
+	
+	@Transient
+	MultipartFile file;
+	
+	
+	
+
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
 
 	public Integer getProductID() {
 		return productID;
