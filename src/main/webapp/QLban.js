@@ -189,25 +189,29 @@ alert(jsonData);
                 });
 				
 			//add dropdownlist
-			    var source = [
-                    'Cafe sua',
-                    'Cafe den',
-					'Tra lipton',
-					'Bac xiu',
-					'Sua chua da',
-					'Yomost',
-					'Sua tuoi co gai Ha Lan',
-					'Da chanh',
-					'Cam vat'
-		        ];
-				$("#jqxWidget").jqxDropDownList({ source: source, selectedIndex: -1, width: '200', height: '25'});
+                var urlDropList = "/products/getproductsjson";
+                var source =
+                {
+                    datatype: "json",
+                    datafields: [
+                        { name: 'productName' },
+                        { name: 'productPrice' }
+                    ],
+                    url: urlDropList,
+                    async: false
+                };
+                var dataAdapter = new $.jqx.dataAdapter(source);
+                
+				$("#jqxWidget").jqxDropDownList({ selectedIndex: -1, source: dataAdapter, displayMember: "productName"
+					, valueMember: "productPrice", width: 200, height: 25});
 				//$("#jqxWidget").jqxComboBox({ source: source, selectedIndex: -1, width: '250', height: '25px'});
                 $('#jqxWidget').on('select', function (event) {
                     var args = event.args;
                     var item = $('#jqxWidget').jqxDropDownList('getItem', args.index);
+					
                     if (item != null) {
-                        var price = sampleProducts[item.value].price;
-						addItem({ price: parseInt(price), name: item.value });
+                        var price = sampleProducts[item.label].price;
+						addItem({ price: parseInt(price), name: item.label });
 						$("#jqxWidget").jqxDropDownList('selectIndex', -1); 
                     }
                 });			
