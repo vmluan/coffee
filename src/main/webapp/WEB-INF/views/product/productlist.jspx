@@ -13,28 +13,19 @@
     <spring:message code="label_user_active" var="labelUserActive"/>
     <spring:message code="label_user_new" var="labelUserAdd"/>
     
-danh sach san pham here
     <c:if test="${not empty message}">
         <div id="message" class="${message.type}">${message.message}</div>
     </c:if>
-
-    <h2>${products}</h2>
+	
+	<h3> <a href="/products?form">Them moi SP</a></h3>
     
-    <div>
-		<table style="width:300px">
-		<tr>
-		  <td>Ten</td>
-		  <td>Gia</td> 
-		</tr>
-		<c:forEach items="${products }" var="product">
-			<tr>
-		  		<td>${product.productName }</td>
-		  		<td>${product.productPrice }</td> 
-			</tr>
-		</c:forEach>
-		</table>
-		
-    </div>
+    
+	
+    <div id='jqxWidget' style="font-size: 13px; font-family: Verdana; float: left;">
+        <div id="jqxgridProducts">
+        </div>
+     </div>	
+    
     <div id="pager"><jsp:text /></div><P />
      
 </div>

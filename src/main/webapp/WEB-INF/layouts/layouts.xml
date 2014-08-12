@@ -53,6 +53,13 @@
 		<put-attribute name="footer"
 			value="/WEB-INF/views/admin/common/footer.jspx" />
 	</definition>		
+	
+	<definition name="product" template="/WEB-INF/layouts/coffee/product.jspx">
+		<put-attribute name="header"
+			value="/WEB-INF/views/admin/common/header.jspx" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/admin/common/footer.jspx" />
+	</definition>	
 </tiles-definitions>
 
 

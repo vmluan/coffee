@@ -9,7 +9,7 @@
        <div class="tap-hoa-main-div" id="san-pham">
 		
 		<form:form modelAttribute="product" id="userUpdateForm" method="post" enctype="multipart/form-data">
-			<div class="form-group col-md-2">
+			<div class="col-xs2 col-sm-3">
 				<form:label path="productName">
 					Ten San Pham* 
 				</form:label>
@@ -19,7 +19,7 @@
 				</div>
 			</div>	
 			<p/>
-		<div class="form-group col-md-2">
+		<div class="col-xs2 col-sm-3">
 				<form:label path="productPrice">
 					Gia San Pham* 
 				</form:label>
@@ -29,14 +29,18 @@
 				</div>
 				<p/>
 		</div>	
+		<div class="col-xs2 col-sm-3">	
+			Please select a file to upload : <input type="file" name="file" />
 		
-		Please select a file to upload : <input type="file" name="file" />
-		<input type="submit" value="upload" />
-				
+		</div>
+	
         <button type="submit" class="btn btn-lg btn-success">
             <span class="ui-button-text">Save</span>
         </button> 
 	 </form:form>
     </div> <!-- /San Pham -->
         <div style="clear: both;"></div>
+        
+        
+             
 </div>

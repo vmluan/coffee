@@ -22,12 +22,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.luanvm.coffee.domain.Product;
 import com.luanvm.coffee.helper.ProductHepler;
+import com.luanvm.coffee.helper.Utilities;
 import com.luanvm.coffee.service.ProductService;
 
 @Controller
@@ -72,6 +74,11 @@ public class ProductController {
 		Product product = new Product();
 		product.setFile(null);
 		uiModel.addAttribute("product", product);
+		
+		List<Product> products =  productService.findAll();
+		
+		uiModel.addAttribute("products", products);
+		
 		return "products/new";
 	}
 	
@@ -126,5 +133,18 @@ public class ProductController {
 		
 		uiModel.asMap().clear();
 		return "redirect:products?form";
+	}
+	@RequestMapping(value = "/getproductsjson", method = RequestMethod.GET, produces = "application/json")
+	@ResponseBody
+	public String getProductsJson(@RequestParam(value="filterscount", required=false) String filterscount
+			, @RequestParam(value="groupscount", required=false) String groupscount
+			, @RequestParam(value="pagenum", required=false) Integer pagenum
+			, @RequestParam(value="pagesize", required=false) Integer pagesize
+			, @RequestParam(value="recordstartindex", required=false) Integer recordstartindex
+			, @RequestParam(value="recordendindex", required=false) Integer recordendindex){
+		List<Product> products =  productService.findAll();
+		
+		String result = Utilities.jSonSerialization(products);
+		return result;
 	}
 }
