@@ -30,11 +30,25 @@ var url = "products/getproductsjson";
             {
                 width: 850,
                 source: dataAdapter,
+               sortable: true,
+                pageable: true,
+                autoheight: true,
+                autoloadstate: false,
+                autosavestate: false,
                 columnsresize: true,
+                columnsreorder: true,
+                showfilterrow: true,
+                filterable: true,				
+                columnsresize: true,
+				rowsheight: 115,
                 columns: [
                   { text: 'Ten SP', datafield: 'productName', width: 250 },
                   { text: 'Gia', datafield: 'productPrice', width: 250 },
-                  { text: 'Hinh anh', datafield: 'picLocation', width: 230 },
+                  { text: 'Hinh anh', datafield: 'picLocation', width: 230,
+					cellsrenderer: function (row, column, value) {
+                          return '<img src="../../images/t-shirts/' + value + '"/>';
+                      }
+				  },
                   { text: 'SP ban chay', datafield: 'common', width: 120 }
               ]
             });
