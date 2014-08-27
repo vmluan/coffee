@@ -19,4 +19,10 @@ public interface ProductService {
 	
 	Product findByName(String productName);
 	
+	void delete(Integer id);
+	void delte(Product product);
+	
+	void deleteProduct(Product product);
+	
+	
 }

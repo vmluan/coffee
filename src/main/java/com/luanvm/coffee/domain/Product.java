@@ -1,6 +1,7 @@
 package com.luanvm.coffee.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,8 +35,40 @@ public class Product implements Serializable {
 	@Transient
 	MultipartFile file;
 	
+	@Column(name="isdeleted")
+	private boolean isDeleted;
+	
+	@Column(name="lastupdated")
+	private Date lastUpdated;
+	
+	@Column(name ="deleteddate")
+	private Date deltedDate;
 	
 	
+
+	public boolean isDeleted() {
+		return isDeleted;
+	}
+
+	public void setDeleted(boolean isDeleted) {
+		this.isDeleted = isDeleted;
+	}
+
+	public Date getLastUpdated() {
+		return lastUpdated;
+	}
+
+	public void setLastUpdated(Date lastUpdated) {
+		this.lastUpdated = lastUpdated;
+	}
+
+	public Date getDeltedDate() {
+		return deltedDate;
+	}
+
+	public void setDeltedDate(Date deltedDate) {
+		this.deltedDate = deltedDate;
+	}
 
 	public MultipartFile getFile() {
 		return file;

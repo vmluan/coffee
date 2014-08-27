@@ -1,6 +1,7 @@
 
 package com.luanvm.coffee.service.jpa;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.google.common.collect.Lists;
 import com.luanvm.coffee.domain.Product;
 import com.luanvm.coffee.repository.ProductRepository;
 import com.luanvm.coffee.service.ProductService;
@@ -25,7 +25,8 @@ public class DefaultProductService implements ProductService {
 
 	@Transactional(readOnly=true)
 	public List<Product> findAll() {
-		return Lists.newArrayList(productRepository.findAll());
+		//return Lists.newArrayList(productRepository.findAll());
+		return productRepository.findValidProduct();
 	}
 
 	@Transactional(readOnly=true)
@@ -46,5 +47,30 @@ public class DefaultProductService implements ProductService {
 	public Product findByName(String productName) {
 		return productRepository.findProductByName(productName).get(0);
 	}
+
+	@Override
+	public void delete(Integer id) {
+		productRepository.delete(id);
+		
+	}
+
+	@Override
+	public void delte(Product product) {
+		productRepository.delete(product);
+	}
+
+	@Override
+	public void deleteProduct(Product product) {
+		// becuase product is refered by encounter, it can not be deleted. It will violate foreign key violation.
+		// we will keep the product in the database, but mark it as isDeleted
+		product.setDeltedDate(new Date());
+		product.setDeleted(true);
+		//change name to avoid conflicting product name when user want to add that name again
+		String temp = String.valueOf(new Date().getTime());
+		product.setProductName(product.getProductName() + "_" + temp);
+		productRepository.save(product);
+	}
+	
+	
 	
 }

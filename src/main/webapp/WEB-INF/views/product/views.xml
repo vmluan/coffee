@@ -9,6 +9,11 @@
     <definition extends="product" name="products/list">
         <put-attribute name="body"
             value="/WEB-INF/views/product/productlist.jspx" />
-    </definition>    
+    </definition>
+    
+    <definition extends="product" name="products/update">
+        <put-attribute name="body"
+            value="/WEB-INF/views/product/new.jspx" />
+    </definition>       
                       
 </tiles-definitions>

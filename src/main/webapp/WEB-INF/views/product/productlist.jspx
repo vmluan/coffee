@@ -13,9 +13,6 @@
     <spring:message code="label_user_active" var="labelUserActive"/>
     <spring:message code="label_user_new" var="labelUserAdd"/>
     
-    <c:if test="${not empty message}">
-        <div id="message" class="${message.type}">${message.message}</div>
-    </c:if>
 	
 	<h3> <a href="/products?form">Them moi SP</a></h3>
     

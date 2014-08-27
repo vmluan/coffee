@@ -13,5 +13,8 @@ public interface ProductRepository extends PagingAndSortingRepository<Product, I
 //	List<Product> findAllProduct();
 	@Query("select c from Product c where c.productName  = :productName")
 	List<Product> findProductByName(@Param("productName") String productName);
+	
+	@Query("select c from Product c where c.isDeleted = false")
+	List<Product> findValidProduct();
 
 }
