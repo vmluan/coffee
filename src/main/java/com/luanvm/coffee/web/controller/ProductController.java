@@ -158,14 +158,12 @@ public class ProductController {
     }
 	@ResponseBody
 	@RequestMapping(value = "/{id}", params = "delete", method = RequestMethod.GET)
-    public String deleteProduct(@PathVariable("id") String id, Model uiModel) {
+    public String deleteProduct(@PathVariable("id") String id, Model uiModel, HttpServletRequest httpServletRequest) {
        // uiModel.addAttribute("template", templateService.findById(id));
 		System.out.println("================== " + id);
 		Product product = productService.findById(Integer.valueOf(id));
 		productService.deleteProduct(product);
-		List<Product> products = productService.findAll();
-		uiModel.addAttribute("products", products);
-		
+		generateProductFiles(httpServletRequest);
 		return "success";
        
 	}
