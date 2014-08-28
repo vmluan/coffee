@@ -40,7 +40,9 @@ var url = "products/getproductsjson";
                 showfilterrow: true,
                 filterable: true,				
                 columnsresize: true,
-				rowsheight: 75,
+				//rowsheight: 115,
+				autorowheight: true,
+				editable: true,
 				showtoolbar: true,
 				rendertoolbar: function (toolbar) {
                     var me = this;
@@ -102,10 +104,11 @@ var url = "products/getproductsjson";
 				
                 columns: [
 				  { text: 'Ten SP', datafield: 'productName', width: 250 },
-                  { text: 'Gia', datafield: 'productPrice', width: 250 },
+                  { text: 'Gia', datafield: 'productPrice', align: 'right', cellsalign: 'right', cellsformat: 'c0', columntype: 'numberinput', width: 250 },
                   { text: 'Hinh anh', datafield: 'picLocation', width: 230,
 					cellsrenderer: function (row, column, value) {
-                          return '<img src="../../images/t-shirts/' + value + '"/>';
+						if (value)
+							return '<img src="../../images/t-shirts/' + value + '"/>';
                       }
 				  },
                   { text: 'SP ban chay', datafield: 'common', width: 120 }
@@ -117,8 +120,18 @@ var url = "products/getproductsjson";
                      // open the popup window when the user clicks a button.
                      
 					 var value = $('#jqxgridProducts').jqxGrid('getcellvalue', row, "uid");
+					 location.href = "/products/" + value + "?form";
 					
 						}
 				  }
               ]
+            });
+			
+			
+						           // events
+            $("#jqxgridProducts").on('cellbeginedit', function (event) {
+                
+            });
+            $("#jqxgridProducts").on('cellendedit', function (event) {
+
             });
