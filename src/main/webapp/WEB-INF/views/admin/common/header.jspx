@@ -17,16 +17,16 @@
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="/quanlyban?form">Them Ban</a></li>
-
           </ul>
           <ul class="nav navbar-nav navbar-right">
 			<li><a href="/products">QL Gia</a></li>            
             <li><a href="#about">QL Nhap Hang</a></li>
             <li><a href="#">Thu Chi</a></li>
-            <li><a href="#">Ton Kho</a></li>
-            <li><a href="#">Kiem Tra Hang</a></li>
-          </ul>
+            <li><a href="/j_spring_security_logout">Dang xuat</a></li>
+          </ul>	  
         </div><!--/.nav-collapse -->
+		
+
       </div>
     </div>
     
