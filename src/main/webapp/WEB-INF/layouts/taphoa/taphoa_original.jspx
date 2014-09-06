@@ -40,10 +40,26 @@
     <div class="container-fluid">
       <div class="row">
         
-        <div class="test">
-          <h1 class="page-header">Dashboard</h1>
+		
 
-          <div class="row placeholders">
+		   
+        <div class="test">
+          <div class="page-header">
+		 
+					<div class="col-xs-6 col-sm-3" style="margin-left: 10px;">
+						<label> Dang uong: </label>
+						<input type="checkbox"  id="danguong" onChange="loadTableList()" />
+						<label> Da Tinh tien: </label>
+						<input type="checkbox"  id="datinhtien" onChange = "loadTableList()"/>						
+					</div>
+					
+			<label style="margin-left: 10px;" class="col-xs6 col-sm-2">chon ngay xem:</label>
+			<div style="margin: 10px;" id='jqxDateTimeInput'></div>
+			
+			
+		  </div>
+
+          <div class="row placeholders" id="maindiv">
 			<c:forEach var="currentTable" items="${table}">
 				<div class="col-xs-6 col-sm-3 placeholder">
 					<a href="quanlyban/${currentTable.tableID}?form">
@@ -140,13 +156,63 @@
 	<script type="text/javascript" src="/resources/jqwidgets/jqxinput.js">
 		<jsp:text/>
 	</script>
+	<script type="text/javascript" src="/resources/jqwidgets/jqxcalendar.js">
+		<jsp:text/>
+	</script>	
+	<script type="text/javascript" src="/resources/jqwidgets/jqxdatetimeinput.js">
+		<jsp:text/>
+	</script>	
+	
 	<script type="text/javascript" src="/resources/scripts/demos.js">
 		<jsp:text/>
 	</script>
 	<script type="text/javascript" src="/resources/QLbanle.js">
 		<jsp:text/>
 	</script>
+	<script type="text/javascript">
+		 $("#jqxDateTimeInput").jqxDateTimeInput({
+			 width: '200px',
+			 height: '25px',
+			 theme: 'energyblue'
+		 });
+            $('#jqxDateTimeInput').on('valuechanged', function (event) {
+                var date = event.args.date;
+				var date2 = $("#jqxDateTimeInput").val();
+				loadTableList(date2);
+            });
 
+	function loadTableList(tradeDate){
+		if (!tradeDate){
+			tradeDate = $("#jqxDateTimeInput").val();
+		}
+		var danguong = document.getElementById('danguong').checked;
+		var datinhtien = document.getElementById('datinhtien').checked;
+		
+		var url = '/';
+		var inputData = {tradeDate:  tradeDate, danguong: danguong, datinhtien: datinhtien};
+		 $.ajax({
+		   url: url,
+		   data: inputData,
+		   dataType : "html",
+		   type: 'GET',
+		//   data: data,
+		   success: function(data){
+			 //On ajax success do this
+			 var a = 1;
+         //   var gotcha = parseHTML(data,'maindiv');
+            $('#maindiv').html($(data).find('#maindiv').html());
+			$.getScript('/resources/bootstrap/js/vendor/holder.js', function(){});
+			  },
+		   error: function(xhr, ajaxOptions, thrownError) {
+			  //On error do this
+				alert(xhr.status);
+				alert(thrownError);
+
+			}
+		 });		
+		
+	};			 
+	</script>
 
 </body>
 

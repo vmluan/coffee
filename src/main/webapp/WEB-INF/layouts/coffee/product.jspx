@@ -17,6 +17,8 @@
         <spring:url value="/${app_css}" var="app_css_url" />
 
 		
+	
+		
         <!-- jQuery and jQuery UI -->
 		
 		
@@ -139,12 +141,47 @@
     <script type="text/javascript" src="/resources/jqwidgets/jqxdragdrop.js"><jsp:text/></script>
     <script type="text/javascript" src="/resources/jqwidgets/jqxcombobox.js"><jsp:text/></script>
 	
-	
 	<script type="text/javascript" src="/resources/QLproducts.js">
 		<jsp:text/>
-	</script>	
-	
+	</script>		
 	<script type="text/javascript">
-	</script>
+			
+			<![CDATA[
+			
+			$('#productPrice').keyup(function(event) {
+			//	alert(event.which);
+			// skip for arrow keys, ctrl + skipKeys
+			  
+		var skipKeys = new Array('a', 'n', 'c', 'x', 'v', 'j');	  
+		var isCtrl;
+		var key = event.which;
+        if(event.ctrlKey)
+            isCtrl = true;
+        else
+            isCtrl = false;
+		if(isCtrl){
+			for(i=0; i<skipKeys.length; i++)
+			{
+				//case-insensitive comparation
+				if(skipKeys[i].toLowerCase() == String.fromCharCode(key).toLowerCase())
+					return;
+			}
+		}		
+			if(key >= 37 && key <= 40) return;
+			if (key == 17)
+				return;
+				
+			  // format number
+			  $(this).val(function(index, value) {
+				return value
+				  .replace(/\D/g, "")
+				  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+				;
+			  });
+			});			
+			]]>
+
+  
+	</script>	
 
 </html>
