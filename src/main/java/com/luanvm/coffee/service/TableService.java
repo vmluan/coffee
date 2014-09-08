@@ -1,15 +1,20 @@
 package com.luanvm.coffee.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.luanvm.coffee.domain.TH_Table;
+import com.luanvm.coffee.domain.TH_TableStatus;
 
 public interface TableService {
 
 	List<TH_Table> findAll();
+	List<TH_Table> findTableByDate(Date date);
+	List<TH_Table> findTableByDate(Date date, TH_TableStatus status);
+	List<TH_Table> findTableByDate(Date date, TH_TableStatus status1, TH_TableStatus status2);
 	
 	TH_Table findById(Integer id);
 	

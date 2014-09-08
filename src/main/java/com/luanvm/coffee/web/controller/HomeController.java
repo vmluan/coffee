@@ -9,8 +9,15 @@
 
 package com.luanvm.coffee.web.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -26,6 +33,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.luanvm.coffee.domain.TH_Table;
+import com.luanvm.coffee.domain.TH_TableStatus;
 import com.luanvm.coffee.service.TableService;
 
 @Controller
@@ -42,7 +50,8 @@ public class HomeController extends BaseController{
 	
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String getHomePage(Model ciModel,@RequestParam(value="lang", required=false)String id) {
+	public String getHomePage(Model ciModel,@RequestParam(value="lang", required=false)String id,
+			HttpServletRequest httpServletRequest) throws ParseException {
 		Locale locale = LocaleContextHolder.getLocale();	
 		if(StringUtils.isNotEmpty(id)){
 			if(id.equalsIgnoreCase(com.luanvm.coffee.helper.Constants.VIETNAMESE))
@@ -50,7 +59,33 @@ public class HomeController extends BaseController{
 		}
 		List<TH_Table> tablesOfDay;
 		
-		tablesOfDay = tableService.findAll();
+		String tradeDate = httpServletRequest.getParameter("tradeDate");
+		String danguong = httpServletRequest.getParameter("danguong");
+		String datinhtien = httpServletRequest.getParameter("datinhtien");
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		List<TH_TableStatus> statuses = new ArrayList<TH_TableStatus>();
+		if(danguong != null && danguong.equalsIgnoreCase("true"))
+			statuses.add(TH_TableStatus.DRINKING);
+		if (datinhtien != null && datinhtien.equalsIgnoreCase("true"))
+			statuses.add(TH_TableStatus.PAID);
+		Date date = null;
+		if(tradeDate != null){
+			//get the next date
+			
+			date = format.parse(tradeDate);
+			
+
+		}else{
+			Date currentDate = new Date();
+			String dateString = format.format(currentDate);
+			date = format.parse(dateString);
+		}
+		if(statuses.size() == 1)
+			tablesOfDay = tableService.findTableByDate(date, statuses.get(0));
+		else if (statuses.size() > 1)
+			tablesOfDay = tableService.findTableByDate(date, statuses.get(0), statuses.get(1));
+		else
+			tablesOfDay = tableService.findTableByDate(date);
 		ciModel.addAttribute("table", tablesOfDay);
 		return "taphoa";
 	}
