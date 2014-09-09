@@ -19,3 +19,5 @@ INSERT INTO `thkassociates`.`thk_user`(`usercode`,`username`,`password`,`groupid
 ================== references links
 1. http://stackoverflow.com/questions/49547/making-sure-a-web-page-is-not-cached-across-all-browsers
 2. http://stackoverflow.com/questions/2632359/can-jquery-add-commas-while-user-typing-numbers
+3. pop-up library
+http://dinbror.dk/bpopup/
