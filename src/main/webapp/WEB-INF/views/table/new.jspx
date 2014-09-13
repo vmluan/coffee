@@ -1,4 +1,3 @@
-
 <div xmlns:jsp="http://java.sun.com/JSP/Page" 
      xmlns:c="http://java.sun.com/jsp/jstl/core" 
      version="2.0"
@@ -6,50 +5,62 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>  
         <div id="catalog" class="draggable-demo-catalog jqx-rc-all">
-		
+				<div id='jqxWidget' style="margin:5px;">
+				<jsp:text/>
+				</div>
 				
-		</div>
+			<jsp:text/>
+		</div>	
 		
 
         <div class="draggable-demo-cart-wrapper jqx-rc-all">
-		
-		   <div class="form-group col-xs2 col-sm-4">
-			  <label for="name">Ban so</label>
+			<jsp:text/>
+            <div class="table-status jqx-rc-t">
+		   <div class="form-group form-group-coffee col-xs2 col-sm-4">
 			  <input type="text" class="form-control" id="tableNumber" 
 				 placeholder="so ban"/>
+			<jsp:text/>	 
 		   </div>
-		   <div class="form-group col-xs2 col-sm-8">
-			  <label for="name">Ten KH</label>
+		   <div class="form-group form-group-coffee col-xs2 col-sm-8">
 			  <input type="text" class="form-control" id="customerName" 
 				 placeholder="ten KH"/>
-				 
-		   </div>
-            <div class="table-status jqx-rc-t">Ban dang uong
-				<div id='jqxWidget'></div>
+			<jsp:text/>	 
+		   </div>			
+
 			</div>					   
             <div class="draggable-demo-title jqx-rc-t">Danh sach Thuc Uong
-				<div id='jqxWidget'></div>
+			<jsp:text/>
 			</div>
                 <div id='cart' class="draggable-demo-cart jqx-rc-all">
-                    <div id="jqxgrid"></div>
-										
+                    <div id="jqxgrid"><jsp:text/>	</div>
+				<jsp:text/>						
                 </div>
                 <div class="draggable-demo-total">Tong: <strong><span id="total">$ 0</span></strong>
-									
+				<jsp:text/>					
 				</div>
 				
 							
-							
+		<jsp:text/>						
         </div>
-	<button class="btn btn-lg btn-success tap-hoa-done-button"
-					onclick="submitBan();">Luu
-	</button>
 	
-	<button class="btn btn-lg btn-info print-button"
-					onclick="submitBan();">Tinh Tien 
-	</button>
-	<button class="btn btn-lg btn-warning print-checkin-button"
-					onclick="submitBan();">In 
-	</button>		
-        <div style="clear: both;"></div>
+		<div id="buttons" class="coffee-table-button-group">
+			<div class="button-div button-div-bottom"> 
+				<button class="btn btn-lg btn-success tap-hoa-done-button"
+								onclick="submitBan();">Luu (F2)
+				</button>
+			</div>
+			<div class="button-div button-div-bottom"> 
+				<button class="btn btn-lg btn-info print-button"
+								onclick="submitBan();">Tinh Tien (F8)
+				</button>
+			</div>
+			<div class="button-div"> 
+				<button class="btn btn-lg btn-warning print-checkin-button"
+								onclick="submitBan();">In (F10)
+				</button>
+			</div>
+				<div style="clear: both;"></div>			
+			
+			<jsp:text/>
+		</div>	
 </div>

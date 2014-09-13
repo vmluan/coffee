@@ -14,13 +14,13 @@ import com.luanvm.coffee.domain.TH_TableStatus;
 
 public interface TableRepository extends PagingAndSortingRepository<TH_Table, Integer> {
 	
-	@Query("select c from TH_Table c where c.openTime  between :tradeDate and :nextTradeDate ")
+	@Query("select c from TH_Table c where c.openTime  between :tradeDate and :nextTradeDate order by c.status asc, c.openTime desc ")
 	List<TH_Table> findProductByName(@Param("tradeDate") Date tradeDate, @Param("nextTradeDate") Date nextTradeDate );
 	
-	@Query("select c from TH_Table c where c.openTime  between :tradeDate and :nextTradeDate and c.status = :status")
+	@Query("select c from TH_Table c where c.openTime  between :tradeDate and :nextTradeDate and c.status = :status order by c.status asc, c.openTime desc")
 	List<TH_Table> findProductByName(@Param("tradeDate") Date tradeDate, @Param("nextTradeDate") Date nextTradeDate, 
 			@Param("status") TH_TableStatus status);
-	@Query("select c from TH_Table c where c.openTime  between :tradeDate and :nextTradeDate and (c.status = :status1 or c.status =:status2)")
+	@Query("select c from TH_Table c where c.openTime  between :tradeDate and :nextTradeDate and (c.status = :status1 or c.status =:status2) order by c.status asc, c.openTime desc")
 	List<TH_Table> findProductByName(@Param("tradeDate") Date tradeDate, @Param("nextTradeDate") Date nextTradeDate, 
 			@Param("status1") TH_TableStatus status1, @Param("status2") TH_TableStatus status2);
 	

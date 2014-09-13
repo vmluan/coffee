@@ -1,6 +1,6 @@
 body {
-  min-height: 2000px;
-  padding-top: 70px;
+  min-height: 600px;
+  padding-top: 60px;
 }
 
 .khach-hang-no{
@@ -30,18 +30,19 @@ font-size: 16px;
 }
 
 .tap-hoa-done-button{
-width: 50%;
+width: 100%;
 float: left;
+white-space: normal;
 }
 .print-button{
-margin-left: 10px;
-width: 22%;
+width: 100%;
 float: left;
+white-space: normal;
 }
 .print-checkin-button{
-margin-left: 10px;
-width: 22%;
+width: 100%;
 float: left;
+white-space: normal;
 }
         .draggable-demo-cart
         {
@@ -53,17 +54,19 @@ float: left;
         }
         .draggable-demo-shop 
         {
-            border: 1px solid #666;
-            width: 90%;
+          //  border: 1px solid #666;
+            width: 95%;
             padding: 5px;
 			overFlow: auto;
+			margin-left: 20px;
 		//	position: fixed;
+			background-color: rgb(237, 242, 246);
 			
         }
         .draggable-demo-catalog
         {
             position: relative;
-            width: 100%;
+            width: 55%;
             border: 1px solid #bbb;
             height: 580px;
             float: left;
@@ -128,11 +131,13 @@ float: left;
         }
         .draggable-demo-cart-wrapper
         {
-            float: right;
+            float: left;
             border: 1px solid #aaa;
             //height: 457px;
-			height: 580px;
-            width: 40%;
+			height: 600px;
+            width: 33%;
+			margin-left: 5px;
+			padding: 5px;
         }
         .draggable-demo-total
         {
@@ -154,4 +159,24 @@ float: left;
 			margin-bottom: 10px;
             font-weight: bold;
             border: 1px solid #aaa;
-        }		
+        }
+.form-group-coffee
+{	padding: 7px;
+}
+.coffee-table-button-group
+{	
+	width: 10%;
+	padding: 7px;
+	height: 600px;
+	float:left;
+}
+.button-div{
+	--border: 1px solid black;
+	width:100%;
+	display:block;
+	overflow:auto;
+--	height: 60px;
+}	
+.button-div-bottom{
+	margin-bottom: 50px;
+}

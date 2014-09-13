@@ -28,7 +28,17 @@
 					<form:errors path="productPrice" cssClass="error" />
 				</div>
 				<p/>
-		</div>	
+		</div>
+		<div class="col-xs2 col-sm-2">
+				<form:label path="common">
+					SP ban chay 
+				</form:label>
+				<form:checkbox path="common" />
+				<div>
+					<form:errors path="common" cssClass="error" />
+				</div>
+				<p/>
+		</div>				
 		<div class="col-xs2 col-sm-3">	
 			Please select a file to upload : <input type="file" name="file" />
 		

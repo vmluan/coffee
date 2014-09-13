@@ -46,16 +46,17 @@
 							
 							
         </div>
-	<button class="btn btn-lg btn-success tap-hoa-done-button"
-					onclick="submitBan('${table.tableID}');">Luu
-	</button>
-	
-	<button class="btn btn-lg btn-info print-button"
-					onclick="submitBan('${table.tableID}','PAID');">Tinh Tien 
-	</button>
-	<button class="btn btn-lg btn-warning print-checkin-button"
-					onclick="submitBan();">In 
-	</button>		
-
+	<c:if test="${table.status ne 'PAID'}">	
+		<button class="btn btn-lg btn-success tap-hoa-done-button"
+						onclick="submitBan('${table.tableID}');">Luu
+		</button>
+		
+		<button class="btn btn-lg btn-info print-button"
+						onclick="submitBan('${table.tableID}','PAID');">Tinh Tien 
+		</button>
+		<button class="btn btn-lg btn-warning print-checkin-button"
+						onclick="submitBan();">In 
+		</button>		
+	</c:if>
         <div style="clear: both;"></div>
 </div>

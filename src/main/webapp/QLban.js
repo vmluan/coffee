@@ -60,7 +60,7 @@
 			
 		var jsonData = JSON.stringify(table);
 
-alert(jsonData);
+//alert(jsonData);
 		 $.ajax({
 		   url: url,
 		   type: 'POST',
@@ -77,7 +77,7 @@ alert(jsonData);
 				
 				if (xhr.status == 200) {
 
-					alert("Them ban thanh cong");
+				//	alert("Them ban thanh cong");
 					location.reload();
 				}
 				else {
@@ -116,12 +116,12 @@ alert(jsonData);
             function productsRendering() {
                 var catalog = $('#catalog'),
                     imageContainer = $('</div>'),
-                    image, product, left = 0, top = 0, counter = 0;
+                    image, product, left = 0, top = 50, counter = 0;
                 for (var name in products) {
                     product = products[name];
                     image = createProduct(name, product);
                     image.appendTo(catalog);
-                    if (counter !== 0 && counter % 4 === 0) {
+                    if (counter !== 0 && counter % 6 === 0) {
                         top += 140; // image.outerHeight() + productsOffset;
                         left = 0;
                     }
@@ -150,7 +150,7 @@ alert(jsonData);
                 {
                     height: 300,
                     //width: 290,
-					width: 400,
+					width: 394,
                     
                     keyboardnavigation: false,
                     selectionmode: 'none',
@@ -158,8 +158,8 @@ alert(jsonData);
 						{ text: '', dataField: 'stt', width: 40 },
                       { text: 'Ten', dataField: 'name', width: 200 },
                       { text: 'SL', dataField: 'count', width: 70 },
-                      { text: 'Xoa', dataField: 'remove', width: 40 },
-					  { text: 'Tang', dataField: 'add', width: 40 }
+                      { text: 'Giam', dataField: 'remove', width: 42 },
+					  { text: 'Tang', dataField: 'add', width: 42 }
 					  
                     ]
                 });
@@ -203,7 +203,7 @@ alert(jsonData);
                 var dataAdapter = new $.jqx.dataAdapter(source);
                 
 				$("#jqxWidget").jqxDropDownList({ selectedIndex: -1, source: dataAdapter, displayMember: "productName"
-					, valueMember: "productPrice", width: 200, height: 25});
+					, valueMember: "productPrice", width: 400, height: 25});
 				//$("#jqxWidget").jqxComboBox({ source: source, selectedIndex: -1, width: '250', height: '25px'});
                 $('#jqxWidget').on('select', function (event) {
                     var args = event.args;

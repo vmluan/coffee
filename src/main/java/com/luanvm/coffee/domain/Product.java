@@ -30,7 +30,7 @@ public class Product implements Serializable {
 	private String picLocation;
 	
 	@Column(name = "iscommon")
-	private boolean isCommon;
+	private boolean common = false;
 	
 	@Transient
 	MultipartFile file;
@@ -110,15 +110,14 @@ public class Product implements Serializable {
 		this.picLocation = picLocation;
 	}
 
+
 	public boolean isCommon() {
-		return isCommon;
+		return common;
 	}
 
-	public void setCommon(boolean isCommon) {
-		this.isCommon = isCommon;
+	public void setCommon(boolean common) {
+		this.common = common;
 	}
-	
-
 
 	@Override
 	public String toString(){
