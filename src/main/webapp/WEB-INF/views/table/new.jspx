@@ -6,16 +6,14 @@
     <jsp:output omit-xml-declaration="yes"/>  
         <div id="catalog" class="draggable-demo-catalog jqx-rc-all">
 				<div id='jqxWidget' style="margin:5px;">
-				<jsp:text/>
-				</div>
-				
-			<jsp:text/>
+				Toan bo san pham
+				<jsp:text/> 
+				</div>		   
 		</div>	
 		
 
         <div class="draggable-demo-cart-wrapper jqx-rc-all">
 			<jsp:text/>
-            <div class="table-status jqx-rc-t">
 		   <div class="form-group form-group-coffee col-xs2 col-sm-4">
 			  <input type="text" class="form-control" id="tableNumber" 
 				 placeholder="so ban"/>
@@ -27,7 +25,7 @@
 			<jsp:text/>	 
 		   </div>			
 
-			</div>					   
+			   
             <div class="draggable-demo-title jqx-rc-t">Danh sach Thuc Uong
 			<jsp:text/>
 			</div>

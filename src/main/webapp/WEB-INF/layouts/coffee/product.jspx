@@ -148,7 +148,7 @@
 			
 			<![CDATA[
 			
-			$('#productPrice').keyup(function(event) {
+			$('#productPriceWrapper').keyup(function(event) {
 			//	alert(event.which);
 			// skip for arrow keys, ctrl + skipKeys
 			  

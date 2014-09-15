@@ -131,6 +131,7 @@ public class ProductController {
     public String updateForm(@PathVariable("id") Integer id, Model uiModel) {
        // uiModel.addAttribute("template", templateService.findById(id));
 		Product product = productService.findById(id);
+		product.setProductPriceWrapper(String.valueOf(product.getProductPrice()));
 		uiModel.addAttribute("product", product);
         return "products/update";
 	}
@@ -142,14 +143,26 @@ public class ProductController {
         uiModel.asMap().clear();
         product.setProductID(id);
         
+        String productPriceWrapper = product.getProductPriceWrapper();
+        if(productPriceWrapper == null || productPriceWrapper.equals(""))
+        	productPriceWrapper = httpServletRequest.getParameter("productPriceWrapper");
+        System.out.println("==================== " + productPriceWrapper);
+        productPriceWrapper = productPriceWrapper.replace(",", "").replace(" ", "").replace(".", "");
+        
+        System.out.println("==================== " + productPriceWrapper);
+        long price = Long.valueOf(productPriceWrapper);
+        System.out.println("==================== " + price);
+        product.setProductPrice(price);
+        
         redirectAttributes.addFlashAttribute("message", "Updating Product");        
 
         //handle attachments
         String fileName = "";
         fileName = saveImages(httpServletRequest);
-        product.setPicLocation(fileName);
+       
         if (!fileName.equalsIgnoreCase(""))
-        	productService.save(product);
+        	 product.setPicLocation(fileName);
+        productService.save(product);
         
 		List<Product> products = productService.findAll();
 		uiModel.addAttribute("products", products);

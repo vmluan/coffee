@@ -116,7 +116,7 @@
             function productsRendering() {
                 var catalog = $('#catalog'),
                     imageContainer = $('</div>'),
-                    image, product, left = 0, top = 50, counter = 0;
+                    image, product, left = 0, top = 30, counter = 0;
                 for (var name in products) {
                     product = products[name];
                     image = createProduct(name, product);
@@ -189,6 +189,7 @@
                 });
 				
 			//add dropdownlist
+			/*
                 var urlDropList = "/products/getproductsjson";
                 var source =
                 {
@@ -201,10 +202,9 @@
                     async: false
                 };
                 var dataAdapter = new $.jqx.dataAdapter(source);
-                
+          
 				$("#jqxWidget").jqxDropDownList({ selectedIndex: -1, source: dataAdapter, displayMember: "productName"
 					, valueMember: "productPrice", width: 400, height: 25});
-				//$("#jqxWidget").jqxComboBox({ source: source, selectedIndex: -1, width: '250', height: '25px'});
                 $('#jqxWidget').on('select', function (event) {
                     var args = event.args;
                     var item = $('#jqxWidget').jqxDropDownList('getItem', args.index);
@@ -214,7 +214,49 @@
 						addItem({ price: parseInt(price), name: item.label });
 						$("#jqxWidget").jqxDropDownList('selectIndex', -1); 
                     }
-                });			
+                });
+	*/			
+				
+	 		
+
+	/*
+		using jqxcombobox
+	
+				$("#jqxWidget").jqxComboBox({ selectedIndex: -1, source: dataAdapter, displayMember: "productName"
+				, valueMember: "productPrice", width: 400, height: 25
+				//, checkboxes: true
+				});
+		*/		
+			
+             /*   $('#jqxWidget').on('select', function (event) {
+					 if (event.args){
+						var args = event.args;
+						var item = $('#jqxWidget').jqxComboBox('getItem', args.index);
+						
+						if (item != null) {
+							var price = sampleProducts[item.label].price;
+							addItem({ price: parseInt(price), name: item.label });
+							$("#jqxWidget").jqxComboBox('selectIndex', -1); 
+						}
+					}
+                });
+				*/
+			/*	$('#jqxWidget').on('checkChange', function (event) 
+				{
+					var args = event.args;
+					if (args) {
+					// index represents the item's index.                          
+					var index = args.index;
+					var item = args.item;
+					// get item's label and value.
+					var label = item.label;
+					var value = item.value;
+					alert(label);
+				}
+				}); 
+			*/
+  
+				
 			//end of dropdown
 				
             };

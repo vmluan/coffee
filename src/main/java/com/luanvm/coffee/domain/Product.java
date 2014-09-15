@@ -35,6 +35,9 @@ public class Product implements Serializable {
 	@Transient
 	MultipartFile file;
 	
+	@Transient
+	String productPriceWrapper;
+	
 	@Column(name="isdeleted")
 	private boolean isDeleted;
 	
@@ -117,6 +120,15 @@ public class Product implements Serializable {
 
 	public void setCommon(boolean common) {
 		this.common = common;
+	}
+
+	
+	public String getProductPriceWrapper() {
+		return productPriceWrapper;
+	}
+
+	public void setProductPriceWrapper(String productPriceWrapper) {
+		this.productPriceWrapper = productPriceWrapper;
 	}
 
 	@Override

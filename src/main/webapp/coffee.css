@@ -1,182 +1,186 @@
 body {
-  min-height: 600px;
-  padding-top: 60px;
+	min-height: 600px;
+	padding-top: 60px;
 }
 
-.khach-hang-no{
-position: relative;
-left: 100%;
-color: red;
+.khach-hang-no {
+	position: relative;
+	left: 100%;
+	color: red;
 }
 
-.tap-hoa-main-div{
-padding-top: 10px;
-padding-bottom: 40px;
-padding-left: 20px;
-padding-right: 20px;
-margin-bottom: 10px;
-color: inherit;
-background-color: #eee;
-border-style:ridge;
-border-radius: 15px;
-}
-.ban-le-grid{
-padding-left: 15px;
+.tap-hoa-main-div {
+	padding-top: 10px;
+	padding-bottom: 40px;
+	padding-left: 20px;
+	padding-right: 20px;
+	margin-bottom: 10px;
+	color: inherit;
+	background-color: #eee;
+	border-style: ridge;
+	border-radius: 15px;
 }
 
-.tap-hoa-aggregate{
-font-weight: bold;
-font-size: 16px;
+.ban-le-grid {
+	padding-left: 15px;
 }
 
-.tap-hoa-done-button{
-width: 100%;
-float: left;
-white-space: normal;
+.tap-hoa-aggregate {
+	font-weight: bold;
+	font-size: 16px;
 }
-.print-button{
-width: 100%;
-float: left;
-white-space: normal;
+
+.tap-hoa-done-button {
+	width: 100%;
+	float: left;
+	white-space: normal;
 }
-.print-checkin-button{
-width: 100%;
-float: left;
-white-space: normal;
+
+.print-button {
+	width: 100%;
+	float: left;
+	white-space: normal;
 }
-        .draggable-demo-cart
-        {
-            border: 2px dashed #aaa;
-            padding: 5px;
-            width: 100%;
-            //margin: auto;
-			margin-top: 5px;
-        }
-        .draggable-demo-shop 
-        {
-          //  border: 1px solid #666;
-            width: 95%;
-            padding: 5px;
-			overFlow: auto;
-			margin-left: 20px;
-		//	position: fixed;
-			background-color: rgb(237, 242, 246);
-			
-        }
-        .draggable-demo-catalog
-        {
-            position: relative;
-            width: 55%;
-            border: 1px solid #bbb;
-            height: 580px;
-            float: left;
-        }
-        .draggable-demo-product-image
-        {
-            width: 150px;
-        }
-        .draggable-demo-product
-        {
-            padding: 5px;
-            border: 1px solid #888;
-            width: 115px;
-            height: 140px;
-            background-color: #fff;
-            position: absolute;
-            margin: 5px;
-        }
-        .draggable-demo-product img
-        {
-            width: 103px;
-            border: 1px solid #aaa;
-            border-top-width: 0px;
-            outline-width: 15px;
-        }
-        .draggable-demo-product-header
-        {
-            border: 1px solid #888;
-            height: 20px;
-            border-bottom-width: 0px;
-            font-size: 13px;
-            position: relative;
-            text-align: center;
-        }
-        .draggable-demo-product-header-label
-        {
-            margin-top: 3px;
-        }
-        .draggable-demo-product-price
-        {
-            position: absolute;
-            top: 124px;
-            left: 6px;
-            width: 102px;
-            text-align: center;
-            font-family: Verdana;
-            font-size: 11px;
-            display: none;
-            height: 16px;
-            border-top: 1px solid #888;
-            border-bottom: 1px solid #fff;
-        }
-        .draggable-demo-title
-        {
-            font-size: 23px;
-            font-family: Verdana;
-            text-align: center;
-            padding: 7px;
-            margin: 5px;
-            font-weight: bold;
-            border: 1px solid #aaa;
-        }
-        .draggable-demo-cart-wrapper
-        {
-            float: left;
-            border: 1px solid #aaa;
-            //height: 457px;
-			height: 600px;
-            width: 33%;
-			margin-left: 5px;
-			padding: 5px;
-        }
-        .draggable-demo-total
-        {
-            font-size: 17px;
-            font-family: Verdana;
-            margin: 6px;
-            margin-top: 7px;            
-            padding: 7px;
-			float: left;
-			width: 100%;
-        }
-		
-        .table-status
-        {
-            font-size: 12px;
-            font-family: Verdana;
-            text-align: center;
-            margin-top: 5px;
-			margin-bottom: 10px;
-            font-weight: bold;
-            border: 1px solid #aaa;
-        }
-.form-group-coffee
-{	padding: 7px;
+
+.print-checkin-button {
+	width: 100%;
+	float: left;
+	white-space: normal;
 }
-.coffee-table-button-group
-{	
+
+.draggable-demo-cart {
+	border: 2px dashed #aaa;
+	padding: 5px;
+	width: 100%; //
+	margin: auto;
+	margin-top: 5px;
+}
+
+.draggable-demo-shop { //
+	border: 1px solid #666;
+	width: 95%;
+	padding: 5px;
+	overFlow: auto;
+	margin-left: 20px; //
+	position: fixed;
+	background-color: rgb(237, 242, 246);
+}
+
+.draggable-demo-catalog {
+	position: relative;
+	width: 55%;
+	border: 1px solid #bbb;
+	height: 580px;
+	float: left;
+}
+
+.draggable-demo-product-image {
+	width: 150px;
+}
+
+.draggable-demo-product {
+	padding: 5px;
+	border: 1px solid #888;
+	width: 115px;
+	height: 140px;
+	background-color: #fff;
+	position: absolute;
+	margin: 5px;
+}
+
+.draggable-demo-product img {
+	width: 103px;
+	border: 1px solid #aaa;
+	border-top-width: 0px;
+	outline-width: 15px;
+}
+
+.draggable-demo-product-header {
+	border: 1px solid #888;
+	height: 20px;
+	border-bottom-width: 0px;
+	font-size: 13px;
+	position: relative;
+	text-align: center;
+}
+
+.draggable-demo-product-header-label {
+	margin-top: 3px;
+}
+
+.draggable-demo-product-price {
+	position: absolute;
+	top: 124px;
+	left: 6px;
+	width: 102px;
+	text-align: center;
+	font-family: Verdana;
+	font-size: 11px;
+	display: none;
+	height: 16px;
+	border-top: 1px solid #888;
+	border-bottom: 1px solid #fff;
+}
+
+.draggable-demo-title {
+	font-size: 23px;
+	font-family: Verdana;
+	text-align: center;
+	padding: 7px;
+	margin: 5px;
+	font-weight: bold;
+	border: 1px solid #aaa;
+}
+
+.draggable-demo-cart-wrapper {
+	float: left;
+	border: 1px solid #aaa; //
+	height: 457px;
+	height: 600px;
+	width: 33%;
+	margin-left: 5px;
+	padding: 5px;
+}
+
+.draggable-demo-total {
+	font-size: 17px;
+	font-family: Verdana;
+	margin: 6px;
+	margin-top: 7px;
+	padding: 7px;
+	float: left;
+	width: 100%;
+}
+
+.table-status {
+	font-size: 12px;
+	font-family: Verdana;
+	text-align: center;
+	margin-top: 5px;
+	margin-bottom: 10px;
+	font-weight: bold;
+	border: 1px solid #aaa;
+}
+
+.form-group-coffee {
+	padding: 7px;
+}
+
+.coffee-table-button-group {
 	width: 10%;
 	padding: 7px;
 	height: 600px;
-	float:left;
+	float: left;
 }
-.button-div{
-	--border: 1px solid black;
-	width:100%;
-	display:block;
-	overflow:auto;
---	height: 60px;
-}	
-.button-div-bottom{
+
+.button-div { -
+	-border: 1px solid black;
+	width: 100%;
+	display: block;
+	overflow: auto; --
+	height: 60px;
+}
+
+.button-div-bottom {
 	margin-bottom: 50px;
 }

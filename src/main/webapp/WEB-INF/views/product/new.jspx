@@ -20,12 +20,12 @@
 			</div>	
 			<p/>
 		<div class="col-xs2 col-sm-3">
-				<form:label path="productPrice">
+				<form:label path="productPriceWrapper">
 					Gia San Pham* 
 				</form:label>
-				<form:input path="productPrice" />
+				<form:input path="productPriceWrapper" />
 				<div>
-					<form:errors path="productPrice" cssClass="error" />
+					<form:errors path="productPriceWrapper" cssClass="error" />
 				</div>
 				<p/>
 		</div>
