@@ -91,7 +91,8 @@
 		
 		var cart = (function ($) {
             theme = $.jqx.theme;
-            var productsOffset = 3,
+            //var productsOffset = 3,
+			var productsOffset = 50,
                 products = sampleProducts,
             theme, onCart = false, cartItems = [], totalPrice = 0;
 			
@@ -121,21 +122,22 @@
                     product = products[name];
                     image = createProduct(name, product);
                     image.appendTo(catalog);
-                    if (counter !== 0 && counter % 6 === 0) {
-                        top += 140; // image.outerHeight() + productsOffset;
+                    if (counter !== 0 && counter % 4 === 0) {
+                        top += 140 + 30; // image.outerHeight() + productsOffset;
                         left = 0;
                     }
                     image.css({
                         left: left,
                         top: top
                     });
-                    left += 115; // image.outerWidth() + productsOffset;
+                    left += 115 + productsOffset; // image.outerWidth() + productsOffset;
                     counter += 1;
                 }
                 $('.draggable-demo-product').jqxDragDrop({ dropTarget: $('#cart'), revert: true });
             };
 
             function createProduct(name, product) {
+			
                 return $('<div class="draggable-demo-product jqx-rc-all">' +
                         '<div class="jqx-rc-t draggable-demo-product-header jqx-widget-header-' + theme + ' jqx-fill-state-normal-' + theme + '">' +
                         '<div class="draggable-demo-product-header-label"> ' + name + '</div></div>' +
@@ -398,6 +400,12 @@
                         name: tshirt
                     });
                 });
+                $('.draggable-demo-product').bind('click', function (event) {
+                    var tshirt = $(this).find('.draggable-demo-product-header').text(),
+                        price = $(this).find('.draggable-demo-product-price').text().replace('Price: $', '');
+                    price = parseInt(price, 10);			
+                    addItem({ price: price, name: tshirt });
+                });				
             };
 
             return {

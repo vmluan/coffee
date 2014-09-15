@@ -72,6 +72,7 @@ body {
 	border: 1px solid #bbb;
 	height: 580px;
 	float: left;
+	overflow: scroll;
 }
 
 .draggable-demo-product-image {
@@ -106,6 +107,7 @@ body {
 
 .draggable-demo-product-header-label {
 	margin-top: 3px;
+	font-weight: bold;
 }
 
 .draggable-demo-product-price {
@@ -116,7 +118,7 @@ body {
 	text-align: center;
 	font-family: Verdana;
 	font-size: 11px;
-	display: none;
+	display: block;
 	height: 16px;
 	border-top: 1px solid #888;
 	border-bottom: 1px solid #fff;
