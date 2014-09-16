@@ -8,6 +8,6 @@
    
     <definition extends="table" name="tables/update">
         <put-attribute name="body"
-            value="/WEB-INF/views/table/update.jspx" />
+            value="/WEB-INF/views/table/new.jspx" />
     </definition>                      
 </tiles-definitions>

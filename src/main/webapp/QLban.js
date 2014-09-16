@@ -16,15 +16,16 @@
 			var product = new Object();
 			var encounter = new Object();
 			
-			var rowID = 'row' + i + 'jqxgrid';
+			var quantityID = '#row' + i + 'jqxgridQuantity'; 
 			var rowDiv = productsChildren[i];
 			
 			var rowDivName = rowDiv.children[0];
 			
 			var name = rowDiv.children[1].textContent
 			var id = 0;
-			var quantity = rowDiv.children[2].textContent
-			
+			var quantity = $(quantityID).val();
+			if (!quantity)
+				quantity = 0;
 			product.productName = $.trim(name);
 			product.productID = id;
 			
@@ -169,9 +170,10 @@
                     var index = event.args.rowindex;
                     if (event.args.datafield == 'remove') {
                         var item = cartItems[index];
-                        if (item.count > 1) {
-                            item.count -= 1;
-                            updateGridRow(index, item);
+						var inputDiv = '#' + 'row' +index +'jqxgridQuantity';
+						var count = $(inputDiv).val()
+                        if (count > 1) {
+                            updateQuantity(index, -1 );
                         }
                         else {
                             cartItems.splice(index, 1);
@@ -181,85 +183,15 @@
                     }
 					else if (event.args.datafield == 'add'){
                         var item = cartItems[index];
-                        if (item.count > 0) {
-                            item.count += 1;
-                            updateGridRow(index, item);
-                        }
+						
+						if (index >= 0)
+							updateQuantity(index, 1 );
 
                         updatePrice(item.price);					
 					}
                 });
 				
-			//add dropdownlist
-			/*
-                var urlDropList = "/products/getproductsjson";
-                var source =
-                {
-                    datatype: "json",
-                    datafields: [
-                        { name: 'productName' },
-                        { name: 'productPrice' }
-                    ],
-                    url: urlDropList,
-                    async: false
-                };
-                var dataAdapter = new $.jqx.dataAdapter(source);
-          
-				$("#jqxWidget").jqxDropDownList({ selectedIndex: -1, source: dataAdapter, displayMember: "productName"
-					, valueMember: "productPrice", width: 400, height: 25});
-                $('#jqxWidget').on('select', function (event) {
-                    var args = event.args;
-                    var item = $('#jqxWidget').jqxDropDownList('getItem', args.index);
-					
-                    if (item != null) {
-                        var price = sampleProducts[item.label].price;
-						addItem({ price: parseInt(price), name: item.label });
-						$("#jqxWidget").jqxDropDownList('selectIndex', -1); 
-                    }
-                });
-	*/			
-				
-	 		
-
-	/*
-		using jqxcombobox
 	
-				$("#jqxWidget").jqxComboBox({ selectedIndex: -1, source: dataAdapter, displayMember: "productName"
-				, valueMember: "productPrice", width: 400, height: 25
-				//, checkboxes: true
-				});
-		*/		
-			
-             /*   $('#jqxWidget').on('select', function (event) {
-					 if (event.args){
-						var args = event.args;
-						var item = $('#jqxWidget').jqxComboBox('getItem', args.index);
-						
-						if (item != null) {
-							var price = sampleProducts[item.label].price;
-							addItem({ price: parseInt(price), name: item.label });
-							$("#jqxWidget").jqxComboBox('selectIndex', -1); 
-						}
-					}
-                });
-				*/
-			/*	$('#jqxWidget').on('checkChange', function (event) 
-				{
-					var args = event.args;
-					if (args) {
-					// index represents the item's index.                          
-					var index = args.index;
-					var item = args.item;
-					// get item's label and value.
-					var label = item.label;
-					var value = item.value;
-					alert(label);
-				}
-				}); 
-			*/
-  
-				
-			//end of dropdown
 				
             };
 
@@ -298,13 +230,18 @@
                 var index = getItemIndex(item.name);
 			//	alert(index);
                 if (index >= 0) {
-                    cartItems[index].count += 1;
-                    updateGridRow(index, cartItems[index]);
+                    //cartItems[index].count += 1;
+					updateQuantity(index, 1 );
+                //   updateGridRow(index, cartItems[index]);
+				
                 } else {
                     var id = cartItems.length,
                         item = {
                             name: item.name,
-                            count: 1,
+                            //count: 1,
+							count: '<button class="upArrow"></button>'
+	+ '<input ' + 'id="row' + id + 'jqxgridQuantity" ' +  'type="text" value="1" style="width: 50%; height: 100%; border: 0px;background-color: rgb(197, 225, 226);" class="rowQuantity"/>'
+	+ '<button class="downArrow"></button>',
                             price: item.price,
                             index: id,
                             remove: '<div style="text-align: center; cursor: pointer; width: 40px;"' +
@@ -313,13 +250,37 @@
 							 'id="draggable-demo-row-' + id + '">+</div>',
 						 stt: id + 1
                         };
-						
+					
                     cartItems.push(item);
                     addGridRow(item);
+					
                 }
                 updatePrice(item.price);
+				addListenerForQuantity();
             };
+			/*
+			* add function to update quantity value 
+			*/
+			function updateQuantity(index, number){
+				var inputID = '#row' + index + 'jqxgridQuantity';
+				var currentValue = parseInt($(inputID).val(), 10);
+				var newValue = currentValue + number;
+				//$(inputID).val(currentValue + number);
+				cartItems[index].count = '<button class="upArrow"></button>'
+	+ '<input ' + 'id="row' + index + 'jqxgridQuantity" ' +  'type="text" value="' + newValue +'" style="width: 50%; height: 100%; border: 0px;background-color: rgb(197, 225, 226);" class="rowQuantity"/>'
+	+ '<button class="downArrow"></button>';
+	
+				//$('#row0jqxgridQuantity').val('2');
+				 updateGridRow(index, cartItems[index]);
+			};
+			
+			function addListenerForQuantity(){
 
+				$('.rowQuantity').keyup(function (event) {
+								   alert('test');
+								});
+				
+			};
 
             function updatePrice(price) {
                 totalPrice += price;
@@ -405,7 +366,8 @@
                         price = $(this).find('.draggable-demo-product-price').text().replace('Price: $', '');
                     price = parseInt(price, 10);			
                     addItem({ price: price, name: tshirt });
-                });				
+                });
+				
             };
 
             return {
@@ -414,8 +376,12 @@
 			
         } ($));
 
-
+			function updateQuantity(){
+				cart.toArray();
+			};
+				
         $(document).ready(function () {
+
             cart.init();
         });
  
