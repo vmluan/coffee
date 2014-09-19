@@ -200,22 +200,24 @@ public class ProductController {
 		String mime_type = file.getContentType();
 		
 		System.out.println("======================= file type is " + mime_type);
-		
-		fileName = file.getOriginalFilename();
-		String filePath = httpServletRequest.getSession().getServletContext().getRealPath("/");
-		String resultFile = filePath +  UPLOAD_DIRECTORY + fileName;
-		
-		File multipartFile = new File(resultFile);
-		
-		try {
-			file.transferTo(multipartFile);
-		} catch (IllegalStateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (mime_type.substring(0, 5).equalsIgnoreCase("image")){
+			fileName = file.getOriginalFilename();
+			String filePath = httpServletRequest.getSession().getServletContext().getRealPath("/");
+			String resultFile = filePath +  UPLOAD_DIRECTORY + fileName;
+			
+			File multipartFile = new File(resultFile);
+			
+			try {
+				file.transferTo(multipartFile);
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
+
 		return fileName;
 	}
 }
