@@ -124,6 +124,7 @@
     <script type="text/javascript" src="/resources/jqwidgets/jqxdropdownlist.js"><jsp:text/></script>
     <script type="text/javascript" src="/resources/jqwidgets/jqxdragdrop.js"><jsp:text/></script>
     <script type="text/javascript" src="/resources/jqwidgets/jqxcombobox.js"><jsp:text/></script>
+	<script type="text/javascript" src="/resources/jqwidgets/jqxtooltip.js"><jsp:text/></script>
 	
 	<script type="text/javascript" src="/resources/products.js">
 		<jsp:text/>
