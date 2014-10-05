@@ -1,8 +1,8 @@
 package com.luanvm.coffee.domain;
 
 import java.io.Serializable;
-import java.util.Set;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -46,7 +46,7 @@ public class TH_Table implements Serializable {
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "table_encounter", joinColumns = { @JoinColumn(name = "tableid") }
 		, inverseJoinColumns = { @JoinColumn(name = "encounterid") })
-	Set<TH_Encounter> encounters; //
+	List<TH_Encounter> encounters; //
 
 	public Integer getTableID() {
 		return tableID;
@@ -65,11 +65,11 @@ public class TH_Table implements Serializable {
 	}
 
 
-	public Set<TH_Encounter> getEncounters() {
+	public List<TH_Encounter> getEncounters() {
 		return encounters;
 	}
 
-	public void setEncounters(Set<TH_Encounter> encounters) {
+	public void setEncounters(List<TH_Encounter> encounters) {
 		this.encounters = encounters;
 	}
 

@@ -97,7 +97,17 @@ public class ProductController {
 			return "products/new";
 		}
 		
-		
+        String productPriceWrapper = product.getProductPriceWrapper();
+        if(productPriceWrapper == null || productPriceWrapper.equals(""))
+        	productPriceWrapper = httpServletRequest.getParameter("productPriceWrapper");
+        System.out.println("==================== " + productPriceWrapper);
+        productPriceWrapper = productPriceWrapper.replace(",", "").replace(" ", "").replace(".", "");
+        
+        System.out.println("==================== " + productPriceWrapper);
+        long price = Long.valueOf(productPriceWrapper);
+        System.out.println("==================== " + price);
+        product.setProductPrice(price);
+        
         //handle attachments
         String fileName = "";
         fileName = saveImages(httpServletRequest);
@@ -137,13 +147,13 @@ public class ProductController {
 	}
 	@RequestMapping(value = "/{id}", params = "form", method = RequestMethod.POST)
 	@Transactional
-    public String update(@Valid Product product, @PathVariable Integer id, Model uiModel, 
+    public String update(@Valid Product updatedProduct, @PathVariable Integer id, Model uiModel, 
     		HttpServletRequest httpServletRequest, RedirectAttributes redirectAttributes, Locale locale ) {
 		logger.info("Updating product");
         uiModel.asMap().clear();
-        product.setProductID(id);
+        Product product = productService.findById(id);
         
-        String productPriceWrapper = product.getProductPriceWrapper();
+        String productPriceWrapper = updatedProduct.getProductPriceWrapper();
         if(productPriceWrapper == null || productPriceWrapper.equals(""))
         	productPriceWrapper = httpServletRequest.getParameter("productPriceWrapper");
         System.out.println("==================== " + productPriceWrapper);
@@ -152,7 +162,9 @@ public class ProductController {
         System.out.println("==================== " + productPriceWrapper);
         long price = Long.valueOf(productPriceWrapper);
         System.out.println("==================== " + price);
+        
         product.setProductPrice(price);
+        product.setProductName(updatedProduct.getProductName());
         
         redirectAttributes.addFlashAttribute("message", "Updating Product");        
 
@@ -166,6 +178,9 @@ public class ProductController {
         
 		List<Product> products = productService.findAll();
 		uiModel.addAttribute("products", products);
+		
+		generateProductFiles(httpServletRequest);
+		
        return "redirect:/products";
 
     }
@@ -216,7 +231,8 @@ public class ProductController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
+		}else
+			fileName = "";
 
 		return fileName;
 	}

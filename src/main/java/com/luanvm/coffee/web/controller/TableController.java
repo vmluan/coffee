@@ -1,6 +1,7 @@
 package com.luanvm.coffee.web.controller;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
@@ -47,22 +48,25 @@ public class TableController {
 	private ProductService productService;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public String getProductPage(Model ciModel,@RequestParam(value="lang", required=false)String id) {
+	public String getProductPage(Model ciModel,@RequestParam(value="lang", required=false)String id,
+			HttpServletRequest httpServletRequest) {
 		Locale locale = LocaleContextHolder.getLocale();
 		
 		if(StringUtils.isNotEmpty(id)){
 			if(id.equalsIgnoreCase(com.luanvm.coffee.helper.Constants.VIETNAMESE))
 				locale.setDefault(new Locale(id));
 		}
+		httpServletRequest.setAttribute("sysDate", new Date().getTime());
 		return "tables/new";
 	}
 	//create new table with encounters
 	@Transactional
 	@RequestMapping(params = "form", method = RequestMethod.POST)
-	public String saveTable(Model ciModel,@RequestBody final  TH_Table table) {
+	public String saveTable(Model ciModel,@RequestBody final  TH_Table table,
+			HttpServletRequest httpServletRequest) {
 		Locale locale = LocaleContextHolder.getLocale();
 		System.out.println("===========================================");
-		Set<TH_Encounter> encounters = table.getEncounters();
+		List<TH_Encounter> encounters = table.getEncounters();
 		long totalMoney = 0;
 		
 		if (encounters != null){
@@ -81,7 +85,7 @@ public class TableController {
 			table.setOpenTime(new Date());
 			table.setStatus(TH_TableStatus.DRINKING);
 			table.setTotalMoney(totalMoney);
-			
+			httpServletRequest.setAttribute("sysDate", new Date().getTime());
 			tableService.save(table);
 		}
 		return "tables/new";
@@ -94,11 +98,11 @@ public class TableController {
 		TH_Table table = tableService.findById(id);
 		
 		
-		Set<TH_Encounter> encounters = table.getEncounters();
+		List<TH_Encounter> encounters = table.getEncounters();
 		
 		uiModel.addAttribute("table", table);
 		uiModel.addAttribute("encounters", encounters);
-		
+		httpServletRequest.setAttribute("sysDate", new Date().getTime());
 		return "tables/update";
 	}
 	@Transactional
@@ -115,7 +119,7 @@ public class TableController {
 		
 		
 		
-		Set<TH_Encounter> encounters = table.getEncounters();
+		List<TH_Encounter> encounters = table.getEncounters();
 		//update encounters. Actually, we dont update encounters. we just create new encounters and set them for the table
 		// what happen with old encounter records? it will a garbage. Need to fix it!!!!!
 		
@@ -143,7 +147,7 @@ public class TableController {
 		
 		}
 		
-		
+		httpServletRequest.setAttribute("sysDate", new Date().getTime());
 		return "tables/update";
 	}
 	

@@ -58,7 +58,7 @@ function createProduct(name, product) {
 			+ '</div></div>' + '<div class="jqx-fill-state-normal-' + theme
 			+ ' draggable-demo-product-price">Price: <strong>$' + product.price
 			+ '</strong></div>' + '<img src="/images/t-shirts/' + product.pic
-			+ '" alt=' + name + '" class="jqx-rc-b" />' + '</div>');
+			+ '"' + ' alt="' + name + '" class="jqx-rc-b" />' + '</div>');
 };
 
 function gridRendering() {
@@ -173,7 +173,7 @@ function addItem(item) {
 					+ 'id="row'
 					+ id
 					+ 'jqxgridQuantity" '
-					+ 'type="text" value="1" style="width: 35%; height: 100%; border: 0px;background-color: rgb(197, 225, 226);" class="rowQuantity"/>'
+					+ 'type="text" value="1" style="width: 35%; height: 100%; border: 0px;background-color: rgb(197, 225, 226);" class="rowQuantity" onChange="updateCount(' + id +')"/>'
 					+ '<button type="button" id="addButton'
 					+ id
 					+ '" onClick="addButton('
@@ -181,10 +181,6 @@ function addItem(item) {
 					+ ')"><span class="glyphicon glyphicon-arrow-up"></span></button>',
 			price : item.price,
 			index : id,
-			remove : '<div style="text-align: center; cursor: pointer; width: 40px;"'
-					+ 'id="draggable-demo-row-' + id + '">X</div>',
-			add : '<div style="text-align: center; cursor: pointer; width: 40px;"'
-					+ 'id="draggable-demo-row-' + id + '">+</div>',
 			stt : id + 1,
 			hiddenCount : 1
 		};
@@ -201,10 +197,9 @@ function addItem(item) {
  */
 function updateQuantity(index, number) {
 	var inputID = '#row' + index + 'jqxgridQuantity';
-	var currentValue = parseInt($(inputID).val(), 10);
+	var currentValue = parseInt($("#jqxgrid").jqxGrid('getrowdata', index).hiddenCount, 10);
 	var newValue = currentValue + number;
-	//console.log(cartItems[index].count);
-	//$(inputID).val(currentValue + number);
+
 	cartItems[index].count = '<button type="button" id="removeButton" onClick="removeButton('
 			+ index
 			+ ')"><span class="glyphicon glyphicon-arrow-down"></span></button>'
@@ -214,7 +209,7 @@ function updateQuantity(index, number) {
 			+ 'jqxgridQuantity" '
 			+ 'type="text" value="'
 			+ newValue
-			+ '" style="width: 35%; height: 100%; border: 0px;background-color: rgb(197, 225, 226);" class="rowQuantity"/>'
+			+ '" style="width: 35%; height: 100%; border: 0px;background-color: rgb(197, 225, 226);" class="rowQuantity" onChange="updateCount(' + id +')"/>'
 			+ '<button type="button" id="addButton'
 			+ index
 			+ '" onClick="addButton('
@@ -237,7 +232,7 @@ function udpateQuantityID(index) {
 				+ 'jqxgridQuantity" '
 				+ 'type="text" value="'
 				+ value
-				+ '" style="width: 35%; height: 100%; border: 0px;background-color: rgb(197, 225, 226);" class="rowQuantity"/>'
+				+ '" style="width: 35%; height: 100%; border: 0px;background-color: rgb(197, 225, 226);" class="rowQuantity" onChange="updateCount(' + id +')"/>'
 		var addButton = '<button type="button" id="addButton'
 				+ id
 				+ '" onClick="addButton('
@@ -252,9 +247,8 @@ function udpateQuantityID(index) {
 	* this function is to update the index and stt of cartItems
 */
 function updateOrderingNumber(index){
-	
+	console.log(index);
 	for ( var id = index; id < cartItems.length; id++) {
-		console.log(id + ' ' + cartItems[i].index);
 		cartItems[id].index = id;
 		cartItems[id].stt = cartItems[id].index + 1;
 		
@@ -262,6 +256,15 @@ function updateOrderingNumber(index){
 	}
 
 };
+function updateCount(index){
+	var inputID = '#row' + index + 'jqxgridQuantity';
+	
+	var newValue = parseInt($(inputID).val(), 10);
+	var delta = newValue - cartItems[index].hiddenCount;
+	console.log(newValue);
+	updateQuantity(index, delta);
+
+}
 
 function updatePrice(price) {
 	totalPrice += price;
@@ -406,8 +409,9 @@ $(document).ready(function() {
 	  $("#customerName").jqxTooltip({ content: '<b>Ten Khach Hang</b>', position: 'top', name: 'movieTooltip'});
 });
 
-function submitBan(tableID, PAID) {
-	tableID = existingTable.tableID;
+function submitBan(PAID) {
+	if(existingTable)
+		tableID = existingTable.tableID;
 	
 	var productsDiv = document.getElementById('contenttablejqxgrid');
 	var encounters = new Array();

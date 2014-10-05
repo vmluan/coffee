@@ -126,7 +126,7 @@
     <script type="text/javascript" src="/resources/jqwidgets/jqxcombobox.js"><jsp:text/></script>
 	<script type="text/javascript" src="/resources/jqwidgets/jqxtooltip.js"><jsp:text/></script>
 	
-	<script type="text/javascript" src="/resources/products.js">
+	<script type="text/javascript" src="/resources/products.js?${sysDate }">
 		<jsp:text/>
 	</script>
 		

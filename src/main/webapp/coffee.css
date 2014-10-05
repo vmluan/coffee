@@ -162,6 +162,7 @@ body {
 	margin-bottom: 10px;
 	font-weight: bold;
 	border: 1px solid #aaa;
+	
 }
 
 .form-group-coffee {
@@ -185,4 +186,8 @@ body {
 
 .button-div-bottom {
 	margin-bottom: 50px;
+}
+.div-customer-info{
+position: relative;
+overflow: auto;
 }
