@@ -76,4 +76,10 @@
 			<jsp:text />
 		</div>
         <div style="clear: both;"><jsp:text /></div>
+		
+    <div id="messageNotification" style="z-index: 3000">
+            Them ban thanh cong.
+<jsp:text />
+    </div>
+	
 </div>

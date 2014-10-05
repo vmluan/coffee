@@ -474,8 +474,8 @@ function submitBan(PAID) {
 
 			if (xhr.status == 200) {
 
-			//	alert("Them ban thanh cong");
-				//	location.reload();
+				$("#messageNotification").jqxNotification("open");
+				$(".jqx-notification-container").css("z-index", 30000);
 			} else {
 				alert(xhr.status);
 				alert(thrownError);
