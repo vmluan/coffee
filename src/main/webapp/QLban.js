@@ -410,6 +410,8 @@ $(document).ready(function() {
 });
 
 function submitBan(PAID) {
+	$('.btn').attr('disabled','disabled');
+	
 	if(existingTable)
 		tableID = existingTable.tableID;
 	
@@ -473,7 +475,11 @@ function submitBan(PAID) {
 			//On error do this
 
 			if (xhr.status == 200) {
-
+				$('.btn').removeAttr('disabled');
+				if(existingTable.tableID)
+					$(".jqx-notification-content-form").text('Cap nhat thanh cong');
+				else
+					$(".jqx-notification-content-form").text('Them ban thanh cong');
 				$("#messageNotification").jqxNotification("open");
 				$(".jqx-notification-container").css("z-index", 30000);
 			} else {

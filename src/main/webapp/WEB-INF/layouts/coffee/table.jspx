@@ -58,7 +58,7 @@
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
 	<!-- Jquery -->
-	<script src="/resources/scripts/jquery/jquery-1.10.2.min.js"
+	<script src="/resources/scripts/jquery/jquery-1.11.1.min.js"
 		type="text/javascript">
 		<jsp:text/>
 	</script>
@@ -172,7 +172,7 @@
 					autoOpen: false,
 					autoClose: true,
 					autoCloseDelay:2000,
-					template: "info",
+					template: "success",
 					height: 60,
 					width: 400
 					
