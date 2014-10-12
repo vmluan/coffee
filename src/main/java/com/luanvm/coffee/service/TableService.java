@@ -16,6 +16,8 @@ public interface TableService {
 	List<TH_Table> findTableByDate(Date date, TH_TableStatus status);
 	List<TH_Table> findTableByDate(Date date, TH_TableStatus status1, TH_TableStatus status2);
 	
+	List<TH_Table> findTableBuyTableNumber(String tableNumber);
+	
 	TH_Table findById(Integer id);
 	
 	TH_Table save(TH_Table TH_Product);

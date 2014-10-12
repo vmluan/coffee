@@ -24,4 +24,7 @@ public interface TableRepository extends PagingAndSortingRepository<TH_Table, In
 	List<TH_Table> findProductByName(@Param("tradeDate") Date tradeDate, @Param("nextTradeDate") Date nextTradeDate, 
 			@Param("status1") TH_TableStatus status1, @Param("status2") TH_TableStatus status2);
 	
+	@Query("select c from TH_Table c where c.openTime  between :tradeDate and :nextTradeDate and c.tableNumber = :tableNumber order by  c.status asc, c.openTime desc")
+	List<TH_Table> findTableBuyTableNumber(@Param("tableNumber") String tableNumber,@Param("tradeDate") Date tradeDate, @Param("nextTradeDate") Date nextTradeDate);
+	
 }

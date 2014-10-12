@@ -1,6 +1,7 @@
 
 package com.luanvm.coffee.service.jpa;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -78,6 +79,28 @@ public class DefaultTableService implements TableService {
 		  Date nextDate =  calendar.getTime();
 		  
 		return tableRepository.findProductByName(date, nextDate, status1, status2);
+	}
+
+	@Override
+	public List<TH_Table> findTableBuyTableNumber(String tableNumber) {
+		// TODO Auto-generated method stub
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		
+		String dateString = format.format(new Date());
+		Date date = new Date();
+		try {
+			date = format.parse(dateString);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		final Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		calendar.add(Calendar.DAY_OF_YEAR, 1);
+		Date nextDate = calendar.getTime();
+		return tableRepository.findTableBuyTableNumber(tableNumber, date,
+				nextDate);
 	}
 	
 	

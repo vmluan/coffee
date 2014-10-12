@@ -56,6 +56,10 @@ public class TableController {
 			if(id.equalsIgnoreCase(com.luanvm.coffee.helper.Constants.VIETNAMESE))
 				locale.setDefault(new Locale(id));
 		}
+		String tableid = httpServletRequest.getParameter("tableid");
+		if(tableid != null)
+			httpServletRequest.setAttribute("tableNumber", tableid);
+		System.out.println("============== table id = " + tableid);
 		httpServletRequest.setAttribute("sysDate", new Date().getTime());
 		return "tables/new";
 	}
@@ -151,5 +155,28 @@ public class TableController {
 		return "tables/update";
 	}
 	
+	@RequestMapping(value = "/{tablenumber}", params = "tablenumber", method = RequestMethod.GET)
+	public String showTable(@PathVariable("tablenumber") String tableNumber, Model uiModel, HttpServletRequest httpServletRequest) {
+		
+		List<TH_Table> table = tableService.findTableBuyTableNumber(tableNumber);
+		httpServletRequest.setAttribute("sysDate", new Date().getTime());
+		if (table != null && table.size() > 0) {
+
+			System.out.println("==================== new method: table id = "
+					+ table.get(0).getTableID());
+
+			List<TH_Encounter> encounters = table.get(0).getEncounters();
+
+			uiModel.addAttribute("table", table.get(0));
+			uiModel.addAttribute("encounters", encounters);
+		}
+		else{ //There is no order in this table today. start creating the first one
+			System.out.println("============== new table today = " + tableNumber);
+			httpServletRequest.setAttribute("tableNumber", tableNumber);
+			return "tables/new";
+		}
+		
+		return "tables/update";
+	}
 
 }

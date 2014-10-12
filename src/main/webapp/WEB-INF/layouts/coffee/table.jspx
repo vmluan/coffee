@@ -16,13 +16,7 @@
 		<spring:theme code="styleSheet" var="app_css" />
         <spring:url value="/${app_css}" var="app_css_url" />
 
-		
-        <!-- jQuery and jQuery UI -->
-		
-		
-		
-		<!-- Latest compiled and minified JavaScript -->
-		<script src="/resources/bootstrap/js/bootstrap.min.js" type="text/javascript"><jsp:text/></script>
+	
 
 
 		<!-- Bootstrap core CSS -->
@@ -139,8 +133,10 @@
 	<script type="text/javascript">
 		 var table = new Object();
 		 var encounters = new Array();
+		 var tableNumber = '${tableNumber}';
+			console.log(tableNumber);
+		table.tableNumber =  '${table.tableNumber}';
 		
-		table.tableNumber =  '${table.tableNumber}';	
 		table.customerName = '${table.customerName}';
 		table.tableID = '${table.tableID}';
 		
