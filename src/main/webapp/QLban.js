@@ -311,47 +311,6 @@ function toArray(obj) {
 };
 
 function addEventListeners() {
-	$('.draggable-demo-product').mouseenter(function() {
-		$(this).children('.draggable-demo-product-price').fadeTo(100, 0.9);
-	});
-	$('.draggable-demo-product').mouseleave(function() {
-		$(this).children('.draggable-demo-product-price').fadeTo(100, 0);
-	});
-	$('.draggable-demo-product').bind('dropTargetEnter', function(event) {
-		$(event.args.target).css('border', '2px solid #000');
-		onCart = true;
-		$(this).jqxDragDrop('dropAction', 'none');
-
-	});
-	$('.draggable-demo-product').bind('dropTargetLeave', function(event) {
-		$(event.args.target).css('border', '2px solid #aaa');
-		onCart = false;
-		$(this).jqxDragDrop('dropAction', 'default');
-	});
-	$('.draggable-demo-product').bind('dragEnd', function(event) {
-		$('#cart').css('border', '2px dashed #aaa');
-		if (onCart) {
-			addItem({
-				price : event.args.price,
-				name : event.args.name
-			});
-			onCart = false;
-		}
-	});
-	$('.draggable-demo-product').bind(
-			'dragStart',
-			function(event) {
-				var tshirt = $(this).find('.draggable-demo-product-header')
-						.text(), price = $(this).find(
-						'.draggable-demo-product-price').text().replace(
-						'Price: $', '');
-				$('#cart').css('border', '2px solid #aaa');
-				price = parseInt(price, 10);
-				$(this).jqxDragDrop('data', {
-					price : price,
-					name : tshirt
-				});
-			});
 	$('.draggable-demo-product').bind(
 			'click',
 			function(event) {
@@ -366,6 +325,8 @@ function addEventListeners() {
 					price : price,
 					name : tshirt
 				});
+				
+				submitBan(); //submit ban every user click on drink
 			});
 
 };
@@ -391,6 +352,7 @@ function removeButton(index) {
 
 	}
 	updatePrice(-item.price);
+	submitBan(); // save to database every click on drinks
 };
 function addButton(index) {
 	var item = cartItems[index];
@@ -398,6 +360,7 @@ function addButton(index) {
 	if (index >= 0)
 		updateQuantity(index, 1);
 	updatePrice(item.price);
+	submitBan();// save to database every click on drinks
 };
 
 $(document).ready(function() {
@@ -407,6 +370,7 @@ $(document).ready(function() {
 	 $("#tableNumber").jqxTooltip({ content: '<b>So ban:</b>', position: 'top', name: 'movieTooltip'});
 	 
 	  $("#customerName").jqxTooltip({ content: '<b>Ten Khach Hang</b>', position: 'top', name: 'movieTooltip'});
+	  $('.draggable-demo-product').css('cursor', 'pointer');
 });
 
 function submitBan(PAID) {
@@ -476,10 +440,7 @@ function submitBan(PAID) {
 
 			if (xhr.status == 200) {
 				$('.btn').removeAttr('disabled');
-				if(existingTable.tableID)
-					$(".jqx-notification-content-form").text('Cap nhat thanh cong');
-				else
-					$(".jqx-notification-content-form").text('Them ban thanh cong');
+
 				$("#messageNotification").jqxNotification("open");
 				$(".jqx-notification-container").css("z-index", 30000);
 			} else {

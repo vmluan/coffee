@@ -51,6 +51,14 @@ public class DefaultTableService implements TableService {
 	public List<TH_Table> findTableByDate(Date date) {
 		  final SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
 		  final Calendar calendar = Calendar.getInstance();
+		  
+		  try {
+			date = format.parse(format.format(date));
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		  
 		  calendar.setTime(date);
 		  calendar.add(Calendar.DAY_OF_YEAR, 1);
 		  Date nextDate =  calendar.getTime();

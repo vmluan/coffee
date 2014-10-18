@@ -134,8 +134,10 @@
 		 var table = new Object();
 		 var encounters = new Array();
 		 var tableNumber = '${tableNumber}';
-			console.log(tableNumber);
-		table.tableNumber =  '${table.tableNumber}';
+		if (tableNumber)
+			table.tableNumber = tableNumber;
+		else
+			table.tableNumber =  '${table.tableNumber}';
 		
 		table.customerName = '${table.customerName}';
 		table.tableID = '${table.tableID}';
@@ -163,11 +165,11 @@
 		 table.encounters = encounters;
 			//$("#messageNotification").css( "zIndex", 200000 );
             $("#messageNotification").jqxNotification({
-					animationCloseDelay:1000,
+					animationCloseDelay:300,
 					opacity: 0.9,
 					autoOpen: false,
 					autoClose: true,
-					autoCloseDelay:2000,
+					autoCloseDelay:500,
 					template: "success",
 					height: 60,
 					width: 400

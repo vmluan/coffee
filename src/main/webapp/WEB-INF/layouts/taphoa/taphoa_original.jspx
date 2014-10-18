@@ -33,7 +33,7 @@
 </head>
 <body>
 
-	<div id="main">
+	<div id="mainDiv">
 		<tiles:insertAttribute name="header" ignore="true" />
 		<div class="container">
 
@@ -113,21 +113,7 @@
 	<script type="text/javascript" src="/resources/jqwidgets/jqxmenu.js">
 		<jsp:text/>
 	</script>
-	<script type="text/javascript" src="/resources/jqwidgets/jqxgrid.js">
-		<jsp:text/>
-	</script>
-	<script type="text/javascript"
-		src="/resources/jqwidgets/jqxgrid.edit.js">
-		<jsp:text/>
-	</script>
-	<script type="text/javascript"
-		src="/resources/jqwidgets/jqxgrid.selection.js">
-		<jsp:text/>
-	</script>
-	<script type="text/javascript"
-		src="/resources/jqwidgets/jqxgrid.aggregates.js">
-		<jsp:text/>
-	</script>
+
 	<script type="text/javascript"
 		src="/resources/jqwidgets/jqxcheckbox.js">
 		<jsp:text/>
@@ -153,9 +139,6 @@
 	</script>
 	
 	<script type="text/javascript" src="/resources/scripts/demos.js">
-		<jsp:text/>
-	</script>
-	<script type="text/javascript" src="/resources/QLbanle.js">
 		<jsp:text/>
 	</script>
 	<script type="text/javascript">
@@ -185,151 +168,235 @@
 				tableid: null
             },
             {
+                label: 'Khu E',
+                value: null,
+                color: '#F1A3FF',
+				tableid: null
+            },
+			
+            {
                 label: 'Ban 1',
                 value: 2,
                 parent: 'Khu A',
-                data: { description: "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.", title: "The Shawshank Redemption (1994)" },
+                data: { customerName: 'thay ba cap 2', totalMoney: 200000 },
 				tableid: 'b1'
             },
             {
                 label: 'Ban 2',
                 value: 2,
                 parent: 'Khu A',
-                data: { description: "As students at the Navy's elite fighter weapons school compete to be best in the class, one daring young flyer learns a few things from a civilian instructor that are not taught in the classroom.", title: "Top Gun (1986)" },
+                data: { customerName: 'Luan', totalMoney: 200000 },
 				tableid: 'b2'
             },
             {
                 label: 'Ban 3',
                 value: 2,
                 parent: 'Khu A',
-                data: { description: "A Naval veteran arrives home from war unsettled and uncertain of his future - until he is tantalized by The Cause and its charismatic leader.", title: "The Master (2012)" },
+                data: { customerName: 'Luan', totalMoney: 200000 },
 				tableid: 'b3'
             },
             {
                 label: 'Ban 4',
                 value: 2,
                 parent: 'Khu A',
-                data: { description: "A Khu Atization of the 1980 joint CIA-Canadian secret operation to extract six fugitive American diplomatic personnel out of revolutionary Iran.", title: "Argo (2012)" },
+                data: { customerName: 'Luan', totalMoney: 200000 },
 				tableid: 'b4'
             },
             {
                 label: 'Ban 5',
                 value: 2,
                 parent: 'Khu B',
-                data: { description: "An insomniac office worker looking for a way to change his life crosses paths with a devil-may-care soap maker and they form an underground fight club that evolves into something much, much more.", title: "Fight Club (1999)" },
+                data: { customerName: 'Luan', totalMoney: 200000 },
 				tableid: 'b5'
             },
             {
                 label: 'Ban 6',
                 value: 2,
                 parent: 'Khu B',
-                data: { description: "The aging patriarch of an organized Khu B dynasty transfers control of his clandestine empire to his reluctant son.", title: "The Godfather (1972)" },
+                data: { customerName: 'Luan', totalMoney: 200000 },
 				tableid: 'b6'
             },
             {
                 label: 'Ban 7',
                 value: 2,
                 parent: 'Khu C',
-                data: { description: "When Batman, Gordon and Harvey Dent launch an assault on the mob, they let the clown out of the box, the Joker, bent on turning Gotham on itself and bringing any heroes down to his level.", title: "The Dark Knight (2008)" },
+                data: { customerName: 'Luan', totalMoney: 200000 },
 				tableid: 'b7'
             },
             {
                 label: 'Ban 8',
                 value: 2,
                 parent: 'Khu B',
-                data: { description: "The lives of two mob hit men, a boxer, a gangster's wife, and a pair of diner bandits intertwine in four tales of violence and redemption.", title: "Pulp Fiction (1994)" },
+                data: { customerName: 'Luan', totalMoney: 200000 },
 				tableid: 'b8'
             },
             {
                 label: 'Ban 9',
                 value: 2,
                 parent: 'Khu A',
-                data: { description: "Forrest Gump, while not intelligent, has accidentally been present at many historic moments, but his true love, Jenny Curran, eludes him.", title: "Forrest Gump (1994)" },
+                data: { customerName: 'Luan', totalMoney: 200000 },
 				tableid: 'b9'
             },
             {
                 label: 'Ban 10',
                 value: 2,
                 parent: 'Khu C',
-                data: { description: "A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.", title: "The Matrix (1999)" },
+                data: { customerName: 'Luan', totalMoney: 200000 },
 				tableid: 'b10'
             },
             {
                 label: 'Ban 11',
                 value: 2,
                 parent: 'Khu A',
-                data: { description: "Twelve men must decide the fate of one when one juror objects to the jury's decision.", title: "12 Angry Men (TV 1997)" },
+                data: { customerName: 'Luan', totalMoney: 200000 },
 				tableid: 'b11'
             },
             {
                 label: 'Ban 12',
                 value: 2,
                 parent: 'Khu C',
-                data: { description: "Luke Skywalker, a spirited farm boy, joins rebel forces to save Princess Leia from the evil Darth Vader, and the galaxy from the Empire's planet-destroying Death Star..", title: "Star Wars: Episode IV - A New Hope (1977)" },
+                data: { customerName: 'Luan', totalMoney: 200000 },
 				tableid: 'b12'
             },
             {
                 label: 'Ban 13',
                 value: 2,
                 parent: 'Khu C',
-                data: { description: "A skilled extractor is offered a chance to regain his old life as payment for a task considered to be impossible.", title: "Inception (2010)" },
+                data: { customerName: 'Luan', totalMoney: 200000 },
 				tableid: 'b13'
             },
             {
                 label: 'Ban 14',
                 value: 2,
                 parent: 'Khu B',
-                data: { description: "Unscrupulous boxing promoters, violent bookmakers, a Russian gangster, incompetent amateur robbers, and supposedly Jewish jewelers fight to track down a priceless stolen diamond.", title: "Snatch (2000)" },
+                data: { customerName: 'Luan', totalMoney: 200000 },
 				tableid: 'b14'
             },
             {
                 label: 'Ban 15',
                 value: 2,
                 parent: 'Khu D',
-                data: { description: "A cowboy doll is profoundly threatened and jealous when a new spaceman figure supplants him as top toy in a boy's room.", title: "Toy Story(2005)" },
+                data: { customerName: 'Luan', totalMoney: 200000 },
 				tableid: 'b15'
             },
             {
                 label: 'Ban 16',
                 value: 2,
                 parent: 'Khu B',
-                data: { description: "Bond's loyalty to M is tested when her past comes back to haunt her. Whilst MI6 comes under attack, 007 must track down and destroy the threat, no matter how personal the cost.", title: "Skyfall (2012)" },
+                data: { customerName: 'Luan', totalMoney: 200000 },
 				tableid: 'b16'
             },
             {
                 label: 'Ban 17',
                 value: 2,
                 parent: 'Khu B',
-                data: { description: "A thief with a unique code of professional ethics is double-crossed by his crew and left for dead. Assuming a new disguise and forming an unlikely alliance with a woman on the inside, he looks to hijack the score of the crew's latest heist.", title: "Parker (1994)" },
+                data: { customerName: 'Luan', totalMoney: 200000 },
 				tableid: 'b17'
             },
             {
-                label: 'Ban 18',
+                label: 'Ban 20',
                 value: 2,
                 parent: 'Khu C',
-                data: { description: "An extraterrestrial race forced to live in slum-like conditions on Earth suddenly finds a kindred spirit in a government agent who is exposed to their biotechnology.", title: "District 9 (2009)" },
+                data: { customerName: 'Luan', totalMoney: 200000 },
 				tableid: 'b18'
             },
             {
-                label: 'Ban 19',
+                label: 'Ban 21',
                 value: 2,
                 parent: 'Khu D',
-                data: { description: "When two escaping American World War II prisoners are killed, the German POW camp barracks black marketeer, J.J. Sefton, is suspected of being an informer.", title: "Stalag 17 (1953)"},
+                data: { customerName: 'Luan', totalMoney: 200000 },
 				tableid: 'b19'
-            }
+            },
+            {
+                label: 'Ban 22',
+                value: 2,
+                parent: 'Khu E',
+                data: { customerName: 'Luan', totalMoney: 200000 },
+				tableid: 'b19'
+            },
+            {
+                label: 'Ban 23',
+                value: 2,
+                parent: 'Khu E',
+                data: { customerName: 'Luan', totalMoney: 200000 },
+				tableid: 'b19'
+            },
+            {
+                label: 'Ban 24',
+                value: 2,
+                parent: 'Khu E',
+                data: { customerName: 'Luan', totalMoney: 200000 },
+				tableid: 'b19'
+            },
+            {
+                label: 'Ban 25',
+                value: 2,
+                parent: 'Khu E',
+                data: { customerName: 'Luan', totalMoney: 200000 },
+				tableid: 'b19'
+            },
+            {
+                label: 'Ban 26',
+                value: 2,
+                parent: 'Khu E',
+                data: { customerName: 'Luan', totalMoney: 200000 },
+				tableid: 'b19'
+            },
+            {
+                label: 'Ban 27',
+                value: 2,
+                parent: 'Khu E',
+                data: { customerName: 'Luan', totalMoney: 200000 },
+				tableid: 'b19'
+            },
+            {
+                label: 'Ban 28',
+                value: 2,
+                parent: 'Khu E',
+                data: { customerName: 'Luan', totalMoney: 200000 },
+				tableid: 'b19'
+            },
+            {
+                label: 'Ban 29',
+                value: 2,
+                parent: 'Khu E',
+                data: { customerName: 'Luan', totalMoney: 200000 },
+				tableid: 'b19'
+            },
+            {
+                label: 'Ban 30',
+                value: 2,
+                parent: 'Khu E',
+                data: { customerName: 'Luan', totalMoney: 200000 },
+				tableid: 'b19'
+            }			
             ];
+			
+			
+		 $("#jqxDateTimeInput").jqxDateTimeInput({
+			 width: '200px',
+			 height: '25px',
+			 theme: 'energyblue'
+		 });
+            $('#jqxDateTimeInput').on('change', function (event) {
+               
+				var date = event.args.date;
+				var date2 = $("#jqxDateTimeInput").val();
+				loadTableList(date2);
+            });
 			
             $('#treemap').jqxTreeMap({
                 width: 1200,
-                height: 300,
+                height: 500,
                 source: data,
                 colorRange: 50,
                 renderCallbacks: {
                     '*': function (element, value) {
                         if (value.data) {
+						//	console.log(value);
+							element.css('cursor', 'pointer');
 							<c:forEach var="table" items ="${table}">
 								//console.log("${table.tableNumber}" + value.label);
-								alert("${table.status}");
 								if("${table.status}" == 'DRINKING'){
 									if("${table.tableNumber}" == value.label){
 										element.css({
@@ -366,20 +433,13 @@
                         }
                     }
                 }
+				
             });
+			
 			
 	
 	
-		 $("#jqxDateTimeInput").jqxDateTimeInput({
-			 width: '200px',
-			 height: '25px',
-			 theme: 'energyblue'
-		 });
-            $('#jqxDateTimeInput').on('valuechanged', function (event) {
-                var date = event.args.date;
-				var date2 = $("#jqxDateTimeInput").val();
-				loadTableList(date2);
-            });
+
 
 	function loadTableList(tradeDate){
 		if (!tradeDate){
@@ -399,9 +459,9 @@
 		   success: function(data){
 			 //On ajax success do this
 			 var a = 1;
-         //   var gotcha = parseHTML(data,'maindiv');
-            $('#maindiv').html($(data).find('#maindiv').html());
-			$.getScript('/resources/bootstrap/js/vendor/holder.js', function(){});
+         
+            $('#treemap').html($(data).find('#treemap').html());
+			
 			  },
 		   error: function(xhr, ajaxOptions, thrownError) {
 			  //On error do this
