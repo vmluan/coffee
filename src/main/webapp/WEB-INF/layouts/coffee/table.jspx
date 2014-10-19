@@ -134,10 +134,16 @@
 		 var table = new Object();
 		 var encounters = new Array();
 		 var tableNumber = '${tableNumber}';
+		 var tableAcr = '${tableAcr}';
 		if (tableNumber)
 			table.tableNumber = tableNumber;
 		else
 			table.tableNumber =  '${table.tableNumber}';
+		
+		if (tableAcr)
+			table.tableAcr = tableAcr;
+		else
+			table.tableAcr =  '${table.tableAcr}';			
 		
 		table.customerName = '${table.customerName}';
 		table.tableID = '${table.tableID}';

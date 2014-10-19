@@ -371,13 +371,22 @@ $(document).ready(function() {
 	 
 	  $("#customerName").jqxTooltip({ content: '<b>Ten Khach Hang</b>', position: 'top', name: 'movieTooltip'});
 	  $('.draggable-demo-product').css('cursor', 'pointer');
+	  
+	  $("#customerName").change(function(){
+			console.log('Call function to udpate customerName');
+			submitBan();
+		
+		});
 });
 
 function submitBan(PAID) {
 	$('.btn').attr('disabled','disabled');
 	
-	if(existingTable)
+	var tableAcr;
+	if(existingTable){
 		tableID = existingTable.tableID;
+		tableAcr = existingTable.tableAcr;
+	}
 	
 	var productsDiv = document.getElementById('contenttablejqxgrid');
 	var encounters = new Array();
@@ -407,6 +416,7 @@ function submitBan(PAID) {
 	table.encounters = encounters;
 	table.customerName = customerName;
 	table.tableNumber = tableNumber;
+	table.tableAcr = tableAcr;
 	if (PAID)
 		table.status = PAID;
 

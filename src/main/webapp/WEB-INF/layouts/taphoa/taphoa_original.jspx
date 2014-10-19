@@ -26,7 +26,7 @@
 
 <!-- Custom styles for this template -->
 <link href="/resources/taphoa.css" rel="stylesheet" />
-<link href="dashboard.css" rel="stylesheet"/>
+<link href="dashboard.css" rel="stylesheet" />
 
 
 
@@ -37,35 +37,35 @@
 		<tiles:insertAttribute name="header" ignore="true" />
 		<div class="container">
 
-    <div class="container-fluid">
-      <div class="row">
-        
-		
+			<div class="container-fluid">
+				<div class="row">
 
-		   
-        <div class="test">
-          <div class="page-header">
-		 
-					<div class="col-xs-6 col-sm-3" style="margin-left: 10px;">
-						<label> Dang uong: </label>
-						<input type="checkbox"  id="danguong" onChange="loadTableList()" />
-						<label> Da Tinh tien: </label>
-						<input type="checkbox"  id="datinhtien" onChange = "loadTableList()"/>						
+
+
+
+					<div class="test">
+						<div class="page-header">
+
+							<div class="col-xs-6 col-sm-3" style="margin-left: 10px;">
+								<label> Dang uong: </label> <input type="checkbox" id="danguong"
+									onChange="loadTableList()" /> <label> Da Tinh tien: </label> <input
+									type="checkbox" id="datinhtien" onChange="loadTableList()" />
+							</div>
+
+							<label style="margin-left: 10px;" class="col-xs6 col-sm-2">chon
+								ngay xem:</label>
+							<div style="margin: 10px;" id='jqxDateTimeInput'></div>
+
+
+						</div>
+
+
+						<div id="treemap"></div>
+
+
 					</div>
-					
-			<label style="margin-left: 10px;" class="col-xs6 col-sm-2">chon ngay xem:</label>
-			<div style="margin: 10px;" id='jqxDateTimeInput'></div>
-			
-			
-		  </div>
-
-
-<div id="treemap"></div>
-
-          
-        </div>
-      </div>
-    </div>
+				</div>
+			</div>
 
 
 
@@ -92,7 +92,7 @@
 	<script src="/resources/bootstrap/js/docs.min.js"
 		type="text/javascript">
 		<jsp:text/>
-	</script>	
+	</script>
 	<!--JqueryGrid -->
 	<link rel="stylesheet" href="/resources/jqwidgets/styles/jqx.base.css"
 		type="text/css" />
@@ -125,378 +125,434 @@
 	<script type="text/javascript" src="/resources/jqwidgets/jqxinput.js">
 		<jsp:text/>
 	</script>
-	<script type="text/javascript" src="/resources/jqwidgets/jqxcalendar.js">
+	<script type="text/javascript"
+		src="/resources/jqwidgets/jqxcalendar.js">
 		<jsp:text/>
-	</script>	
-	<script type="text/javascript" src="/resources/jqwidgets/jqxdatetimeinput.js">
+	</script>
+	<script type="text/javascript"
+		src="/resources/jqwidgets/jqxdatetimeinput.js">
 		<jsp:text/>
 	</script>
 	<script type="text/javascript" src="/resources/jqwidgets/jqxtreemap.js">
 		<jsp:text/>
-	</script>	
+	</script>
 	<script type="text/javascript" src="/resources/jqwidgets/jqxtooltip.js">
 		<jsp:text/>
 	</script>
-	
+
 	<script type="text/javascript" src="/resources/scripts/demos.js">
 		<jsp:text/>
 	</script>
 	<script type="text/javascript">
-            var data = [
-            {
-                label: 'Khu A',
-                value: null,
-                color: '#B3FAFF',
-				tableid: null
-            },
-            {
-                label: 'Khu B',
-                value: null,
-                color: '#95FF7A',
-				tableid: null
-            },
-            {
-                label: 'Khu C',
-                value: null,
-                color: '#FFA3CE',
-				tableid: null
-            },
-            {
-                label: 'Khu D',
-                value: null,
-                color: '#F1A3FF',
-				tableid: null
-            },
-            {
-                label: 'Khu E',
-                value: null,
-                color: '#F1A3FF',
-				tableid: null
-            },
-			
-            {
-                label: 'Ban 1',
-                value: 2,
-                parent: 'Khu A',
-                data: {customerName: null, totalMoney: null },
-				tableid: 'b1'
-            },
-            {
-                label: 'Ban 2',
-                value: 2,
-                parent: 'Khu A',
-                data: {customerName: null, totalMoney: null },
-				tableid: 'b2'
-            },
-            {
-                label: 'Ban 3',
-                value: 2,
-                parent: 'Khu A',
-                data: {customerName: null, totalMoney: null },
-				tableid: 'b3'
-            },
-            {
-                label: 'Ban 4',
-                value: 2,
-                parent: 'Khu A',
-                data: {customerName: null, totalMoney: null },
-				tableid: 'b4'
-            },
-            {
-                label: 'Ban 5',
-                value: 2,
-                parent: 'Khu B',
-                data: {customerName: null, totalMoney: null },
-				tableid: 'b5'
-            },
-            {
-                label: 'Ban 6',
-                value: 2,
-                parent: 'Khu B',
-                data: {customerName: null, totalMoney: null },
-				tableid: 'b6'
-            },
-            {
-                label: 'Ban 7',
-                value: 2,
-                parent: 'Khu C',
-                data: {customerName: null, totalMoney: null },
-				tableid: 'b7'
-            },
-            {
-                label: 'Ban 8',
-                value: 2,
-                parent: 'Khu B',
-                data: {customerName: null, totalMoney: null },
-				tableid: 'b8'
-            },
-            {
-                label: 'Ban 9',
-                value: 2,
-                parent: 'Khu A',
-                data: {customerName: null, totalMoney: null },
-				tableid: 'b9'
-            },
-            {
-                label: 'Ban 10',
-                value: 2,
-                parent: 'Khu C',
-                data: {customerName: null, totalMoney: null },
-				tableid: 'b10'
-            },
-            {
-                label: 'Ban 11',
-                value: 2,
-                parent: 'Khu A',
-                data: {customerName: null, totalMoney: null },
-				tableid: 'b11'
-            },
-            {
-                label: 'Ban 12',
-                value: 2,
-                parent: 'Khu C',
-                data: {customerName: null, totalMoney: null },
-				tableid: 'b12'
-            },
-            {
-                label: 'Ban 13',
-                value: 2,
-                parent: 'Khu C',
-                data: {customerName: null, totalMoney: null },
-				tableid: 'b13'
-            },
-            {
-                label: 'Ban 14',
-                value: 2,
-                parent: 'Khu B',
-                data: {customerName: null, totalMoney: null },
-				tableid: 'b14'
-            },
-            {
-                label: 'Ban 15',
-                value: 2,
-                parent: 'Khu D',
-                data: {customerName: null, totalMoney: null },
-				tableid: 'b15'
-            },
-            {
-                label: 'Ban 16',
-                value: 2,
-                parent: 'Khu B',
-                data: {customerName: null, totalMoney: null },
-				tableid: 'b16'
-            },
-            {
-                label: 'Ban 17',
-                value: 2,
-                parent: 'Khu B',
-                data: {customerName: null, totalMoney: null },
-				tableid: 'b17'
-            },
-            {
-                label: 'Ban 20',
-                value: 2,
-                parent: 'Khu C',
-                data: {customerName: null, totalMoney: null },
-				tableid: 'b18'
-            },
-            {
-                label: 'Ban 21',
-                value: 2,
-                parent: 'Khu D',
-                data: {customerName: null, totalMoney: null },
-				tableid: 'b19'
-            },
-            {
-                label: 'Ban 22',
-                value: 2,
-                parent: 'Khu E',
-                data: {customerName: null, totalMoney: null },
-				tableid: 'b19'
-            },
-            {
-                label: 'Ban 23',
-                value: 2,
-                parent: 'Khu E',
-                data: {customerName: null, totalMoney: null },
-				tableid: 'b19'
-            },
-            {
-                label: 'Ban 24',
-                value: 2,
-                parent: 'Khu E',
-                data: {customerName: null, totalMoney: null },
-				tableid: 'b19'
-            },
-            {
-                label: 'Ban 25',
-                value: 2,
-                parent: 'Khu E',
-                data: {customerName: null, totalMoney: null },
-				tableid: 'b19'
-            },
-            {
-                label: 'Ban 26',
-                value: 2,
-                parent: 'Khu E',
-                data: {customerName: null, totalMoney: null },
-				tableid: 'b19'
-            },
-            {
-                label: 'Ban 27',
-                value: 2,
-                parent: 'Khu E',
-                data: {customerName: null, totalMoney: null },
-				tableid: 'b19'
-            },
-            {
-                label: 'Ban 28',
-                value: 2,
-                parent: 'Khu E',
-                data: {customerName: null, totalMoney: null },
-				tableid: 'b19'
-            },
-            {
-                label: 'Ban 29',
-                value: 2,
-                parent: 'Khu E',
-                data: {customerName: "Luan", totalMoney: "120000" },
-				tableid: 'b19'
-            },
-            {
-                label: 'Ban 30',
-                value: 2,
-                parent: 'Khu E',
-                data: {customerName: null, totalMoney: null },
-				tableid: 'b19'
-            }			
-            ];
-			
-		updateTreeMap();	
-		 $("#jqxDateTimeInput").jqxDateTimeInput({
-			 width: '200px',
-			 height: '25px',
-			 theme: 'energyblue'
-		 });
-            $('#jqxDateTimeInput').on('change', function (event) {
-               
-				var date = event.args.date;
-				var date2 = $("#jqxDateTimeInput").val();
-				loadTableList(date2);
-            });
-			
-            $('#treemap').jqxTreeMap({
-                width: 1200,
-                height: 500,
-                source: data,
-                colorRange: 50,
-                renderCallbacks: {
-                    '*': function (element, value) {
-						
-                        if (value.data) {
-						//	console.log(value);
-							element.css('cursor', 'pointer');
-							<c:forEach var="table" items ="${table}">
+		var data = [ {
+			label : 'Khu A',
+			value : null,
+			color : '#B3FAFF',
+			tableid : null
+		}, {
+			label : 'Khu B',
+			value : null,
+			color : '#95FF7A',
+			tableid : null
+		}, {
+			label : 'Khu C',
+			value : null,
+			color : '#FFA3CE',
+			tableid : null
+		}, {
+			label : 'Khu D',
+			value : null,
+			color : '#F1A3FF',
+			tableid : null
+		}, {
+			label : 'Khu E',
+			value : null,
+			color : '#F1A3FF',
+			tableid : null
+		},
+
+		{
+			label : 'Ban 1',
+			value : 2,
+			parent : 'Khu A',
+			data : {
+				customerName : null,
+				totalMoney : null
+			},
+			tableid : 'b1'
+		}, {
+			label : 'Ban 2',
+			value : 2,
+			parent : 'Khu A',
+			data : {
+				customerName : null,
+				totalMoney : null
+			},
+			tableid : 'b2'
+		}, {
+			label : 'Ban 3',
+			value : 2,
+			parent : 'Khu A',
+			data : {
+				customerName : null,
+				totalMoney : null
+			},
+			tableid : 'b3'
+		}, {
+			label : 'Ban 4',
+			value : 2,
+			parent : 'Khu A',
+			data : {
+				customerName : null,
+				totalMoney : null
+			},
+			tableid : 'b4'
+		}, {
+			label : 'Ban 5',
+			value : 2,
+			parent : 'Khu B',
+			data : {
+				customerName : null,
+				totalMoney : null
+			},
+			tableid : 'b5'
+		}, {
+			label : 'Ban 6',
+			value : 2,
+			parent : 'Khu B',
+			data : {
+				customerName : null,
+				totalMoney : null
+			},
+			tableid : 'b6'
+		}, {
+			label : 'Ban 7',
+			value : 2,
+			parent : 'Khu C',
+			data : {
+				customerName : null,
+				totalMoney : null
+			},
+			tableid : 'b7'
+		}, {
+			label : 'Ban 8',
+			value : 2,
+			parent : 'Khu B',
+			data : {
+				customerName : null,
+				totalMoney : null
+			},
+			tableid : 'b8'
+		}, {
+			label : 'Ban 9',
+			value : 2,
+			parent : 'Khu A',
+			data : {
+				customerName : null,
+				totalMoney : null
+			},
+			tableid : 'b9'
+		}, {
+			label : 'Ban 10',
+			value : 2,
+			parent : 'Khu C',
+			data : {
+				customerName : null,
+				totalMoney : null
+			},
+			tableid : 'b10'
+		}, {
+			label : 'Ban 11',
+			value : 2,
+			parent : 'Khu A',
+			data : {
+				customerName : null,
+				totalMoney : null
+			},
+			tableid : 'b11'
+		}, {
+			label : 'Ban 12',
+			value : 2,
+			parent : 'Khu C',
+			data : {
+				customerName : null,
+				totalMoney : null
+			},
+			tableid : 'b12'
+		}, {
+			label : 'Ban 13',
+			value : 2,
+			parent : 'Khu C',
+			data : {
+				customerName : null,
+				totalMoney : null
+			},
+			tableid : 'b13'
+		}, {
+			label : 'Ban 14',
+			value : 2,
+			parent : 'Khu B',
+			data : {
+				customerName : null,
+				totalMoney : null
+			},
+			tableid : 'b14'
+		}, {
+			label : 'Ban 15',
+			value : 2,
+			parent : 'Khu D',
+			data : {
+				customerName : null,
+				totalMoney : null
+			},
+			tableid : 'b15'
+		}, {
+			label : 'Ban 16',
+			value : 2,
+			parent : 'Khu B',
+			data : {
+				customerName : null,
+				totalMoney : null
+			},
+			tableid : 'b16'
+		}, {
+			label : 'Ban 17',
+			value : 2,
+			parent : 'Khu B',
+			data : {
+				customerName : null,
+				totalMoney : null
+			},
+			tableid : 'b17'
+		}, {
+			label : 'Ban 20',
+			value : 2,
+			parent : 'Khu C',
+			data : {
+				customerName : null,
+				totalMoney : null
+			},
+			tableid : 'b18'
+		}, {
+			label : 'Ban 21',
+			value : 2,
+			parent : 'Khu D',
+			data : {
+				customerName : null,
+				totalMoney : null
+			},
+			tableid : 'b19'
+		}, {
+			label : 'Ban 22',
+			value : 2,
+			parent : 'Khu E',
+			data : {
+				customerName : null,
+				totalMoney : null
+			},
+			tableid : 'b19'
+		}, {
+			label : 'Ban 23',
+			value : 2,
+			parent : 'Khu E',
+			data : {
+				customerName : null,
+				totalMoney : null
+			},
+			tableid : 'b19'
+		}, {
+			label : 'Ban 24',
+			value : 2,
+			parent : 'Khu E',
+			data : {
+				customerName : null,
+				totalMoney : null
+			},
+			tableid : 'b19'
+		}, {
+			label : 'Ban 25',
+			value : 2,
+			parent : 'Khu E',
+			data : {
+				customerName : null,
+				totalMoney : null
+			},
+			tableid : 'b19'
+		}, {
+			label : 'Ban 26',
+			value : 2,
+			parent : 'Khu E',
+			data : {
+				customerName : null,
+				totalMoney : null
+			},
+			tableid : 'b19'
+		}, {
+			label : 'Ban 27',
+			value : 2,
+			parent : 'Khu E',
+			data : {
+				customerName : null,
+				totalMoney : null
+			},
+			tableid : 'b19'
+		}, {
+			label : 'Ban 28',
+			value : 2,
+			parent : 'Khu E',
+			data : {
+				customerName : null,
+				totalMoney : null
+			},
+			tableid : 'b19'
+		}, {
+			label : 'Ban 29',
+			value : 2,
+			parent : 'Khu E',
+			data : {
+				customerName : "Luan",
+				totalMoney : "120000"
+			},
+			tableid : 'b19'
+		}, {
+			label : 'Ban 30',
+			value : 2,
+			parent : 'Khu E',
+			data : {
+				customerName : null,
+				totalMoney : null
+			},
+			tableid : 'b19'
+		} ];
+
+		updateTreeMap();
+		$("#jqxDateTimeInput").jqxDateTimeInput({
+			width : '200px',
+			height : '25px',
+			theme : 'energyblue'
+		});
+		$('#jqxDateTimeInput').on('change', function(event) {
+
+			var date = event.args.date;
+			var date2 = $("#jqxDateTimeInput").val();
+			loadTableList(date2);
+		});
+
+		$('#treemap').jqxTreeMap(
+				{
+					width : 1200,
+					height : 500,
+					source : data,
+					colorRange : 50,
+					renderCallbacks : {
+						'*' : function(element, value) {
+
+							if (value.data) {
+								//	console.log(value);
+								element.css('cursor', 'pointer');
+								<c:forEach var="table" items ="${table}">
 								//console.log("${table.tableNumber}" + value.label);
-								if("${table.status}" == 'DRINKING'){
-									if("${table.tableNumber}" == value.label){
+								if ("${table.status}" == 'DRINKING') {
+									if ("${table.tableNumber}" == value.label) {
 										element.css({
-											border: '3px solid red'
+											border : '3px solid red'
 										});
-										}
+									}
+								} else if ("${table.status}" == 'PAID') {
+									if ("${table.tableNumber}" == value.label) {
+										element.css({
+											border : '3px solid green'
+										});
+									}
 								}
-								else if("${table.status}" == 'PAID'){
-									if("${table.tableNumber}" == value.label){
-										element.css({
-											border: '3px solid green'
-										});
-										}								
-								}		
-							</c:forEach>							
-						
-						
-                   /*         element.jqxTooltip({
-                                content: '<div><div style="font-weight: bold; max-width: 200px; font-family: verdana; font-size: 13px;">' + value.data.title + '</div><div style="width: 200px; font-family: verdana; font-size: 12px;">' + value.data.description + '</div></div>',
-                                position: 'mouse',
-                                autoHideDelay: 6000,
-                                theme: theme
-                            });
-					*/
-						element.click(function(){
-								
-								window.location = 'quanlyban/' + value.label + '?tablenumber';
+								</c:forEach>
+
+								/*         element.jqxTooltip({
+								             content: '<div><div style="font-weight: bold; max-width: 200px; font-family: verdana; font-size: 13px;">' + value.data.title + '</div><div style="width: 200px; font-family: verdana; font-size: 12px;">' + value.data.description + '</div></div>',
+								             position: 'mouse',
+								             autoHideDelay: 6000,
+								             theme: theme
+								         });
+								 */
+								element.click(function() {
+
+									window.location = 'quanlyban/'
+											+ value.label + '?tablenumber';
 								});
-                        } else if (value.data === undefined) {
-                            element.css({
-                                backgroundColor: '#fff',
-                                border: '1px solid #555'
-                            });
-                        }
-                    }
-                }
-				
-            });
-			
-			
-	
-	
+							} else if (value.data === undefined) {
+								element.css({
+									backgroundColor : '#fff',
+									border : '1px solid #555'
+								});
+							}
+						}
+					}
 
+				});
 
-	function loadTableList(tradeDate){
-		if (!tradeDate){
-			tradeDate = $("#jqxDateTimeInput").val();
-		}
-		var danguong = document.getElementById('danguong').checked;
-		var datinhtien = document.getElementById('datinhtien').checked;
-		
-		var url = '/';
-		var inputData = {tradeDate:  tradeDate, danguong: danguong, datinhtien: datinhtien};
-		 $.ajax({
-		   url: url,
-		   data: inputData,
-		   dataType : "html",
-		   type: 'GET',
-		//   data: data,
-		   success: function(data){
-			 //On ajax success do this
-			 var a = 1;
-         
-            $('#treemap').html($(data).find('#treemap').html());
-			
-			  },
-		   error: function(xhr, ajaxOptions, thrownError) {
-			  //On error do this
-				alert(xhr.status);
-				alert(thrownError);
-
+		function loadTableList(tradeDate) {
+			if (!tradeDate) {
+				tradeDate = $("#jqxDateTimeInput").val();
 			}
-		 });		
-		
-	};
-	
-	function updateTreeMap(){
-		console.log('start');
-		<c:forEach var="table" items ="${table}">
-			
-			for (var item in data){
+			var danguong = document.getElementById('danguong').checked;
+			var datinhtien = document.getElementById('datinhtien').checked;
+
+			var url = '/';
+			var inputData = {
+				tradeDate : tradeDate,
+				danguong : danguong,
+				datinhtien : datinhtien
+			};
+			$.ajax({
+				url : url,
+				data : inputData,
+				dataType : "html",
+				type : 'GET',
+				//   data: data,
+				success : function(data) {
+					//On ajax success do this
+					var a = 1;
+
+					$('#treemap').html($(data).find('#treemap').html());
+
+				},
+				error : function(xhr, ajaxOptions, thrownError) {
+					//On error do this
+					alert(xhr.status);
+					alert(thrownError);
+
+				}
+			});
+
+		};
+
+		function updateTreeMap() {
+			console.log('start');
+			<c:forEach var="table" items ="${table}">
+
+			for ( var item in data) {
 				var tableNumber = "${table.tableNumber}";
-				
-				
-				if (data[item].label == tableNumber){
+
+				if (data[item].label == tableNumber) {
 					console.log(data[item].label);
 					data[item].data.customerName = "${table.customerName}";
-					data[item].data.totalMoney =  "${table.totalMoney}";
-					
-				}	
+					var money = "${table.totalMoney}";
+					console.log(money.replace(/\d(?=(\d{3})+\.)/g, '$.'));
+					money = formatCurrency(money, '$');
+					data[item].data.totalMoney = money;
+
+				}
 			}
-			
-	
 
-		</c:forEach>	
-	
-	};
+			</c:forEach>
 
-	
+		};
+
+		function formatCurrency(value, currency) {
+			return currency
+					+ value.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g,
+							".");
+		}
 	</script>
 
 </body>

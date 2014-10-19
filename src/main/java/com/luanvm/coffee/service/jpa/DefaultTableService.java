@@ -130,6 +130,28 @@ public class DefaultTableService implements TableService {
 		Date nextDate = calendar.getTime();
 		return tableRepository.findTableByTableNumberAndStatus(tableNumber, date,
 				nextDate, TH_TableStatus.DRINKING);
+	}
+
+	@Override
+	public List<TH_Table> findTableByTableAcr(String tableAcr) {
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		
+		String dateString = format.format(new Date());
+		Date date = new Date();
+		try {
+			date = format.parse(dateString);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		final Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		calendar.add(Calendar.DAY_OF_YEAR, 1);
+		Date nextDate = calendar.getTime();
+		return tableRepository.findTableByTableAcrAndStatus(tableAcr, date,
+				nextDate, TH_TableStatus.DRINKING);
 	}	
+	
 	
 }

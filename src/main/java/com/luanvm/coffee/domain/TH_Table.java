@@ -15,6 +15,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Index;
+
 @Entity
 @Table(name = "th_table", catalog = "coffee")
 public class TH_Table implements Serializable {
@@ -26,7 +28,9 @@ public class TH_Table implements Serializable {
 	@Column(name = "customername")
 	String customerName;
 	
-
+	//sample value is ban1201410191234
+	@Index(name = "tableacr")
+	private String tableAcr;
 	
 	@Column(name = "tablenumber")
 	private String tableNumber;
@@ -42,6 +46,16 @@ public class TH_Table implements Serializable {
 	
 	@Column(name = "status")
 	private TH_TableStatus status;
+	
+	
+
+	public String getTableAcr() {
+		return tableAcr;
+	}
+
+	public void setTableAcr(String tableAcr) {
+		this.tableAcr = tableAcr;
+	}
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "table_encounter", joinColumns = { @JoinColumn(name = "tableid") }
