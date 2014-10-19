@@ -178,201 +178,201 @@
                 label: 'Ban 1',
                 value: 2,
                 parent: 'Khu A',
-                data: { customerName: 'thay ba cap 2', totalMoney: 200000 },
+                data: {customerName: null, totalMoney: null },
 				tableid: 'b1'
             },
             {
                 label: 'Ban 2',
                 value: 2,
                 parent: 'Khu A',
-                data: { customerName: 'Luan', totalMoney: 200000 },
+                data: {customerName: null, totalMoney: null },
 				tableid: 'b2'
             },
             {
                 label: 'Ban 3',
                 value: 2,
                 parent: 'Khu A',
-                data: { customerName: 'Luan', totalMoney: 200000 },
+                data: {customerName: null, totalMoney: null },
 				tableid: 'b3'
             },
             {
                 label: 'Ban 4',
                 value: 2,
                 parent: 'Khu A',
-                data: { customerName: 'Luan', totalMoney: 200000 },
+                data: {customerName: null, totalMoney: null },
 				tableid: 'b4'
             },
             {
                 label: 'Ban 5',
                 value: 2,
                 parent: 'Khu B',
-                data: { customerName: 'Luan', totalMoney: 200000 },
+                data: {customerName: null, totalMoney: null },
 				tableid: 'b5'
             },
             {
                 label: 'Ban 6',
                 value: 2,
                 parent: 'Khu B',
-                data: { customerName: 'Luan', totalMoney: 200000 },
+                data: {customerName: null, totalMoney: null },
 				tableid: 'b6'
             },
             {
                 label: 'Ban 7',
                 value: 2,
                 parent: 'Khu C',
-                data: { customerName: 'Luan', totalMoney: 200000 },
+                data: {customerName: null, totalMoney: null },
 				tableid: 'b7'
             },
             {
                 label: 'Ban 8',
                 value: 2,
                 parent: 'Khu B',
-                data: { customerName: 'Luan', totalMoney: 200000 },
+                data: {customerName: null, totalMoney: null },
 				tableid: 'b8'
             },
             {
                 label: 'Ban 9',
                 value: 2,
                 parent: 'Khu A',
-                data: { customerName: 'Luan', totalMoney: 200000 },
+                data: {customerName: null, totalMoney: null },
 				tableid: 'b9'
             },
             {
                 label: 'Ban 10',
                 value: 2,
                 parent: 'Khu C',
-                data: { customerName: 'Luan', totalMoney: 200000 },
+                data: {customerName: null, totalMoney: null },
 				tableid: 'b10'
             },
             {
                 label: 'Ban 11',
                 value: 2,
                 parent: 'Khu A',
-                data: { customerName: 'Luan', totalMoney: 200000 },
+                data: {customerName: null, totalMoney: null },
 				tableid: 'b11'
             },
             {
                 label: 'Ban 12',
                 value: 2,
                 parent: 'Khu C',
-                data: { customerName: 'Luan', totalMoney: 200000 },
+                data: {customerName: null, totalMoney: null },
 				tableid: 'b12'
             },
             {
                 label: 'Ban 13',
                 value: 2,
                 parent: 'Khu C',
-                data: { customerName: 'Luan', totalMoney: 200000 },
+                data: {customerName: null, totalMoney: null },
 				tableid: 'b13'
             },
             {
                 label: 'Ban 14',
                 value: 2,
                 parent: 'Khu B',
-                data: { customerName: 'Luan', totalMoney: 200000 },
+                data: {customerName: null, totalMoney: null },
 				tableid: 'b14'
             },
             {
                 label: 'Ban 15',
                 value: 2,
                 parent: 'Khu D',
-                data: { customerName: 'Luan', totalMoney: 200000 },
+                data: {customerName: null, totalMoney: null },
 				tableid: 'b15'
             },
             {
                 label: 'Ban 16',
                 value: 2,
                 parent: 'Khu B',
-                data: { customerName: 'Luan', totalMoney: 200000 },
+                data: {customerName: null, totalMoney: null },
 				tableid: 'b16'
             },
             {
                 label: 'Ban 17',
                 value: 2,
                 parent: 'Khu B',
-                data: { customerName: 'Luan', totalMoney: 200000 },
+                data: {customerName: null, totalMoney: null },
 				tableid: 'b17'
             },
             {
                 label: 'Ban 20',
                 value: 2,
                 parent: 'Khu C',
-                data: { customerName: 'Luan', totalMoney: 200000 },
+                data: {customerName: null, totalMoney: null },
 				tableid: 'b18'
             },
             {
                 label: 'Ban 21',
                 value: 2,
                 parent: 'Khu D',
-                data: { customerName: 'Luan', totalMoney: 200000 },
+                data: {customerName: null, totalMoney: null },
 				tableid: 'b19'
             },
             {
                 label: 'Ban 22',
                 value: 2,
                 parent: 'Khu E',
-                data: { customerName: 'Luan', totalMoney: 200000 },
+                data: {customerName: null, totalMoney: null },
 				tableid: 'b19'
             },
             {
                 label: 'Ban 23',
                 value: 2,
                 parent: 'Khu E',
-                data: { customerName: 'Luan', totalMoney: 200000 },
+                data: {customerName: null, totalMoney: null },
 				tableid: 'b19'
             },
             {
                 label: 'Ban 24',
                 value: 2,
                 parent: 'Khu E',
-                data: { customerName: 'Luan', totalMoney: 200000 },
+                data: {customerName: null, totalMoney: null },
 				tableid: 'b19'
             },
             {
                 label: 'Ban 25',
                 value: 2,
                 parent: 'Khu E',
-                data: { customerName: 'Luan', totalMoney: 200000 },
+                data: {customerName: null, totalMoney: null },
 				tableid: 'b19'
             },
             {
                 label: 'Ban 26',
                 value: 2,
                 parent: 'Khu E',
-                data: { customerName: 'Luan', totalMoney: 200000 },
+                data: {customerName: null, totalMoney: null },
 				tableid: 'b19'
             },
             {
                 label: 'Ban 27',
                 value: 2,
                 parent: 'Khu E',
-                data: { customerName: 'Luan', totalMoney: 200000 },
+                data: {customerName: null, totalMoney: null },
 				tableid: 'b19'
             },
             {
                 label: 'Ban 28',
                 value: 2,
                 parent: 'Khu E',
-                data: { customerName: 'Luan', totalMoney: 200000 },
+                data: {customerName: null, totalMoney: null },
 				tableid: 'b19'
             },
             {
                 label: 'Ban 29',
                 value: 2,
                 parent: 'Khu E',
-                data: { customerName: 'Luan', totalMoney: 200000 },
+                data: {customerName: "Luan", totalMoney: "120000" },
 				tableid: 'b19'
             },
             {
                 label: 'Ban 30',
                 value: 2,
                 parent: 'Khu E',
-                data: { customerName: 'Luan', totalMoney: 200000 },
+                data: {customerName: null, totalMoney: null },
 				tableid: 'b19'
             }			
             ];
 			
-			
+		updateTreeMap();	
 		 $("#jqxDateTimeInput").jqxDateTimeInput({
 			 width: '200px',
 			 height: '25px',
@@ -392,6 +392,7 @@
                 colorRange: 50,
                 renderCallbacks: {
                     '*': function (element, value) {
+						
                         if (value.data) {
 						//	console.log(value);
 							element.css('cursor', 'pointer');
@@ -472,17 +473,30 @@
 		 });		
 		
 	};
-
+	
 	function updateTreeMap(){
+		console.log('start');
 		<c:forEach var="table" items ="${table}">
 			
+			for (var item in data){
+				var tableNumber = "${table.tableNumber}";
+				
+				
+				if (data[item].label == tableNumber){
+					console.log(data[item].label);
+					data[item].data.customerName = "${table.customerName}";
+					data[item].data.totalMoney =  "${table.totalMoney}";
+					
+				}	
+			}
 			
-		
-			
-		   
+	
+
 		</c:forEach>	
 	
 	};
+
+	
 	</script>
 
 </body>

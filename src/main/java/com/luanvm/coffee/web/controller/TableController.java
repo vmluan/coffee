@@ -73,6 +73,14 @@ public class TableController {
 		List<TH_Encounter> encounters = table.getEncounters();
 		long totalMoney = 0;
 		
+		// because i have changed the GUI to submit every order when user clicks on every drink.
+		// we need to update that encounter to current existing table that is opening.
+		String tableNumber = table.getTableNumber();
+		TH_Table existingTable = null;
+		List<TH_Table> existingTables = tableService.findOpeningTableByTableNumber(tableNumber);
+		if (existingTables != null && existingTables.size() >0){
+			existingTable = existingTables.get(0);
+		}
 		if (encounters != null){
 			for (TH_Encounter encounter : encounters){
 			
@@ -85,12 +93,19 @@ public class TableController {
 				encounterService.save(encounter);
 				
 			}
-			table.setEncounters(encounters);
-			table.setOpenTime(new Date());
-			table.setStatus(TH_TableStatus.DRINKING);
-			table.setTotalMoney(totalMoney);
-			httpServletRequest.setAttribute("sysDate", new Date().getTime());
-			tableService.save(table);
+			if (existingTable != null) {
+				existingTable.setEncounters(encounters);
+				existingTable.setTotalMoney(existingTable.getTotalMoney() + totalMoney);
+				tableService.save(existingTable);
+			} else {
+				table.setEncounters(encounters);
+				table.setOpenTime(new Date());
+				table.setStatus(TH_TableStatus.DRINKING);
+				table.setTotalMoney(totalMoney);
+				httpServletRequest
+						.setAttribute("sysDate", new Date().getTime());
+				tableService.save(table);
+			}
 		}
 		return "tables/new";
 	}

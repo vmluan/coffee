@@ -572,10 +572,12 @@ License: http://jqwidgets.com/license/
 								var e = j.width() - 2;
 								//luan
 								var displayText = f.label;
-								if(f.data && f.data.customerName && f.data.totalMoney){
-									displayText = f.label + '<br>' + f.data.customerName + ' - ' + 
+								if(f.data && f.data.customerName){
+									if(f.data.customerName)
+										displayText = f.label + '<br> <br>' + f.data.customerName + ' - ' + 
 									f.data.totalMoney;
-								}
+								} else if(f.data && f.data.totalMoney)
+									displayText = f.label + '<br> <br>' + f.data.totalMoney;
 								j.html('<span style="max-width:' + e
 										+ 'px;" class="jqx-treemap-label">'
 										+ displayText + "</span>")
