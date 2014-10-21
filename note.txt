@@ -21,3 +21,9 @@ INSERT INTO `thkassociates`.`thk_user`(`usercode`,`username`,`password`,`groupid
 2. http://stackoverflow.com/questions/2632359/can-jquery-add-commas-while-user-typing-numbers
 3. pop-up library
 http://dinbror.dk/bpopup/
+
+
+---fix issue when saving table and encounters:
+Change TH_Encounter and TH_Table relationship to many encounters belong to One table. @ManyToOne
+Saving Encounter first, Table will be automatically saved by Cascading
+So, How to update totalMoney in Table?
