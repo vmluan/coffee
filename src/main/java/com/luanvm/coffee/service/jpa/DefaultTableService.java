@@ -3,6 +3,7 @@ package com.luanvm.coffee.service.jpa;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -62,8 +63,33 @@ public class DefaultTableService implements TableService {
 		  calendar.setTime(date);
 		  calendar.add(Calendar.DAY_OF_YEAR, 1);
 		  Date nextDate =  calendar.getTime();
+//		  List<TH_Table> tables = new ArrayList<TH_Table>();
+//		  List<Object[]> rawData = tableRepository.findTableByDate(date, nextDate);
+//		  for (Object[]data : rawData){
+//			  TH_Table table = new TH_Table();
+//			  table.setTableID(Integer.valueOf(String.valueOf(data[0])));
+//			  table.setCustomerName(String.valueOf(data[1]));
+//			  table.setTableAcr(String.valueOf(data[2]));
+//			  table.setTableNumber(String.valueOf(data[3]));
+//			  table.setTotalMoney(Long.valueOf(String.valueOf(data[4])));
+//			  
+//			  String status = String.valueOf(data[6]);
+//			  if(status.equalsIgnoreCase(String.valueOf(TH_TableStatus.DRINKING)))
+//			  	table.setStatus(TH_TableStatus.DRINKING);
+//			  else if(status.equalsIgnoreCase(String.valueOf(TH_TableStatus.PAID)))
+//				  table.setStatus(TH_TableStatus.PAID);
+//			  else if(status.equalsIgnoreCase(String.valueOf(TH_TableStatus.CLOSED)))
+//				  table.setStatus(TH_TableStatus.CLOSED);
+//			  else if(status.equalsIgnoreCase(String.valueOf(TH_TableStatus.DEBT)))
+//				  table.setStatus(TH_TableStatus.DEBT);
+//			  		
+//			  
+//			  tables.add(table);
+//			  
+//		  }
+//		return tables;
 		  
-		return tableRepository.findProductByName(date, nextDate);
+		  return tableRepository.findTableByDate(date, nextDate);
 	}
 
 	@Override
@@ -74,7 +100,7 @@ public class DefaultTableService implements TableService {
 		  calendar.add(Calendar.DAY_OF_YEAR, 1);
 		  Date nextDate =  calendar.getTime();
 		  
-		return tableRepository.findProductByName(date, nextDate, status);
+		return tableRepository.findTableByDate(date, nextDate, status);
 	}
 
 	@Override
@@ -86,7 +112,7 @@ public class DefaultTableService implements TableService {
 		  calendar.add(Calendar.DAY_OF_YEAR, 1);
 		  Date nextDate =  calendar.getTime();
 		  
-		return tableRepository.findProductByName(date, nextDate, status1, status2);
+		return tableRepository.findTableByDate(date, nextDate, status1, status2);
 	}
 
 	@Override

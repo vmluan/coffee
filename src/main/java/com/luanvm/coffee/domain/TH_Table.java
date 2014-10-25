@@ -1,6 +1,7 @@
 package com.luanvm.coffee.domain;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -12,10 +13,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 import org.hibernate.annotations.Index;
+import org.hibernate.annotations.Synchronize;
 
 @Entity
 @Table(name = "th_table", catalog = "coffee")
@@ -47,7 +51,19 @@ public class TH_Table implements Serializable {
 	@Column(name = "status")
 	private TH_TableStatus status;
 	
+	//use @Version to implement Optimistic Locking. When 2 or more concurrency update on same records. Exception will be raised
+	// This helps to avoid losing data of previous update.
+	@Version
+	private Timestamp version;
 	
+	
+	public Timestamp getVersion() {
+		return version;
+	}
+
+	public void setVersion(Timestamp version) {
+		this.version = version;
+	}
 
 	public String getTableAcr() {
 		return tableAcr;
@@ -57,9 +73,7 @@ public class TH_Table implements Serializable {
 		this.tableAcr = tableAcr;
 	}
 
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "table_encounter", joinColumns = { @JoinColumn(name = "tableid") }
-		, inverseJoinColumns = { @JoinColumn(name = "encounterid") })
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "table")
 	List<TH_Encounter> encounters; //
 
 	public Integer getTableID() {

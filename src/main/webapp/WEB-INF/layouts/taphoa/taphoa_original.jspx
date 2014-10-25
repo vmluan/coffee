@@ -457,13 +457,30 @@
 										element.css({
 											border : '3px solid red'
 										});
+										element.click(function() {
+
+											window.location = 'quanlyban/'
+													+value.label  + '?tableacr=' + "${table.tableAcr}";
+										});										
 									}
 								} else if ("${table.status}" == 'PAID') {
 									if ("${table.tableNumber}" == value.label) {
 										element.css({
 											border : '3px solid green'
 										});
+										element.click(function() {
+
+											window.location = 'quanlyban/'
+													+value.label  + '?tableacr=' + "${table.tableAcr}";
+										});										
 									}
+								}
+								else{
+										element.click(function() {
+
+											window.location = 'quanlyban/'
+													+ value.label + '?tableacr';
+										});								
 								}
 								</c:forEach>
 
@@ -477,8 +494,9 @@
 								element.click(function() {
 
 									window.location = 'quanlyban/'
-											+ value.label + '?tablenumber';
-								});
+											+ value.label + '?tableacr';
+								});	
+								 
 							} else if (value.data === undefined) {
 								element.css({
 									backgroundColor : '#fff',

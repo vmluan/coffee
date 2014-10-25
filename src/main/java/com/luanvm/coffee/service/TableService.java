@@ -18,7 +18,7 @@ public interface TableService {
 	
 	List<TH_Table> findTableBuyTableNumber(String tableNumber);
 	List<TH_Table> findOpeningTableByTableNumber(String tableNumber);
-	List<TH_Table> findTableByTableAcr(String tableNumber);
+	List<TH_Table> findTableByTableAcr(String tableAcr);
 	TH_Table findById(Integer id);
 	
 	TH_Table save(TH_Table TH_Product);

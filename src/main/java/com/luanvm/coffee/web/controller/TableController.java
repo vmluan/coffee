@@ -3,11 +3,11 @@ package com.luanvm.coffee.web.controller;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
+import org.hibernate.StaleObjectStateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,7 +64,7 @@ public class TableController {
 		return "tables/new";
 	}
 	//create new table with encounters
-	@Transactional
+	//@Transactional
 	@RequestMapping(params = "form", method = RequestMethod.POST)
 	public String saveTable(Model ciModel,@RequestBody final  TH_Table table,
 			HttpServletRequest httpServletRequest) {
@@ -80,23 +80,36 @@ public class TableController {
 		List<TH_Table> existingTables = tableService.findOpeningTableByTableNumber(tableNumber);
 		if (existingTables != null && existingTables.size() >0){
 			existingTable = existingTables.get(0);
+			existingTable.setOpenTime(new Date()); // set Open Time when
+													// ordering the first
+													// records
+			existingTable.setStatus(TH_TableStatus.DRINKING);
+			tableService.save(existingTable);
+		}else{
+			table.setEncounters(null);
+			tableService.save(table);
 		}
+			
 		if (encounters != null){
 			for (TH_Encounter encounter : encounters){
 			
 				System.out.println("===========" + encounter.getQuantity());
 				//Product product = productService.findById(encounter.getProduct().getProductID());
 				Product product = productService.findByName(encounter.getProduct().getProductName());
-				totalMoney = totalMoney + (encounter.getQuantity() * product.getProductPrice());
+				totalMoney = (encounter.getQuantity() * product.getProductPrice());
 				encounter.setProduct(product);
 				encounter.setEncounterTime(new Date());
+				if(existingTable != null)
+					encounter.setTable(existingTable);
+				else
+					encounter.setTable(table);
 				encounterService.save(encounter);
 				
 			}
 			if (existingTable != null) {
 				existingTable.setEncounters(encounters);
 				//existingTable.setTotalMoney(existingTable.getTotalMoney() + totalMoney);
-				existingTable.setTotalMoney(totalMoney);
+				existingTable.setTotalMoney(totalMoney + existingTable.getTotalMoney());
 				tableService.save(existingTable);
 			} else {
 				table.setEncounters(encounters);
@@ -123,8 +136,10 @@ public class TableController {
 		uiModel.addAttribute("table", table);
 		uiModel.addAttribute("encounters", encounters);
 		httpServletRequest.setAttribute("sysDate", new Date().getTime());
+		httpServletRequest.setAttribute("tableAcr", table.getTableAcr());
 		return "tables/update";
 	}
+	
 	@Transactional
 	@RequestMapping(value = "/{id}", params = "form", method = RequestMethod.POST)
 	public String saveForm(@PathVariable("id") Integer id, Model ciModel
@@ -132,62 +147,106 @@ public class TableController {
 			, HttpServletRequest httpServletRequest) {
 		
 		System.out.println("====================================== save form");
-		
-		//we need to update table and its encounters
-		
 
 		
+		boolean re_update = true;
+		while (re_update) {
+			try {
+				savingTable( table);
+				re_update = false;
+				;
+			} catch (StaleObjectStateException e) {
+				System.out
+						.println("========== Row was updated or deleted by another transaction");
+				re_update = true;
+			} catch (Exception e) {
+				re_update = true;
+				System.out
+						.println("=============== Exception when saving table");
+
+			}
+		}
 		
-		
+		httpServletRequest.setAttribute("sysDate", new Date().getTime());
+		return "tables/update";
+	}
+	private void savingTable(TH_Table table){
+		TH_Table existingTable = tableService.findById(table.getTableID());
 		List<TH_Encounter> encounters = table.getEncounters();
 		//update encounters. Actually, we dont update encounters. we just create new encounters and set them for the table
 		// what happen with old encounter records? it will a garbage. Need to fix it!!!!!
 		
 		long totalMoney = 0;
-		if (encounters != null){
+		if (encounters != null && existingTable != null){
+			
+			totalMoney = existingTable.getTotalMoney();
 			for (TH_Encounter encounter : encounters){
 			
 				Product product = productService.findByName(encounter.getProduct().getProductName());
 				totalMoney = totalMoney + (encounter.getQuantity() * product.getProductPrice());
 				encounter.setProduct(product);
 				encounter.setEncounterTime(new Date());
+				encounter.setTable(existingTable);
 				encounterService.save(encounter);
 				
 			}
 			//update table first
-			TH_Table existingTable = tableService.findById(table.getTableID());
 			
-			existingTable.setCustomerName(table.getCustomerName());
+			
+			
 			existingTable.setTableNumber(table.getTableNumber());
 			existingTable.setEncounters(encounters);
 			existingTable.setTotalMoney(totalMoney);
+			if(existingTable.getOpenTime() == null){
+				existingTable.setOpenTime(new Date()); // set Open Time when
+				// ordering the first
+				// records
+				existingTable.setStatus(TH_TableStatus.DRINKING);
+				if(table.getTableAcr() != null && !table.getTableAcr().endsWith("") && existingTable.getTableAcr() == null)
+					existingTable.setTableAcr(table.getTableAcr());
+			}
 			if (table.getStatus() != null)
 				existingTable.setStatus(table.getStatus());
-			
-			tableService.save(existingTable);
-		
+
 		}
+		existingTable.setCustomerName(table.getCustomerName());
+		tableService.save(existingTable);
 		
-		httpServletRequest.setAttribute("sysDate", new Date().getTime());
-		return "tables/update";
 	}
 	
-	@RequestMapping(value = "/{tablenumber}", params = "tablenumber", method = RequestMethod.GET)
-	public String showTable(@PathVariable("tablenumber") String tableNumber, Model uiModel, HttpServletRequest httpServletRequest) {
+	@RequestMapping(value = "/{tableacr}", params = "tableacr", method = RequestMethod.GET)
+	public String showTable(@PathVariable("tableacr") String tableNumber, Model uiModel, HttpServletRequest httpServletRequest) {
 		
-		List<TH_Table> table = tableService.findTableBuyTableNumber(tableNumber);
+		List<TH_Table> tables;
 		httpServletRequest.setAttribute("sysDate", new Date().getTime());
-		String tableAcr ;
-		if (table != null && table.size() > 0) {
+		
+		String tableAcr = httpServletRequest.getParameter("tableacr") ;
+		
+		System.err.println("========= tableAcr = " + tableAcr);
+//		if(tableAcr != null){
+//			tables =  tableService.findTableByTableAcr(tableAcr);
+//			List<TH_Encounter> encounters = new ArrayList<TH_Encounter>();
+//			for(TH_Table table : tables){
+//				encounters.addAll(table.getEncounters());
+//				table.setEncounters(encounters);
+//			}
+//			
+//		}else{
+//			tables = tableService.findTableBuyTableNumber(tableNumber);
+//		}
+		
+		tables = tableService.findTableBuyTableNumber(tableNumber);
+		
+		if (tables != null && tables.size() > 0) {
 
 			System.out.println("==================== new method: table id = "
-					+ table.get(0).getTableID());
+					+ tables.get(0).getTableID());
 
-			List<TH_Encounter> encounters = table.get(0).getEncounters();
+			List<TH_Encounter> encounters = tables.get(0).getEncounters();
 
-			uiModel.addAttribute("table", table.get(0));
-			uiModel.addAttribute("encounters", encounters);
-			tableAcr = table.get(0).getTableAcr();
+			uiModel.addAttribute("table", tables.get(0));
+			//uiModel.addAttribute("encounters", encounters);
+			tableAcr = tables.get(0).getTableAcr();
 			httpServletRequest.setAttribute("tableAcr", tableAcr);
 		}
 		else{ //There is no order in this table today. start creating the first one
@@ -195,6 +254,14 @@ public class TableController {
 			httpServletRequest.setAttribute("tableNumber", tableNumber);
 			tableAcr = tableNumber.replace(" ",  "")+"_" + String.valueOf(new Date().getTime());
 			httpServletRequest.setAttribute("tableAcr", tableAcr);
+			
+			//create an empty table. It is to avoid creating many tables when user double or triple click in drinks
+			TH_Table newTable = new TH_Table();
+			newTable.setTableNumber(tableNumber);
+			uiModel.addAttribute("table", newTable);
+			
+			tableService.save(newTable);
+			
 			return "tables/new";
 		}
 		

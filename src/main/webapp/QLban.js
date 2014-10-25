@@ -315,7 +315,7 @@ function addEventListeners() {
 			'click',
 			function(event) {
 				//console.log(this);
-				var tshirt = $(this).find('.draggable-demo-product-header')
+				var productName = $(this).find('.draggable-demo-product-header')
 						.text().trim(), price = $(this).find(
 						'.draggable-demo-product-price').text().replace(
 						'Price: $', '');
@@ -323,10 +323,10 @@ function addEventListeners() {
 
 				addItem({
 					price : price,
-					name : tshirt
+					name : productName
 				});
 				
-				submitBan(); //submit ban every user click on drink
+				submitBan(productName, 1); //submit ban every user click on drink
 			});
 
 };
@@ -352,7 +352,7 @@ function removeButton(index) {
 
 	}
 	updatePrice(-item.price);
-	submitBan(); // save to database every click on drinks
+	submitBan(item.name, -1); // save to database every click on drinks
 };
 function addButton(index) {
 	var item = cartItems[index];
@@ -360,7 +360,7 @@ function addButton(index) {
 	if (index >= 0)
 		updateQuantity(index, 1);
 	updatePrice(item.price);
-	submitBan();// save to database every click on drinks
+	submitBan(item.name, 1);// save to database every click on drinks
 };
 
 $(document).ready(function() {
@@ -379,7 +379,7 @@ $(document).ready(function() {
 		});
 });
 
-function submitBan(PAID) {
+function submitBan(productName, quantity) {
 	$('.btn').attr('disabled','disabled');
 	
 	var tableAcr;
@@ -387,10 +387,7 @@ function submitBan(PAID) {
 		tableID = existingTable.tableID;
 		tableAcr = existingTable.tableAcr;
 	}
-	
-	var productsDiv = document.getElementById('contenttablejqxgrid');
 	var encounters = new Array();
-	var productsChildren = productsDiv.children;
 
 	var tableNumber = document.getElementById('tableNumber').value;
 	var customerName = document.getElementById('customerName').value;
@@ -399,7 +396,7 @@ function submitBan(PAID) {
 		alert("Vui long nhap so ban");
 		return;
 	}
-	for (i = 0; i < cartItems.length; i++) {
+/*	for (i = 0; i < cartItems.length; i++) {
 		var product = new Object();
 		var encounter = new Object();
 
@@ -411,15 +408,24 @@ function submitBan(PAID) {
 
 		encounters[i] = encounter;
 	}
+*/
 
+//	if (PAID)
+//		table.status = PAID;
+	if (productName && quantity){
+		var product = new Object();
+		var encounter = new Object();
+
+		product.productName = productName;
+		encounter.product = product;
+		encounter.quantity = quantity;
+		encounters[0] = encounter;
+	}
 	var table = new Object();
 	table.encounters = encounters;
 	table.customerName = customerName;
 	table.tableNumber = tableNumber;
 	table.tableAcr = tableAcr;
-	if (PAID)
-		table.status = PAID;
-
 	var url, urlGet, urlPost;
 	urlGet = '/quanlyban?form';
 	
