@@ -27,3 +27,7 @@ http://dinbror.dk/bpopup/
 Change TH_Encounter and TH_Table relationship to many encounters belong to One table. @ManyToOne
 Saving Encounter first, Table will be automatically saved by Cascading
 So, How to update totalMoney in Table?
+
+-----
+how to convert init-method in older version to newer version using annotation:
+http://stackoverflow.com/questions/5419695/init-method-in-spring-controller-annotation-version
