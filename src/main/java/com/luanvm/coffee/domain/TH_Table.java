@@ -54,14 +54,14 @@ public class TH_Table implements Serializable {
 	//use @Version to implement Optimistic Locking. When 2 or more concurrency update on same records. Exception will be raised
 	// This helps to avoid losing data of previous update.
 	@Version
-	private Timestamp version;
+	private long version;
 	
 	
-	public Timestamp getVersion() {
+	public long getVersion() {
 		return version;
 	}
 
-	public void setVersion(Timestamp version) {
+	public void setVersion(long version) {
 		this.version = version;
 	}
 

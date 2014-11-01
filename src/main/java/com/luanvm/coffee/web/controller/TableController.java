@@ -196,15 +196,15 @@ public class TableController {
 			
 			existingTable.setTableNumber(table.getTableNumber());
 			existingTable.setEncounters(encounters);
-			existingTable.setTotalMoney(totalMoney);
-			if(existingTable.getOpenTime() == null){
+			if(existingTable.getTotalMoney() == 0 || existingTable.getStatus() == null){
 				existingTable.setOpenTime(new Date()); // set Open Time when
-				// ordering the first
-				// records
+				// ordering the first drink
 				existingTable.setStatus(TH_TableStatus.DRINKING);
-				if(table.getTableAcr() != null && !table.getTableAcr().endsWith("") && existingTable.getTableAcr() == null)
+				System.out.println("============ table acr = " + existingTable.getTableAcr() == null);
+				if(existingTable.getTableAcr() == null)
 					existingTable.setTableAcr(table.getTableAcr());
 			}
+			existingTable.setTotalMoney(totalMoney);
 			if (table.getStatus() != null)
 				existingTable.setStatus(table.getStatus());
 
@@ -223,17 +223,6 @@ public class TableController {
 		String tableAcr = httpServletRequest.getParameter("tableacr") ;
 		
 		System.err.println("========= tableAcr = " + tableAcr);
-//		if(tableAcr != null){
-//			tables =  tableService.findTableByTableAcr(tableAcr);
-//			List<TH_Encounter> encounters = new ArrayList<TH_Encounter>();
-//			for(TH_Table table : tables){
-//				encounters.addAll(table.getEncounters());
-//				table.setEncounters(encounters);
-//			}
-//			
-//		}else{
-//			tables = tableService.findTableBuyTableNumber(tableNumber);
-//		}
 		
 		tables = tableService.findTableBuyTableNumber(tableNumber);
 		
@@ -242,10 +231,9 @@ public class TableController {
 			System.out.println("==================== new method: table id = "
 					+ tables.get(0).getTableID());
 
-			List<TH_Encounter> encounters = tables.get(0).getEncounters();
+//			List<TH_Encounter> encounters = tables.get(0).getEncounters();
 
 			uiModel.addAttribute("table", tables.get(0));
-			//uiModel.addAttribute("encounters", encounters);
 			tableAcr = tables.get(0).getTableAcr();
 			httpServletRequest.setAttribute("tableAcr", tableAcr);
 		}
@@ -255,9 +243,11 @@ public class TableController {
 			tableAcr = tableNumber.replace(" ",  "")+"_" + String.valueOf(new Date().getTime());
 			httpServletRequest.setAttribute("tableAcr", tableAcr);
 			
-			//create an empty table. It is to avoid creating many tables when user double or triple click in drinks
+			//create an empty table. It is to avoid creating many tables when user double or triple click on drinks
 			TH_Table newTable = new TH_Table();
 			newTable.setTableNumber(tableNumber);
+			newTable.setTableAcr(tableAcr);
+			newTable.setOpenTime(new Date());
 			uiModel.addAttribute("table", newTable);
 			
 			tableService.save(newTable);

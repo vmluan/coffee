@@ -89,34 +89,6 @@ function gridRendering() {
 		}
 		]
 	});
-	$("#jqxgrid").bind('cellclick', function(event) {
-		var index = event.args.rowindex;
-		if (event.args.datafield == 'remove') {
-
-			var item = cartItems[index];
-			var inputDiv = '#' + 'row' + index + 'jqxgridQuantity';
-			var count = item.hiddenCount;
-
-			if (count > 1) {
-				updateQuantity(index, -1);
-				cartItems[index].hiddenCount -= 1;
-			} else {
-				cartItems.splice(index, 1);
-				removeGridRow(index);
-				//update quantity input id
-				udpateQuantityID(index);
-
-			}
-			updatePrice(-item.price);
-		} else if (event.args.datafield == 'add') {
-			var item = cartItems[index];
-
-			if (index >= 0)
-				updateQuantity(index, 1);
-
-			updatePrice(item.price);
-		}
-	});
 
 };
 
@@ -142,22 +114,20 @@ function loadItem() {
 		item.price = parseInt(table.encounters[i].product.productPrice);
 		item.name = table.encounters[i].product.productName;
 
-		for (j = 1; j <= table.encounters[i].quantity; j++)
-			addItem({
-				price : parseInt(item.price),
-				name : item.name
-			});
+		addItem({
+			price : parseInt(item.price),
+			name : item.name
+		}, table.encounters[i].quantity);
 	}
 
 };
 
-function addItem(item) {
+function addItem(item, quantity) {
 
 	var index = getItemIndex(item.name);
-	
 	if (index >= 0) {
-		updateQuantity(index, 1);
-		//   updateGridRow(index, cartItems[index]);
+		
+		updateQuantity(index, quantity);
 
 	} else {
 		
@@ -189,17 +159,16 @@ function addItem(item) {
 		addGridRow(item);
 
 	}
-	updatePrice(item.price);
+	updatePrice(item.price*quantity);
 	//addListenerForQuantity();
 };
 /*
  * add function to update quantity value 
  */
-function updateQuantity(index, number) {
+function updateQuantity(index, number, newUpdate) {
 	var inputID = '#row' + index + 'jqxgridQuantity';
 	var currentValue = parseInt($("#jqxgrid").jqxGrid('getrowdata', index).hiddenCount, 10);
-	var newValue = currentValue + number;
-
+	var newValue = parseInt(currentValue)  + parseInt(number);
 	cartItems[index].count = '<button type="button" id="removeButton" onClick="removeButton('
 			+ index
 			+ ')"><span class="glyphicon glyphicon-arrow-down"></span></button>'
@@ -209,14 +178,24 @@ function updateQuantity(index, number) {
 			+ 'jqxgridQuantity" '
 			+ 'type="text" value="'
 			+ newValue
-			+ '" style="width: 35%; height: 100%; border: 0px;background-color: rgb(197, 225, 226);" class="rowQuantity" onChange="updateCount(' + id +')"/>'
+			+ '" style="width: 35%; height: 100%; border: 0px;background-color: rgb(197, 225, 226);" class="rowQuantity" onChange="updateCount(' + index +')"/>'
 			+ '<button type="button" id="addButton'
 			+ index
 			+ '" onClick="addButton('
 			+ index
 			+ ')"><span class="glyphicon glyphicon-arrow-up"></span></button>'			;
-	cartItems[index].hiddenCount += number;
-	updateGridRow(index, cartItems[index]);
+	cartItems[index].hiddenCount += parseInt(number);
+	if(cartItems[index].hiddenCount <= 0){
+		cartItems.splice(index,1);
+		removeGridRow(index);
+		
+		
+	}else
+		updateGridRow(index, cartItems[index]);
+	if(newUpdate){
+		submitBan(cartItems[index].name, number);
+		updatePrice(cartItems[index].price * number);
+		}
 };
 
 function udpateQuantityID(index) {
@@ -247,7 +226,6 @@ function udpateQuantityID(index) {
 	* this function is to update the index and stt of cartItems
 */
 function updateOrderingNumber(index){
-	console.log(index);
 	for ( var id = index; id < cartItems.length; id++) {
 		cartItems[id].index = id;
 		cartItems[id].stt = cartItems[id].index + 1;
@@ -258,11 +236,16 @@ function updateOrderingNumber(index){
 };
 function updateCount(index){
 	var inputID = '#row' + index + 'jqxgridQuantity';
+	if (table.status == 'PAID')
+	{
+		alert("Ban da tinh tien. Hay tao order cho luot ban moi. ");
+		$('#jqxgrid').jqxGrid('refresh');
+		return;
+	}
 	
 	var newValue = parseInt($(inputID).val(), 10);
 	var delta = newValue - cartItems[index].hiddenCount;
-	console.log(newValue);
-	updateQuantity(index, delta);
+	updateQuantity(index, delta, true);
 
 }
 
@@ -283,6 +266,9 @@ function updateGridRow(id, row) {
 function removeGridRow(id) {
 	var rowID = $("#jqxgrid").jqxGrid('getrowid', id);
 	$("#jqxgrid").jqxGrid('deleterow', rowID);
+	
+	udpateQuantityID(id);
+	updateOrderingNumber(id);	
 };
 
 function getItemIndex(name) {
@@ -314,19 +300,23 @@ function addEventListeners() {
 	$('.draggable-demo-product').bind(
 			'click',
 			function(event) {
-				//console.log(this);
-				var productName = $(this).find('.draggable-demo-product-header')
-						.text().trim(), price = $(this).find(
-						'.draggable-demo-product-price').text().replace(
-						'Price: $', '');
-				price = parseInt(price, 10);
+				if(table.status == 'DRINKING' || !table.status){
+					var productName = $(this).find('.draggable-demo-product-header')
+							.text().trim(), price = $(this).find(
+							'.draggable-demo-product-price').text().replace(
+							'Price: $', '');
+					price = parseInt(price, 10);
 
-				addItem({
-					price : price,
-					name : productName
-				});
-				
-				submitBan(productName, 1); //submit ban every user click on drink
+					addItem({
+						price : price,
+						name : productName
+					}, 1);
+					
+					submitBan(productName, 1); //submit ban every user click on drink				
+				}else if (table.status == 'PAID')
+				{
+					alert("Ban da tinh tien. Hay tao order cho luot ban moi. ")
+				}
 			});
 
 };
@@ -338,6 +328,11 @@ function addEventListeners() {
 //  } ($));
 
 function removeButton(index) {
+	if (table.status == 'PAID')
+	{
+		alert("Ban da tinh tien. Hay tao order cho luot ban moi. ");
+		return;
+	}
 	var item = cartItems[index];
 	var count = item.hiddenCount;
 
@@ -347,14 +342,19 @@ function removeButton(index) {
 		cartItems.splice(index, 1);
 		removeGridRow(index);
 		//update quantity input id
-		udpateQuantityID(index);
-		updateOrderingNumber(index);
+	//	udpateQuantityID(index);
+	//	updateOrderingNumber(index);
 
 	}
 	updatePrice(-item.price);
 	submitBan(item.name, -1); // save to database every click on drinks
 };
 function addButton(index) {
+	if (table.status == 'PAID')
+	{
+		alert("Ban da tinh tien. Hay tao order cho luot ban moi. ");
+		return;
+	}
 	var item = cartItems[index];
 
 	if (index >= 0)
@@ -373,13 +373,17 @@ $(document).ready(function() {
 	  $('.draggable-demo-product').css('cursor', 'pointer');
 	  
 	  $("#customerName").change(function(){
-			console.log('Call function to udpate customerName');
 			submitBan();
 		
 		});
 });
 
-function submitBan(productName, quantity) {
+function submitBan(productName, quantity, PAID) {
+	if (table.status == 'PAID')
+	{
+		alert("Ban da tinh tien. Hay tao order cho luot ban moi. ");
+		return;
+	}
 	$('.btn').attr('disabled','disabled');
 	
 	var tableAcr;
@@ -396,22 +400,8 @@ function submitBan(productName, quantity) {
 		alert("Vui long nhap so ban");
 		return;
 	}
-/*	for (i = 0; i < cartItems.length; i++) {
-		var product = new Object();
-		var encounter = new Object();
 
-		product.productName = $.trim(cartItems[i].name);
-		//product.productID = id;
 
-		encounter.product = product;
-		encounter.quantity = $.trim(cartItems[i].hiddenCount);
-
-		encounters[i] = encounter;
-	}
-*/
-
-//	if (PAID)
-//		table.status = PAID;
 	if (productName && quantity){
 		var product = new Object();
 		var encounter = new Object();
@@ -421,25 +411,27 @@ function submitBan(productName, quantity) {
 		encounter.quantity = quantity;
 		encounters[0] = encounter;
 	}
-	var table = new Object();
-	table.encounters = encounters;
-	table.customerName = customerName;
-	table.tableNumber = tableNumber;
-	table.tableAcr = tableAcr;
+	var updatedTable = new Object();
+	updatedTable.encounters = encounters;
+	updatedTable.customerName = customerName;
+	updatedTable.tableNumber = tableNumber;
+	updatedTable.tableAcr = tableAcr;
 	var url, urlGet, urlPost;
 	urlGet = '/quanlyban?form';
 	
-	
+	if (PAID){
+		updatedTable.status = PAID;
+	}
 
 	if (tableID) {
 		urlPost = '/quanlyban/' + tableID + '?form';
 		url = urlPost;
-		table.tableID = tableID;
+		updatedTable.tableID = tableID;
 	} else
 		url = urlGet;
 
 	
-	var jsonData = JSON.stringify(table);
+	var jsonData = JSON.stringify(updatedTable);
 	console.log(jsonData);
 	$.ajax({
 		url : url,
@@ -459,6 +451,10 @@ function submitBan(productName, quantity) {
 
 				$("#messageNotification").jqxNotification("open");
 				$(".jqx-notification-container").css("z-index", 30000);
+				
+				if(PAID == 'PAID'){
+					table.status = PAID;
+				}
 			} else {
 				alert(xhr.status);
 				alert(thrownError);

@@ -169,6 +169,8 @@
 		</c:forEach>
 		
 		 table.encounters = encounters;
+		 table.status = "${table.status}";
+		 console.log(table.status);
 			//$("#messageNotification").css( "zIndex", 200000 );
             $("#messageNotification").jqxNotification({
 					animationCloseDelay:300,
