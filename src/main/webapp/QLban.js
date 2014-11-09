@@ -454,6 +454,11 @@ function submitBan(productName, quantity, PAID) {
 				
 				if(PAID == 'PAID'){
 					table.status = PAID;
+					$("#checkInButton").text('Tao ban moi');
+					$("#checkInButton").attr("onClick", "newTable();");
+					$("#tableStatus").text('Da tinh tien');
+					
+					
 				}
 			} else {
 				alert(xhr.status);
@@ -462,4 +467,49 @@ function submitBan(productName, quantity, PAID) {
 		}
 	});
 
+};
+
+function newTable(){
+	var url = '/quanlyban/' + table.tableNumber + '?tableacr';
+	
+	$.ajax({
+		url : url,
+		type : 'GET',
+		dataType: 'html',
+		data: {newtable: true},
+		success : function(data) {
+			//On ajax success do this
+			
+		//	var output = $($.parseHTML(data)).filter("#productcart");
+			var source = $('<div>' + data + '</div>');
+			var tableID = parseInt(source.find('#tableID').text());		
+			$('#jqxgrid').jqxGrid('clear');
+			existingTable.encounters = null;
+			existingTable.tableID = tableID;
+			existingTable.status = 'DRINKING';
+			
+			table.encounters = null;
+			table.tableID = tableID;
+			table.status = 'DRINKING';
+			
+			$('#tableID').html(source.find('#tableID').html());
+			$.getScript('/resources/QLban.js', function(){});
+			
+			$("#checkInButton").text('Tinh Tien (F8)');
+			$("#checkInButton").attr("onClick", "submitBan(null, null,'PAID');");
+			$("#tableStatus").text('Ban moi');			
+		
+			
+		},
+		error : function(xhr, ajaxOptions, thrownError) {
+			//On error do this
+
+			if (xhr.status == 200) {
+				console.log(xhr);
+			} else {
+				alert(xhr.status);
+				alert(thrownError);
+			}
+		}
+	});	
 };

@@ -217,14 +217,17 @@ public class TableController {
 	@RequestMapping(value = "/{tableacr}", params = "tableacr", method = RequestMethod.GET)
 	public String showTable(@PathVariable("tableacr") String tableNumber, Model uiModel, HttpServletRequest httpServletRequest) {
 		
-		List<TH_Table> tables;
+		List<TH_Table> tables = null;
 		httpServletRequest.setAttribute("sysDate", new Date().getTime());
 		
 		String tableAcr = httpServletRequest.getParameter("tableacr") ;
+		System.out.println("================= newtable = " + httpServletRequest.getParameter("newtable"));
+		boolean isNewTable = Boolean.valueOf(httpServletRequest.getParameter("newtable"));
 		
 		System.err.println("========= tableAcr = " + tableAcr);
 		
-		tables = tableService.findTableBuyTableNumber(tableNumber);
+		if (!isNewTable)
+			tables = tableService.findTableBuyTableNumber(tableNumber);
 		
 		if (tables != null && tables.size() > 0) {
 
@@ -237,7 +240,9 @@ public class TableController {
 			tableAcr = tables.get(0).getTableAcr();
 			httpServletRequest.setAttribute("tableAcr", tableAcr);
 		}
-		else{ //There is no order in this table today. start creating the first one
+		else{ 
+			//There is no order in this table today. start creating the first one
+			//OR create another table.
 			System.out.println("============== new table today = " + tableNumber);
 			httpServletRequest.setAttribute("tableNumber", tableNumber);
 			tableAcr = tableNumber.replace(" ",  "")+"_" + String.valueOf(new Date().getTime());
