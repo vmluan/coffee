@@ -88,8 +88,18 @@ public class DefaultTableService implements TableService {
 //			  
 //		  }
 //		return tables;
+		  List<TH_Table> tables = new ArrayList<TH_Table>();
+		  List<Object[]> rawData = tableRepository.findDistinctTableByDate(date, nextDate);
+		  System.out.println(rawData);
 		  
-		  return tableRepository.findTableByDate(date, nextDate);
+		  for (Object[]data : rawData){
+				 String tableName = String.valueOf(data[0]);
+				 List<TH_Table> temp = tableRepository.findTableByDate(date, nextDate, tableName);
+				 if(temp != null && temp.size() > 0){
+					 tables.add(temp.get(0));
+				 }			  
+		  }
+		  return tables;
 	}
 
 	@Override

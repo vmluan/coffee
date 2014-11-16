@@ -99,6 +99,7 @@ public class TableController {
 				totalMoney = (encounter.getQuantity() * product.getProductPrice());
 				encounter.setProduct(product);
 				encounter.setEncounterTime(new Date());
+				encounter.setProductPrice(product.getProductPrice());
 				if(existingTable != null)
 					encounter.setTable(existingTable);
 				else
@@ -187,6 +188,7 @@ public class TableController {
 				encounter.setProduct(product);
 				encounter.setEncounterTime(new Date());
 				encounter.setTable(existingTable);
+				encounter.setProductPrice(product.getProductPrice());
 				encounterService.save(encounter);
 				
 			}

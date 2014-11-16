@@ -35,7 +35,16 @@ public class TH_Encounter implements Serializable{
 	@JoinColumn(name = "tableid", nullable = false)
 	private TH_Table table;
 	
-	
+	@Column(name = "productprice")
+	private long productPrice;
+		
+	public long getProductPrice() {
+		return productPrice;
+	}
+
+	public void setProductPrice(long productPrice) {
+		this.productPrice = productPrice;
+	}
 
 	public TH_Table getTable() {
 		return table;
