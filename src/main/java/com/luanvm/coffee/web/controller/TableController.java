@@ -149,11 +149,11 @@ public class TableController {
 		
 		System.out.println("====================================== save form");
 
-		
+		boolean isValid = false;
 		boolean re_update = true;
 		while (re_update) {
 			try {
-				savingTable( table);
+				isValid = savingTable( table);
 				re_update = false;
 				;
 			} catch (StaleObjectStateException e) {
@@ -167,12 +167,20 @@ public class TableController {
 
 			}
 		}
-		
+		if(!isValid){ // do not allow updating paid table
+					 // Should show error message
+			httpServletRequest.setAttribute("table_is_paid", true);
+			System.out.println("======= table is paid");
+			return "tables/updateerror";
+		}
 		httpServletRequest.setAttribute("sysDate", new Date().getTime());
 		return "tables/update";
 	}
-	private void savingTable(TH_Table table){
+	private boolean savingTable(TH_Table table){
 		TH_Table existingTable = tableService.findById(table.getTableID());
+		if(existingTable != null && existingTable.getStatus() != TH_TableStatus.DRINKING ){
+			return false;
+		}
 		List<TH_Encounter> encounters = table.getEncounters();
 		//update encounters. Actually, we dont update encounters. we just create new encounters and set them for the table
 		// what happen with old encounter records? it will a garbage. Need to fix it!!!!!
@@ -213,6 +221,7 @@ public class TableController {
 		}
 		existingTable.setCustomerName(table.getCustomerName());
 		tableService.save(existingTable);
+		return true;
 		
 	}
 	
@@ -255,6 +264,7 @@ public class TableController {
 			newTable.setTableNumber(tableNumber);
 			newTable.setTableAcr(tableAcr);
 			newTable.setOpenTime(new Date());
+			newTable.setStatus(TH_TableStatus.DRINKING);
 			uiModel.addAttribute("table", newTable);
 			
 			tableService.save(newTable);

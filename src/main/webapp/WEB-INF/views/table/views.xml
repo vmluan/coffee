@@ -9,5 +9,7 @@
     <definition extends="table" name="tables/update">
         <put-attribute name="body"
             value="/WEB-INF/views/table/new.jspx" />
-    </definition>                      
+    </definition>
+    <definition name="tables/updateerror" template="/WEB-INF/views/table/error.jspx">
+    </definition>                          
 </tiles-definitions>

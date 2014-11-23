@@ -129,7 +129,9 @@
 	<script type="text/javascript" src="/resources/QLban.js">
 		<jsp:text/>
 	</script>
-	
+	<script type="text/javascript" src="/resources/scripts/coffee.js">
+		<jsp:text/>
+	</script>	
 	<script type="text/javascript">
 		 var table = new Object();
 		 var encounters = new Array();

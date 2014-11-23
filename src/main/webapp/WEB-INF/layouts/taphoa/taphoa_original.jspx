@@ -143,6 +143,9 @@
 	<script type="text/javascript" src="/resources/scripts/demos.js">
 		<jsp:text/>
 	</script>
+	<script type="text/javascript" src="/resources/scripts/coffee.js">
+		<jsp:text/>
+	</script>	
 	<script type="text/javascript">
 		var data = [ {
 			label : 'Khu A',
@@ -565,12 +568,6 @@
 			</c:forEach>
 
 		};
-
-		function formatCurrency(value, currency) {
-			return currency
-					+ value.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g,
-							".");
-		}
 	</script>
 
 </body>

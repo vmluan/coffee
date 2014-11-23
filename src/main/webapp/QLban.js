@@ -251,7 +251,8 @@ function updateCount(index){
 
 function updatePrice(price) {
 	totalPrice += price;
-	$('#total').html('$ ' + totalPrice);
+	var formatTotalPrice =  formatCurrency(totalPrice.toString(), '$');
+	$('#total').html(formatTotalPrice);
 };
 
 function addGridRow(row) {
@@ -438,28 +439,32 @@ function submitBan(productName, quantity, PAID) {
 		type : 'POST',
 		contentType : 'application/json',
 		data : jsonData,
-		dataType : 'json',
+		//dataType : 'json',
 		success : function(data) {
 			//On ajax success do this
-			alert(data);
+			if($(data).find('#table_is_paid').size > 0){
+				alert("Ban da tinh tien. Hay tao order cho luot ban moi. ");
+				return;
+			}
+			$('.btn').removeAttr('disabled');
+
+			$("#messageNotification").jqxNotification("open");
+			$(".jqx-notification-container").css("z-index", 30000);
+			
+			if(PAID == 'PAID'){
+				table.status = PAID;
+				$("#checkInButton").text('Tao ban moi');
+				$("#checkInButton").attr("onClick", "newTable();");
+				$("#tableStatus").text('Da tinh tien');
+				
+				
+			}
 		},
 		error : function(xhr, ajaxOptions, thrownError) {
 			//On error do this
 
 			if (xhr.status == 200) {
-				$('.btn').removeAttr('disabled');
 
-				$("#messageNotification").jqxNotification("open");
-				$(".jqx-notification-container").css("z-index", 30000);
-				
-				if(PAID == 'PAID'){
-					table.status = PAID;
-					$("#checkInButton").text('Tao ban moi');
-					$("#checkInButton").attr("onClick", "newTable();");
-					$("#tableStatus").text('Da tinh tien');
-					
-					
-				}
 			} else {
 				alert(xhr.status);
 				alert(thrownError);
