@@ -274,5 +274,9 @@ public class TableController {
 		
 		return "tables/update";
 	}
+	@RequestMapping(value = "/tablelist", method = RequestMethod.GET)
+	public String getListTable(){
+		return "tablelist";
+	}
 
 }

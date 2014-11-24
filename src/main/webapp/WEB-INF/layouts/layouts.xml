@@ -59,7 +59,14 @@
 			value="/WEB-INF/views/admin/common/header.jspx" />
 		<put-attribute name="footer"
 			value="/WEB-INF/views/admin/common/footer.jspx" />
-	</definition>	
+	</definition>
+	
+	<definition name="tablelist" template="/WEB-INF/layouts/coffee/tablelist.jspx">
+		<put-attribute name="header"
+			value="/WEB-INF/views/admin/common/header.jspx" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/admin/common/footer.jspx" />	
+	</definition>		
 </tiles-definitions>
 
 

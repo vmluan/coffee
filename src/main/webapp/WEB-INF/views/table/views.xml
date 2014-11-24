@@ -11,5 +11,5 @@
             value="/WEB-INF/views/table/new.jspx" />
     </definition>
     <definition name="tables/updateerror" template="/WEB-INF/views/table/error.jspx">
-    </definition>                          
+    </definition>
 </tiles-definitions>

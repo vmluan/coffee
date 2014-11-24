@@ -20,7 +20,7 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
 			<li><a href="/products">QL Gia</a></li>            
-            <li><a href="#about">QL Nhap Hang</a></li>
+            <li><a href="/quanlyban/tablelist">Thong ke</a></li>
             <li><a href="#">Thu Chi</a></li>
             <li><a href="/j_spring_security_logout">Dang xuat</a></li>
           </ul>	  
