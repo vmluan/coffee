@@ -8,6 +8,10 @@
 
 package com.luanvm.coffee.helper;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.codehaus.jackson.map.ObjectMapper;
@@ -15,8 +19,9 @@ import org.codehaus.jackson.type.TypeReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 public class Utilities {
+	
+	public static final String datePattern = "dd/MM/yyyy";
 	
 	static final Logger logger = LoggerFactory.getLogger(Utilities.class);
 	
@@ -53,5 +58,15 @@ public class Utilities {
 			logger.error("Json Serialization : ", ex);
 		}*/
 		return object;
+	}
+	public static Date parseDate(String dateString){
+		SimpleDateFormat format = new SimpleDateFormat(datePattern);
+		try {
+			return format.parse(dateString);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 }

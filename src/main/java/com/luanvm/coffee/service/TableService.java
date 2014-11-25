@@ -24,6 +24,7 @@ public interface TableService {
 	TH_Table save(TH_Table TH_Product);
 	
 	Page<TH_Table> findAllByPage(Pageable pageable);
+	List<TH_Table> findTableByDateRange(Date startDate, Date endDate);
 	
 	
 }

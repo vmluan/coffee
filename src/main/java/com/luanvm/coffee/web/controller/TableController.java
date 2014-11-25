@@ -21,11 +21,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.luanvm.coffee.domain.Product;
 import com.luanvm.coffee.domain.TH_Encounter;
 import com.luanvm.coffee.domain.TH_Table;
 import com.luanvm.coffee.domain.TH_TableStatus;
+import com.luanvm.coffee.helper.Utilities;
 import com.luanvm.coffee.service.EncounterService;
 import com.luanvm.coffee.service.ProductService;
 import com.luanvm.coffee.service.TableService;
@@ -278,5 +280,22 @@ public class TableController {
 	public String getListTable(){
 		return "tablelist";
 	}
+	@RequestMapping(value = "/tablelistjson", method = RequestMethod.GET, produces = "application/json")
+	@ResponseBody
+	public String getProductsJson(@RequestParam(value="filterscount", required=false) String filterscount
+			, @RequestParam(value="groupscount", required=false) String groupscount
+			, @RequestParam(value="pagenum", required=false) Integer pagenum
+			, @RequestParam(value="pagesize", required=false) Integer pagesize
+			, @RequestParam(value="recordstartindex", required=false) Integer recordstartindex
+			, @RequestParam(value="recordendindex", required=false) Integer recordendindex
+			, @RequestParam(value="startdate", required=true) String startDateString
+			, @RequestParam(value="endDate", required=true) String endDateString){
+		Date startDate = Utilities.parseDate(startDateString);
+		Date endDate = Utilities.parseDate(endDateString);
+		List<TH_Table> tables =  tableService.findTableByDateRange(startDate, endDate);
+		
+		String result = Utilities.jSonSerialization(tables);
+		return result;
+	}	
 
 }

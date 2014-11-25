@@ -187,6 +187,12 @@ public class DefaultTableService implements TableService {
 		Date nextDate = calendar.getTime();
 		return tableRepository.findTableByTableAcrAndStatus(tableAcr, date,
 				nextDate, TH_TableStatus.DRINKING);
+	}
+
+	@Override
+	public List<TH_Table> findTableByDateRange(Date startDate, Date endDate) {
+		// TODO Auto-generated method stub
+		return tableRepository.findTableByDate(startDate, endDate);
 	}	
 	
 	

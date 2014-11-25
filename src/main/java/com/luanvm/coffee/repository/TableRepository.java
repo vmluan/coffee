@@ -59,5 +59,8 @@ public interface TableRepository extends PagingAndSortingRepository<TH_Table, In
 	
 	@Query("select c.tableNumber, max(tableID)"
 			+ " from TH_Table c where c.openTime  between :tradeDate and :nextTradeDate  group by c.tableNumber")	
-	List<Object[]>  findDistinctTableByDate(@Param("tradeDate") Date tradeDate, @Param("nextTradeDate") Date nextTradeDate);	
+	List<Object[]>  findDistinctTableByDate(@Param("tradeDate") Date tradeDate, @Param("nextTradeDate") Date nextTradeDate);
+	@Query("select c"
+			+ " from TH_Table c where c.openTime  between :tradeDate and :nextTradeDate  order by c.status asc, c.openTime desc")
+	List<TH_Table> findTableByDate(@Param("tradeDate") Date tradeDate, @Param("nextTradeDate") Date nextTradeDate );	
 }
