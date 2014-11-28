@@ -19,6 +19,8 @@ import org.codehaus.jackson.type.TypeReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.ibm.icu.util.Calendar;
+
 public class Utilities {
 	
 	public static final String datePattern = "dd/MM/yyyy";
@@ -68,5 +70,16 @@ public class Utilities {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	public static Date getLastTimeOfDate(Date date){
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		calendar.set(Calendar.HOUR, 23);
+		calendar.set(Calendar.MINUTE, 59);
+		calendar.set(Calendar.SECOND, 59);
+		calendar.set(Calendar.MILLISECOND, 999);
+		Date tempDate = calendar.getTime();
+		
+		return tempDate;
 	}
 }

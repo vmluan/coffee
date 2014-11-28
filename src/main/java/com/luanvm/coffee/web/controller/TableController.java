@@ -292,6 +292,7 @@ public class TableController {
 			, @RequestParam(value="endDate", required=true) String endDateString){
 		Date startDate = Utilities.parseDate(startDateString);
 		Date endDate = Utilities.parseDate(endDateString);
+		endDate = Utilities.getLastTimeOfDate(endDate);
 		List<TH_Table> tables =  tableService.findTableByDateRange(startDate, endDate);
 		
 		String result = Utilities.jSonSerialization(tables);
