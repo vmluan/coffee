@@ -4,14 +4,15 @@
 	xmlns:form="http://www.springframework.org/tags/form"	
      version="2.0"
 	 class="draggable-demo-shop jqx-rc-all" id="shop">
-    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:directive.page contentType="text/html;charset=UTF-8" />  
+    <jsp:directive.page pageEncoding="UTF-8" /> 
     <jsp:output omit-xml-declaration="yes"/>  
        <div class="tap-hoa-main-div" id="san-pham">
 		
-		<form:form modelAttribute="product" id="userUpdateForm" method="post" enctype="multipart/form-data">
+		<form:form modelAttribute="product" id="userUpdateForm" acceptCharset="UTF-8" method="post" enctype="multipart/form-data">
 			<div class="col-xs2 col-sm-3">
 				<form:label path="productName">
-					Ten San Pham* 
+					Tên San Pham* 
 				</form:label>
 				<form:input path="productName" />
 				<div>

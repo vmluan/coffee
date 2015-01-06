@@ -2,6 +2,7 @@ package com.luanvm.coffee.web.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -74,7 +75,7 @@ public class ProductController {
 	}
 	
 	@RequestMapping(params = "form", method = RequestMethod.GET)
-	public String createNewProduct(Model uiModel){
+	public String createNewProduct(Model uiModel, HttpServletRequest httpServletRequest) throws UnsupportedEncodingException{
 		
 		System.out.println("============================== new product");
 		Product product = new Product();
@@ -85,13 +86,20 @@ public class ProductController {
 		
 		uiModel.addAttribute("products", products);
 		
+		httpServletRequest.setCharacterEncoding("UTF-8");
 		return "products/new";
 	}
 	
-	@RequestMapping(params = "form", method = RequestMethod.POST)
+	@RequestMapping(params = "form", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
 	public String saveNewProduct(@Valid Product product, BindingResult bindingResult,
 			Model uiModel, HttpServletRequest httpServletRequest,
 			RedirectAttributes redirectAttributes, Locale locale){
+		try {
+			httpServletRequest.setCharacterEncoding("UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		if (bindingResult.hasErrors()) {
 			uiModel.addAttribute("product", product);
 			return "products/new";
@@ -103,9 +111,8 @@ public class ProductController {
         System.out.println("==================== " + productPriceWrapper);
         productPriceWrapper = productPriceWrapper.replace(",", "").replace(" ", "").replace(".", "");
         
-        System.out.println("==================== " + productPriceWrapper);
         long price = Long.valueOf(productPriceWrapper);
-        System.out.println("==================== " + price);
+        System.out.println("==================== " + product.getProductName());
         product.setProductPrice(price);
         
         //handle attachments
