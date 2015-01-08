@@ -10,6 +10,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.apache.commons.lang.StringUtils;
@@ -131,17 +132,19 @@ public class ProductController {
 		uiModel.asMap().clear();
 		return "redirect:products?form";
 	}
-	@RequestMapping(value = "/getproductsjson", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/getproductsjson", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public String getProductsJson(@RequestParam(value="filterscount", required=false) String filterscount
 			, @RequestParam(value="groupscount", required=false) String groupscount
 			, @RequestParam(value="pagenum", required=false) Integer pagenum
 			, @RequestParam(value="pagesize", required=false) Integer pagesize
 			, @RequestParam(value="recordstartindex", required=false) Integer recordstartindex
-			, @RequestParam(value="recordendindex", required=false) Integer recordendindex){
+			, @RequestParam(value="recordendindex", required=false) Integer recordendindex
+			, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse){
 		List<Product> products =  productService.findAll();
 		
 		String result = Utilities.jSonSerialization(products);
+		//httpServletResponse.setContentType("application/json; charset=UTF-8");
 		return result;
 	}
 	@RequestMapping(value = "/{id}", params = "form", method = RequestMethod.GET)
