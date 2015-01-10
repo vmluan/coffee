@@ -148,7 +148,6 @@ public class TableController {
 	public String saveForm(@PathVariable("id") Integer id, Model ciModel
 			,@RequestBody final  TH_Table table
 			, HttpServletRequest httpServletRequest) {
-		
 		System.out.println("====================================== save form");
 
 		boolean isValid = false;
@@ -221,6 +220,8 @@ public class TableController {
 				existingTable.setStatus(table.getStatus());
 
 		}
+		
+		System.out.println("=========== customer name is " + table.getCustomerName());
 		existingTable.setCustomerName(table.getCustomerName());
 		tableService.save(existingTable);
 		return true;
@@ -280,23 +281,53 @@ public class TableController {
 	public String getListTable(){
 		return "tablelist";
 	}
-	@RequestMapping(value = "/tablelistjson", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/tablelistjson", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public String getProductsJson(@RequestParam(value="filterscount", required=false) String filterscount
+	public String getTablesJson(@RequestParam(value="filterscount", required=false) String filterscount
 			, @RequestParam(value="groupscount", required=false) String groupscount
 			, @RequestParam(value="pagenum", required=false) Integer pagenum
 			, @RequestParam(value="pagesize", required=false) Integer pagesize
 			, @RequestParam(value="recordstartindex", required=false) Integer recordstartindex
 			, @RequestParam(value="recordendindex", required=false) Integer recordendindex
-			, @RequestParam(value="startdate", required=true) String startDateString
-			, @RequestParam(value="endDate", required=true) String endDateString){
-		Date startDate = Utilities.parseDate(startDateString);
-		Date endDate = Utilities.parseDate(endDateString);
-		endDate = Utilities.getLastTimeOfDate(endDate);
-		List<TH_Table> tables =  tableService.findTableByDateRange(startDate, endDate);
-		
+			, @RequestParam(value="startdate", required=false) String startDateString
+			, @RequestParam(value="enddate", required=false) String endDateString){
+		Date startDate = null, endDate = null;
+		if (startDateString != null && !startDateString.equals(""))
+			startDate = Utilities.parseDate(startDateString);
+		if (endDateString != null && !endDateString.equals("")){
+			endDate = Utilities.parseDate(endDateString);
+			endDate = Utilities.getLastTimeOfDate(endDate);
+		}
+		List<TH_Table> tables;
+		if(startDate != null && endDate != null)
+			tables =  tableService.findTableByDateRange(startDate, endDate);
+		else
+			tables = tableService.findAll();
+		//exclude encounters from json serialization
+		for(TH_Table table : tables)
+			table.setEncounters(null);
 		String result = Utilities.jSonSerialization(tables);
 		return result;
-	}	
+	}
+	@RequestMapping(value = "/encounterlistjson", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public String getEncountersJson(@RequestParam(value="tableid", required=true) String tableID
+			, @RequestParam(value="filterscount", required=false) String filterscount
+			, @RequestParam(value="groupscount", required=false) String groupscount
+			, @RequestParam(value="pagenum", required=false) Integer pagenum
+			, @RequestParam(value="pagesize", required=false) Integer pagesize
+			, @RequestParam(value="recordstartindex", required=false) Integer recordstartindex
+			, @RequestParam(value="recordendindex", required=false) Integer recordendindex
+			, @RequestParam(value="startdate", required=false) String startDateString
+			, @RequestParam(value="enddate", required=false) String endDateString){
+		
+		TH_Table table = tableService.findById(Integer.valueOf(tableID));
+		List<TH_Encounter> encounters = table.getEncounters();
+		for(TH_Encounter encounter : encounters){
+			encounter.setTable(null);
+		}
+		String result = Utilities.jSonSerialization(encounters);
+		return result;
+	}
 
 }

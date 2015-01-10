@@ -1,33 +1,40 @@
-            var source =
+var dateTimeFormat = 'dd/MM/yyyy HH.mm.ss';
+var url = "/quanlyban/tablelistjson";
+var source =
             {
-                datafields: [
-                    { name: 'tableName' },
+		datatype: "json",        
+		datafields: [
+                    { name: 'tableNumber' },
 					{ name: 'tableID' },
                     { name: 'area' },
                     { name: 'customerName' },
-                    { name: 'openedTime' },
-                    { name: 'closedTime' },
+                    { name: 'openTime', type: 'date'},
+                    { name: 'closedTime', type: 'date'},
                     { name: 'totalMoney' },
                     { name: 'status' }
                 ],
-                localdata: [{"tableName" : "Ban 1", "tableID" : 1 ,"area" : null, "customerName": "Luan" , "openedTime": "2014-11-09 18:30", "closedTime" : "2014-11-09 19:00",
-					 "totalMoney" : 100000, "status" : "PAID"}, {"tableName" : "Ban 2", "tableID" : 2 , "area" : null, "customerName": "Hoang" , "openedTime": "2014-11-09 18:30", "closedTime" : "2014-11-09 19:00", "totalMoney" : 100000, "status" : "PAID"}]
+                id: 'tableID',
+                url: url
             };
-            var dataAdapter = new $.jqx.dataAdapter(source);
-
+            var dataAdapter = new $.jqx.dataAdapter(source, {
+                downloadComplete: function (data, status, xhr) { },
+                loadComplete: function (data) { },
+                loadError: function (xhr, status, error) { }
+            });
             $("#customersGrid").jqxGrid(
             {
-                width: 850,
+                width: 1000,
                 height: 250,
-                source: dataAdapter,
-                
+                source: dataAdapter,                
                 keyboardnavigation: false,
                 columns: [
-                    { text: 'So Ban', datafield: 'tableName', width: 250 },
-                    { text: 'Khu', datafield: 'area', width: 150 },
-                    { text: 'Ten KH', datafield: 'customerName', width: 180 },
-                    { text: 'Thoi gian', datafield: 'openedTime', width: 120 },
-                    { text: 'Tong Tien', datafield: 'totalMoney'}
+                    { text: 'Bàn Số', datafield: 'tableNumber', width: 100 },
+                    { text: 'Khu', datafield: 'area', width: 100 },
+                    { text: 'Tên KH', datafield: 'customerName', width: 200 },
+					{ text: 'Tổng tiền', datafield: 'totalMoney', width: 120, cellsformat: 'c'},
+                    { text: 'Thời gian vào', datafield: 'openTime', width: 180, cellsformat: dateTimeFormat},
+					{ text: 'Thời gian ra', datafield: 'closedTime', width: 180, cellsformat: dateTimeFormat}
+                    
                 ]
             });
 
@@ -36,52 +43,54 @@
             var dataFields = [
                         { name: 'productName' },
                         { name: 'quantity' },
-                        { name: 'unitPrice'},
-                        { name: 'totalMoney'},
-                        { name: 'tableID' }
+                        { name: 'productPrice'},
+                        { name: 'productPrice'},
+                        { name: 'encounterTime' }
                     ];
+            
 
-            var source =
-            {
-                datafields: dataFields,
-                localdata: [{"productName" : "Cafe den", "quantity": 3, "unitPrice" : 10000, "totalMoney" : 30000, "tableID" : 1}]
-            };
 
-            var dataAdapter = new $.jqx.dataAdapter(source);
-            dataAdapter.dataBind();
+//            var dataAdapter = new $.jqx.dataAdapter(source);
+//            dataAdapter.dataBind();
+
 
             $("#customersGrid").on('rowselect', function (event) {
                 var tableID = event.args.row.tableID;
-                var records = new Array();
-                var length = dataAdapter.records.length;
-                for (var i = 0; i < length; i++) {
-                    var record = dataAdapter.records[i];
-                    if (record.tableID == tableID) {
-                        records[records.length] = record;
-                    }
-                }
-
-                var dataSource = {
-                    datafields: dataFields,
-                    localdata: records
-                }
-                var adapter = new $.jqx.dataAdapter(dataSource);
-        
+                var urlEncounter = '/quanlyban/encounterlistjson?' + 'tableid=' + tableID;
+                var sourceEncounter =
+                {
+                	datatype: "json",
+                	datafields: [
+                                 { name: 'product', map:'product>productName'},
+                                 { name: 'quantity' },
+                                 { name: 'productPrice'},
+                                 { name: 'encounterTime', type: 'date'}
+                             ],
+                	id: 'encounterID',
+                	url: urlEncounter
+                };
+                var dataAdapter = new $.jqx.dataAdapter(sourceEncounter, {
+                    downloadComplete: function (data, status, xhr) { },
+                    loadComplete: function (data) { },
+                    loadError: function (xhr, status, error) { }
+                });
+				
                 // update data source.
-                $("#ordersGrid").jqxGrid({ source: adapter });
+                $("#ordersGrid").jqxGrid({ source: dataAdapter });
+				
             });
 
             $("#ordersGrid").jqxGrid(
             {
-                width: 850,
+                width: 1000,
                 height: 250,
                 keyboardnavigation: false,
                 columns: [
-                    { text: 'Ten SP', datafield: 'productName', width: 100 },
-                    { text: 'SL', datafield: 'quantity', width: 150 },
-                    { text: 'Gia', datafield: 'unitPrice',  width: 150 },
-                    { text: 'Thanh Tien', datafield: 'totalMoney' }
+                    { text: 'Tên SP', datafield: 'product', width: 180 },
+                    { text: 'SL', datafield: 'quantity', width: 100 },
+                    { text: 'Gia', datafield: 'productPrice',  width: 150 },
+					{ text: 'Thành Tiền', width: 150 },				
+                    { text: 'Thời gian', datafield: 'encounterTime', cellsformat: dateTimeFormat }
                 ]
             });
-
             $("#customersGrid").jqxGrid('selectrow', 0);

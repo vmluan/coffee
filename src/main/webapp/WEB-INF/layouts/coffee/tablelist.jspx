@@ -34,12 +34,12 @@
 	<div id="mainDiv">
 		<tiles:insertAttribute name="header" ignore="true" />
     <div id='jqxWidget' class="container">
-        <h3>Danh sach Ban</h3>
+        <h3>Danh sách bàn uống</h3>
         <div id="customersGrid">
 		<jsp:text/>
         </div>
         <h3>
-            DS thuc uong theo ban</h3>
+            DS thức uống theo bàn</h3>
         <div id="ordersGrid"><jsp:text/>
         </div>
 		<jsp:text/>
