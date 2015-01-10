@@ -1,6 +1,6 @@
 var dateTimeFormat = 'dd/MM/yyyy HH.mm.ss';
 var url = "/quanlyban/tablelistjson";
-var source =
+var sourceTables =
             {
 		datatype: "json",        
 		datafields: [
@@ -16,7 +16,7 @@ var source =
                 id: 'tableID',
                 url: url
             };
-            var dataAdapter = new $.jqx.dataAdapter(source, {
+            var dataAdapterTables = new $.jqx.dataAdapter(sourceTables, {
                 downloadComplete: function (data, status, xhr) { },
                 loadComplete: function (data) { },
                 loadError: function (xhr, status, error) { }
@@ -25,7 +25,7 @@ var source =
             {
                 width: 1000,
                 height: 250,
-                source: dataAdapter,                
+                source: dataAdapterTables,                
                 keyboardnavigation: false,
                 columns: [
                     { text: 'Bàn Số', datafield: 'tableNumber', width: 100 },
@@ -69,14 +69,14 @@ var source =
                 	id: 'encounterID',
                 	url: urlEncounter
                 };
-                var dataAdapter = new $.jqx.dataAdapter(sourceEncounter, {
+                var dataAdapterEncounters = new $.jqx.dataAdapter(sourceEncounter, {
                     downloadComplete: function (data, status, xhr) { },
                     loadComplete: function (data) { },
                     loadError: function (xhr, status, error) { }
                 });
 				
                 // update data source.
-                $("#ordersGrid").jqxGrid({ source: dataAdapter });
+                $("#ordersGrid").jqxGrid({ source: dataAdapterEncounters });
 				
             });
 
@@ -93,4 +93,19 @@ var source =
                     { text: 'Thời gian', datafield: 'encounterTime', cellsformat: dateTimeFormat }
                 ]
             });
-            $("#customersGrid").jqxGrid('selectrow', 0);
+            
+			function reloadGrids(date){
+				dataAdapterTables = new $.jqx.dataAdapter(sourceTables,
+					{
+						formatData: function (data) {
+							$.extend(data, {
+								startdate: date,
+								enddate: date
+							});
+							return data;
+						}
+					}
+				);
+				$("#customersGrid").jqxGrid({ source: dataAdapterTables });
+				$("#ordersGrid").jqxGrid('clear');
+			}

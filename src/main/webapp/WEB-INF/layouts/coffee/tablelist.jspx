@@ -33,6 +33,13 @@
 <body class='default'>
 	<div id="mainDiv">
 		<tiles:insertAttribute name="header" ignore="true" />
+<div class='default'>
+	<div>
+		<label  style="margin-left: 10px;" class="col-xs6 col-sm-2">Chọn ngày:
+		</label>
+	</div>
+	<div style="margin-left: 10px;" id='jqxDateTimeInput'></div>
+</div>		
     <div id='jqxWidget' class="container">
         <h3>Danh sách bàn uống</h3>
         <div id="customersGrid">
@@ -109,5 +116,17 @@
 		<jsp:text/>
 	</script>			
 </body>
+<script>
+		$("#jqxDateTimeInput").jqxDateTimeInput({
+			width : '200px',
+			height : '25px',
+			theme : 'energyblue'
+		});
+		$('#jqxDateTimeInput').on('change', function(event) {
 
+			var date = event.args.date;
+			var date2 = $("#jqxDateTimeInput").val();
+			loadTableList(date2);
+		});
+</script>
 </html>
