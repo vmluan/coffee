@@ -124,7 +124,7 @@
 
 			var date = event.args.date;
 			var date2 = $("#jqxDateTimeInput").val();
-			loadTableList(date2);
+			reloadGrids(date2);
 		});
 </script>
 </html>
