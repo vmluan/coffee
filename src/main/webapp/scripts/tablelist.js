@@ -23,17 +23,17 @@ var sourceTables =
             });
             $("#customersGrid").jqxGrid(
             {
-                width: 1000,
+                width: '95%',
                 height: 250,
                 source: dataAdapterTables,                
                 keyboardnavigation: false,
                 columns: [
-                    { text: 'Bàn Số', datafield: 'tableNumber', width: 100 },
-                    { text: 'Khu', datafield: 'area', width: 100 },
-                    { text: 'Tên KH', datafield: 'customerName', width: 200 },
-					{ text: 'Tổng tiền', datafield: 'totalMoney', width: 120, cellsformat: 'c'},
-                    { text: 'Thời gian vào', datafield: 'openTime', width: 180, cellsformat: dateTimeFormat},
-					{ text: 'Thời gian ra', datafield: 'closedTime', width: 180, cellsformat: dateTimeFormat}
+                    { text: 'Bàn Số', datafield: 'tableNumber', width: '10%' },
+                    { text: 'Khu', datafield: 'area', width: '10%' },
+                    { text: 'Tên KH', datafield: 'customerName', width: '25%' },
+					{ text: 'Tổng tiền', datafield: 'totalMoney', width: '15%', cellsformat: 'c', align: 'right', cellsalign: 'right'},
+                    { text: 'Thời gian vào', datafield: 'openTime', width: '20%', cellsformat: dateTimeFormat,align: 'right', cellsalign: 'right'},
+					{ text: 'Thời gian ra', datafield: 'closedTime', width: '20%', cellsformat: dateTimeFormat,align: 'right', cellsalign: 'right'}
                     
                 ]
             });
@@ -82,15 +82,15 @@ var sourceTables =
 
             $("#ordersGrid").jqxGrid(
             {
-                width: 1000,
+                width: '95%',
                 height: 250,
                 keyboardnavigation: false,
                 columns: [
-                    { text: 'Tên SP', datafield: 'product', width: 180 },
-                    { text: 'SL', datafield: 'quantity', width: 100 },
-                    { text: 'Gia', datafield: 'productPrice',  width: 150 },
-					{ text: 'Thành Tiền', width: 150 },				
-                    { text: 'Thời gian', datafield: 'encounterTime', cellsformat: dateTimeFormat }
+                    { text: 'Tên SP', datafield: 'product', width: '35%' },
+                    { text: 'SL', datafield: 'quantity', width: '5%',align: 'right', cellsalign: 'right' },
+                    { text: 'Gia', datafield: 'productPrice',  width: '10%', align: 'right', cellsalign: 'right' },
+					{ text: 'Thành Tiền', width: '10%', align: 'right', cellsalign: 'right' },				
+                    { text: 'Thời gian', datafield: 'encounterTime', cellsformat: dateTimeFormat, align: 'right', cellsalign: 'right' }
                 ]
             });
             

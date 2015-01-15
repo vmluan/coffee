@@ -33,11 +33,9 @@
 <body class='default'>
 	<div id="mainDiv">
 		<tiles:insertAttribute name="header" ignore="true" />
-<div class='default'>
-	<div>
-		<label  style="margin-left: 10px;" class="col-xs6 col-sm-2">Chọn ngày:
-		</label>
-	</div>
+<div class='container'>
+	<label  style="margin-left: 10px; text-align: right;" class="col-xs6 col-sm-2">Chọn ngày:
+	</label>
 	<div style="margin-left: 10px;" id='jqxDateTimeInput'></div>
 </div>		
     <div id='jqxWidget' class="container">
