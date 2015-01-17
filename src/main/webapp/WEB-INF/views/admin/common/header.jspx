@@ -1,6 +1,6 @@
     <!-- Fixed navbar -->
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-      <div class="container">
+      <div class="container" id="headerBar">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
@@ -12,13 +12,13 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/quanlyban?form">Thêm bàn</a></li>
+            <li class="active" id= "ordersID"><a href="#">Thêm bàn</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-			<li><a href="/products">QL Giá</a></li>            
-            <li><a href="/quanlyban/tablelist">Thống Kê</a></li>
-            <li><a href="#">Thu Chi</a></li>
-            <li><a href="/j_spring_security_logout">Đăng xuất</a></li>
+			<li id="productsID"><a href="/products">QL Giá</a></li>            
+            <li id="summaryID"><a href="/quanlyban/tablelist">Thống Kê</a></li>
+            <li id="accountingID"><a href="#">Thu Chi</a></li>
+            <li id="logoutID"><a href="/j_spring_security_logout">Đăng xuất</a></li>
           </ul>	  
         </div><!--/.nav-collapse -->
 

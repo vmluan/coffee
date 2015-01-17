@@ -56,8 +56,8 @@ function createProduct(name, product) {
 			+ theme + ' jqx-fill-state-normal-' + theme + '">'
 			+ '<div class="draggable-demo-product-header-label"> ' + name
 			+ '</div></div>' + '<div class="jqx-fill-state-normal-' + theme
-			+ ' draggable-demo-product-price">Price: <strong>$' + product.price
-			+ '</strong></div>' + '<img src="/images/t-shirts/' + product.pic
+			+ ' draggable-demo-product-price"><strong>$' + product.price
+			+ '</strong></div>' + '<img src="/images/' + product.pic
 			+ '"' + ' alt="' + name + '" class="jqx-rc-b" />' + '</div>');
 };
 
@@ -65,27 +65,27 @@ function gridRendering() {
 	$("#jqxgrid").jqxGrid({
 		height : 300,
 		//width: 290,
-		width : 394,
+		width : '100%',
 
 		keyboardnavigation : false,
 		selectionmode : 'none',
 		columns : [ {
 			text : '',
 			dataField : 'stt',
-			width : 40
+			width : '5%'
 		}, {
 			text : '',
 			dataField : 'hiddenCount',
 			width : 0,
 			hidden: true
 		}, {
-			text : 'Ten',
+			text : 'Tên',
 			dataField : 'name',
-			width : 200
+			width : '70%'
 		}, {
-			text : 'SL',
+			text : 'Số lượng',
 			dataField : 'count',
-			width : 100
+			width : '25%'
 		}
 		]
 	});
