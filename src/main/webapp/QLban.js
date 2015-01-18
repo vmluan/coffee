@@ -305,7 +305,7 @@ function addEventListeners() {
 					var productName = $(this).find('.draggable-demo-product-header')
 							.text().trim(), price = $(this).find(
 							'.draggable-demo-product-price').text().replace(
-							'Price: $', '');
+							'$', '');
 					price = parseInt(price, 10);
 
 					addItem({
