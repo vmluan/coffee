@@ -1,3 +1,9 @@
+
+.jqx-treemap-label {
+text-overflow: ellipsis;
+overflow: auto;
+position: relative !important;
+}
 .jqx-grid-header
 {
     height: 50px !important;
