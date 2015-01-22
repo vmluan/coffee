@@ -39,36 +39,19 @@
 
 			<div class="container-fluid">
 				<div class="row">
-
-
-
-
 					<div class="test">
 						<div class="page-header">
-
 							<div class="col-xs-6 col-sm-3" style="margin-left: 10px;">
-								<label> Dang uong: </label> <input type="checkbox" id="danguong"
-									onChange="loadTableList()" /> <label> Da Tinh tien: </label> <input
+								<label> Đang uống: </label> <input type="checkbox" id="danguong"
+									onChange="loadTableList()" />
+								<label> Đã tính tiền: </label> <input
 									type="checkbox" id="datinhtien" onChange="loadTableList()" />
 							</div>
-
-							<label style="margin-left: 10px;" class="col-xs6 col-sm-2">chon
-								ngay xem:</label>
-							<div style="margin: 10px;" id='jqxDateTimeInput'></div>
-
-
 						</div>
-
-
 						<div id="treemap"></div>
-
-
 					</div>
 				</div>
 			</div>
-
-
-
 		</div>
 		<!-- /container -->
 
@@ -119,63 +102,81 @@
 		<jsp:text/>
 	</script>	
 	<script type="text/javascript">
-		var data = [ {
+
+
+		var khu_b = {
 			label : 'Khu B',
 			value : null,
 			color : '#B3FAFF',
 			data : null
-		}, {
+		};
+		var khu_c = {
 			label : 'Khu C',
 			value : null,
 			color : '#95FF7A',
 			data : null
-		}, {
+		};
+		var khu_d = {
 			label : 'Khu D',
 			value : null,
 			color : '#FFA3CE',
 			data : null
-		}, {
+		};
+
+		var khu_e = {
 			label : 'Khu E',
 			value : null,
 			color : '#F1A3FF',
 			data : null
-		}, {
+		};
+		var khu_vom1 = {
 			label : 'Vòm 1',
 			value : null,
 			color : '#F1A3FF',
 			data : null
-		}, {
+		};
+		var khu_vom2 = {
 			label : 'Vòm 2',
 			value : null,
 			color : '#F1A3FF',
 			data : null
-		},{
+		};
+		var khu_santhuong = {
 			label : 'Sân thượng',
 			value : null,
 			color : '#F1A3FF',
 			data : null
-		},{
+		};
+		var khu_trongnha = {
 			label : 'Trong nhà',
 			value : null,
 			color : '#F1A3FF',
 			data : null
-		},{
+		};
+		var khu_mandu = {
 			label : 'Mận dù',
 			value : null,
 			color : '#F1A3FF',
 			data : null
-		},{
+		};
+		var khu_mangiua = {
 			label : 'Mận giữa',
 			value : null,
 			color : '#F1A3FF',
 			data : null
-		},{
+		};
+
+		var khu_xichdu = {
 			label : 'Xích đu',
 			value : null,
 			color : '#F1A3FF',
 			data : null
-		},
-		{
+		};
+		
+		var list_khu = [khu_b, khu_c, khu_d, khu_e, khu_vom1, khu_vom2, khu_santhuong, khu_trongnha, khu_mandu, khu_mangiua, khu_xichdu];
+
+
+		var list_table = [ {
 			label : 'Ban 1',
 			value : 2,
 			parent : 'Khu B',
@@ -301,7 +302,7 @@
 				totalMoney : null,
 				tableid : 'b14'
 			}
-			
+
 		}, {
 			label : 'Ban 15',
 			value : 2,
@@ -428,8 +429,7 @@
 				totalMoney : null,
 				tableid : 'b28'
 			}
-		}
-		, {
+		}, {
 			label : 'Ban 29',
 			value : 2,
 			parent : 'Vòm 1',
@@ -465,8 +465,7 @@
 				totalMoney : null,
 				tableid : 'b32'
 			}
-		},
-		{
+		}, {
 			label : 'Ban 33',
 			value : 2,
 			parent : 'Vòm 2',
@@ -484,8 +483,7 @@
 				totalMoney : null,
 				tableid : 'b34'
 			}
-		},				
-		{
+		}, {
 			label : 'Ban 35',
 			value : 2,
 			parent : 'Vòm 2',
@@ -503,8 +501,7 @@
 				totalMoney : null,
 				tableid : 'b36'
 			}
-		},			
-		{
+		}, {
 			label : 'Ban 37',
 			value : 2,
 			parent : 'Sân thượng',
@@ -522,8 +519,7 @@
 				totalMoney : null,
 				tableid : 'b38'
 			}
-		}				
-		, {
+		}, {
 			label : 'Ban 39',
 			value : 2,
 			parent : 'Sân thượng',
@@ -541,8 +537,7 @@
 				totalMoney : null,
 				tableid : 'b40'
 			}
-		},			
-		{
+		}, {
 			label : 'Ban 41',
 			value : 2,
 			parent : 'Sân thượng',
@@ -551,8 +546,7 @@
 				totalMoney : null,
 				tableid : 'b41'
 			}
-		},				
-		{
+		}, {
 			label : 'Ban 42',
 			value : 2,
 			parent : 'Sân thượng',
@@ -561,8 +555,7 @@
 				totalMoney : null,
 				tableid : 'b42'
 			}
-		}, 
-		{
+		}, {
 			label : 'Ban 43',
 			value : 2,
 			parent : 'Trong nhà',
@@ -571,8 +564,7 @@
 				totalMoney : null,
 				tableid : 'b43'
 			}
-		},			
-		{
+		}, {
 			label : 'Ban 44',
 			value : 2,
 			parent : 'Trong nhà',
@@ -581,8 +573,7 @@
 				totalMoney : null,
 				tableid : 'b44'
 			}
-		},			
-		{
+		}, {
 			label : 'Ban 45',
 			value : 2,
 			parent : 'Mận dù',
@@ -591,8 +582,7 @@
 				totalMoney : null,
 				tableid : 'b45'
 			}
-		},				
-		{
+		}, {
 			label : 'Ban 46',
 			value : 2,
 			parent : 'Mận dù',
@@ -601,8 +591,7 @@
 				totalMoney : null,
 				tableid : 'b46'
 			}
-		}, 
-		{
+		}, {
 			label : 'Ban 47',
 			value : 2,
 			parent : 'Mận giữa',
@@ -611,106 +600,40 @@
 				totalMoney : null,
 				tableid : 'b47'
 			}
-			
-		},			
-		{
+
+		}, {
 			label : 'Ban 48',
 			value : 2,
 			parent : 'Mận giữa',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'mangiua_b48'
+				tableid : 'b48'
 			}
-		},			
-		{
+		}, {
 			label : 'Ban 49',
 			value : 2,
 			parent : 'Xích đu',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'xichdu_b49'
+				tableid : 'b49'
 			}
-		},			
-		{
+		}, {
 			label : 'Ban 50',
 			value : 2,
 			parent : 'Xích đu',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'xichdu_b50'
+				tableid : 'b50'
 			}
-			
-		}				
-		];
 
+		} ];
+
+		var data = list_khu.concat(list_table);
 		updateTreeMap();
-		$("#jqxDateTimeInput").jqxDateTimeInput({
-			width : '200px',
-			height : '25px',
-			theme : 'energyblue'
-		});
-		$('#jqxDateTimeInput').on('change', function(event) {
-
-			var date = event.args.date;
-			var date2 = $("#jqxDateTimeInput").val();
-			loadTableList(date2);
-		});
-
-		$('#treemap').jqxTreeMap(
-				{
-					width : 1200,
-					height : 700,
-					source : data,
-					colorRange : 50,
-					renderCallbacks : {
-						'*' : function(element, value) {
-
-							if (value.data) {
-								//	console.log(value);
-								element.css('cursor', 'pointer');
-								<c:forEach var="table" items ="${table}">
-								//console.log("${table.tableNumber}" + value.label);
-								if ("${table.status}" == 'DRINKING') {
-									if ("${table.tableNumber}" == value.data.tableid) {
-										element.css({
-											border : '3px solid red'
-										});									
-									}
-								} else if ("${table.status}" == 'PAID') {
-									if ("${table.tableNumber}" == value.data.tableid) {
-										element.css({
-											border : '3px solid green'
-										});									
-									}
-								}
-								</c:forEach>
-
-								/*         element.jqxTooltip({
-								             content: '<div><div style="font-weight: bold; max-width: 200px; font-family: verdana; font-size: 13px;">' + value.data.title + '</div><div style="width: 200px; font-family: verdana; font-size: 12px;">' + value.data.description + '</div></div>',
-								             position: 'mouse',
-								             autoHideDelay: 6000,
-								             theme: theme
-								         });
-								 */
-								element.click(function() {
-
-									window.location = 'quanlyban/'
-											+ value.data.tableid + '?tableacr';
-								});	
-								 
-							} else if (value.data === undefined || value.data === null) {
-								element.css({
-									backgroundColor : '#fff',
-									border : '1px solid #555'
-								});
-							}
-						}
-					}
-
-				});
+		updateSourceTreeMap(data);
 
 		function loadTableList(tradeDate) {
 			if (!tradeDate) {
@@ -718,48 +641,35 @@
 			}
 			var danguong = document.getElementById('danguong').checked;
 			var datinhtien = document.getElementById('datinhtien').checked;
+			
+			//<![CDATA[
+			      if (!danguong && datinhtien)
+			    	  filterTreeMapforStatus('PAID');
+			      else if(danguong && !datinhtien){
+			    	  //filterTreeMapForDrinking
+			    	  filterTreeMapforStatus('DRINKING');
+			      }else if(danguong && datinhtien){
+			    	  //for both
+			    	  filterTreeMapforStatus('BOTH');
+			      } else{
+			    	  //show all
+			    	  filterTreeMapforStatus('ALL');
+			      }
+			//]]>
 
-			var url = '/';
-			var inputData = {
-				tradeDate : tradeDate,
-				danguong : danguong,
-				datinhtien : datinhtien
-			};
-			$.ajax({
-				url : url,
-				data : inputData,
-				dataType : "html",
-				type : 'GET',
-				//   data: data,
-				success : function(data) {
-					//On ajax success do this
-					var a = 1;
-
-					$('#treemap').html($(data).find('#treemap').html());
-
-				},
-				error : function(xhr, ajaxOptions, thrownError) {
-					//On error do this
-					alert(xhr.status);
-					alert(thrownError);
-
-				}
-			});
 
 		};
 
 		function updateTreeMap() {
-			console.log('start');
+
 			<c:forEach var="table" items ="${table}">
 
 			for ( var item in data) {
 				var tableNumber = "${table.tableNumber}";
-				if(data[item].data != null){
+				if (data[item].data != null) {
 					if (data[item].data.tableid == tableNumber) {
-						console.log(data[item].label);
 						data[item].data.customerName = "${table.customerName}";
 						var money = "${table.totalMoney}";
-						console.log(money.replace(/\d(?=(\d{3})+\.)/g, '$.'));
 						money = formatCurrency(money, '$');
 						data[item].data.totalMoney = money;
 
@@ -770,6 +680,115 @@
 			</c:forEach>
 
 		};
+		function filterTreeMapforStatus(status) {
+			var newData = new Array();
+			if(status == 'ALL')
+				newData = data;
+			else{
+				<c:forEach var="table" items ="${table}">
+				for ( var item in list_table) {
+					var tableNumber = "${table.tableNumber}";
+					var tableStatus = "${table.status}";
+					//<![CDATA[
+						if (tableStatus == status || status == 'BOTH')
+							if (list_table[item].data.tableid == tableNumber) {
+								newData.push(list_table[item]);
+							}
+
+					//]]>	
+				}
+				</c:forEach>
+				if (newData.length > 0) {
+					newData = addParentToTableList(newData);
+				}
+			}
+			updateSourceTreeMap(newData);
+
+		};		
+
+		function addParentToTableList(tableList){
+			var parents = new Array();
+			for (var khu in list_khu){
+				for (var item in tableList){
+					var isExist = false;
+					for (var parent in parents){
+						if(tableList[item].parent == parents[parent].label){
+							// still exist a parent. No need to add more
+							isExist = true;
+						}
+					}
+					if(isExist)
+						continue;
+					
+					if(tableList[item].parent == list_khu[khu].label){
+						parents.push(list_khu[khu]);
+					}
+				}
+									
+			}
+			
+			return parents.concat(tableList);
+			
+		};
+		function updateSourceTreeMap(newData) {
+			$('#treemap')
+					.jqxTreeMap(
+							{
+								width : 1200,
+								height : 700,
+								source : newData,
+								colorRange : 50,
+								renderCallbacks : {
+									'*' : function(element, value) {
+
+										if (value.data) {
+											//	console.log(value);
+											element.css('cursor', 'pointer');
+											<c:forEach var="table" items ="${table}">
+											//console.log("${table.tableNumber}" + value.label);
+											if ("${table.status}" == 'DRINKING') {
+												if ("${table.tableNumber}" == value.data.tableid) {
+													element
+															.css({
+																border : '3px solid red'
+															});
+												}
+											} else if ("${table.status}" == 'PAID') {
+												if ("${table.tableNumber}" == value.data.tableid) {
+													element
+															.css({
+																border : '3px solid green'
+															});
+												}
+											}
+											</c:forEach>
+
+											/*         element.jqxTooltip({
+											             content: '<div><div style="font-weight: bold; max-width: 200px; font-family: verdana; font-size: 13px;">' + value.data.title + '</div><div style="width: 200px; font-family: verdana; font-size: 12px;">' + value.data.description + '</div></div>',
+											             position: 'mouse',
+											             autoHideDelay: 6000,
+											             theme: theme
+											         });
+											 */
+											element.click(function() {
+
+												window.location = 'quanlyban/'
+														+ value.data.tableid
+														+ '?tableacr';
+											});
+
+										} else if (value.data === undefined
+												|| value.data === null) {
+											element.css({
+												backgroundColor : '#fff',
+												border : '1px solid #555'
+											});
+										}
+									}
+								}
+
+							});
+		}
 	</script>
 
 </body>
