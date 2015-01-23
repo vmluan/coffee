@@ -30,7 +30,7 @@
 
 
 </head>
-<body class='default'>
+<body class='default' onload="setDivActive('summaryID')">
 	<div id="mainDiv">
 		<tiles:insertAttribute name="header" ignore="true" />
 <div class='container'>

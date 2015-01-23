@@ -216,8 +216,11 @@ public class TableController {
 					existingTable.setTableAcr(table.getTableAcr());
 			}
 			existingTable.setTotalMoney(totalMoney);
-			if (table.getStatus() != null)
+			if (table.getStatus() != null){
+				if(table.getStatus() == TH_TableStatus.PAID)
+					existingTable.setClosedTime(new Date());
 				existingTable.setStatus(table.getStatus());
+			}
 
 		}
 		

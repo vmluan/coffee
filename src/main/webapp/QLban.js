@@ -70,7 +70,7 @@ function gridRendering() {
 		keyboardnavigation : false,
 		selectionmode : 'none',
 		columns : [ {
-			text : '',
+			text : 'STT',
 			dataField : 'stt',
 			width : '5%'
 		}, {
@@ -111,7 +111,7 @@ function loadItem() {
 
 	for (i = 0; i <= table.encounters.length - 1; i++) {
 		var item = new Object();
-		item.price = parseInt(table.encounters[i].product.productPrice);
+		item.price = parseInt(table.encounters[i].price);
 		item.name = table.encounters[i].product.productName;
 
 		addItem({

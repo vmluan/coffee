@@ -41,7 +41,7 @@
 		<title><spring:message code="welcome_h3" arguments="${app_name}" /></title>
 	</head>
 	
-  	<body>
+  	<body onload="setDivActive('ordersID')">
 		<div id="main">
   	        <tiles:insertAttribute name="header" ignore="true" />
 	    	<tiles:insertAttribute name="body"/> 
@@ -133,6 +133,7 @@
 			
 			encounter.product = product;
 			encounter.quantity = '${encounter.quantity}';
+			encounter.price = '${encounter.productPrice}';
 			encounters[i] = encounter;
 			i = i +1;
 		

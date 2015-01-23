@@ -9,3 +9,13 @@ function updateHeaderStatus(currentActiveDiv, newActiveDiv){
 	currentElem.className="";
 	newElem.className="active";
 }
+
+function setDivActive(newActiveDiv){
+	var currentActive = document.getElementsByClassName('active');
+	for (var i =0; i < currentActive.length; i++){
+		currentActive[i].className="";
+	}
+	var newElem = document.getElementById(newActiveDiv);
+	if(newElem)
+		newElem.className="active";
+} 

@@ -31,8 +31,7 @@
 
 
 </head>
-<body>
-
+<body onload="setDivActive('main')">
 	<div id="mainDiv">
 		<tiles:insertAttribute name="header" ignore="true" />
 		<div class="container">
