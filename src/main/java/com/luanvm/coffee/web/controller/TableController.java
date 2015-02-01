@@ -49,26 +49,10 @@ public class TableController {
 	@Autowired
 	private ProductService productService;
 	
-	@RequestMapping(method = RequestMethod.GET)
-	public String getProductPage(Model ciModel,@RequestParam(value="lang", required=false)String id,
-			HttpServletRequest httpServletRequest) {
-		Locale locale = LocaleContextHolder.getLocale();
-		
-		if(StringUtils.isNotEmpty(id)){
-			if(id.equalsIgnoreCase(com.luanvm.coffee.helper.Constants.VIETNAMESE))
-				locale.setDefault(new Locale(id));
-		}
-		String tableid = httpServletRequest.getParameter("tableid");
-		if(tableid != null)
-			httpServletRequest.setAttribute("tableNumber", tableid);
-		System.out.println("============== table id = " + tableid);
-		httpServletRequest.setAttribute("sysDate", new Date().getTime());
-		return "tables/new";
-	}
-	//create new table with encounters
+	//The method is to save a new table
 	//@Transactional
 	@RequestMapping(params = "form", method = RequestMethod.POST)
-	public String saveTable(Model ciModel,@RequestBody final  TH_Table table,
+	public String saveNewTable(Model ciModel,@RequestBody final  TH_Table table,
 			HttpServletRequest httpServletRequest) {
 		Locale locale = LocaleContextHolder.getLocale();
 		System.out.println("===========================================");
@@ -126,26 +110,10 @@ public class TableController {
 		}
 		return "tables/new";
 	}
-	// update
-
-	@RequestMapping(value = "/{id}", params = "form", method = RequestMethod.GET)
-	public String updateForm(@PathVariable("id") Integer id, Model uiModel, HttpServletRequest httpServletRequest) {
-		
-		TH_Table table = tableService.findById(id);
-		
-		
-		List<TH_Encounter> encounters = table.getEncounters();
-		
-		uiModel.addAttribute("table", table);
-		uiModel.addAttribute("encounters", encounters);
-		httpServletRequest.setAttribute("sysDate", new Date().getTime());
-		httpServletRequest.setAttribute("tableAcr", table.getTableAcr());
-		return "tables/update";
-	}
 	
 	@Transactional
 	@RequestMapping(value = "/{id}", params = "form", method = RequestMethod.POST)
-	public String saveForm(@PathVariable("id") Integer id, Model ciModel
+	public String updateTable(@PathVariable("id") Integer id, Model ciModel
 			,@RequestBody final  TH_Table table
 			, HttpServletRequest httpServletRequest) {
 		System.out.println("====================================== save form");
@@ -207,6 +175,7 @@ public class TableController {
 			
 			existingTable.setTableNumber(table.getTableNumber());
 			existingTable.setEncounters(encounters);
+			existingTable.setTableName(table.getTableName());
 			if(existingTable.getTotalMoney() == 0 || existingTable.getStatus() == null){
 				existingTable.setOpenTime(new Date()); // set Open Time when
 				// ordering the first drink

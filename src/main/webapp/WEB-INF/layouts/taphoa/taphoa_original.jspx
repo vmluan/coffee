@@ -25,13 +25,16 @@
 <link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Custom styles for this template -->
-<link href="/resources/taphoa.css" rel="stylesheet" />
+<link href="/resources/coffee.css" rel="stylesheet" />
 <link href="dashboard.css" rel="stylesheet" />
 
 
 
 </head>
 <body onload="setDivActive('main')">
+	<div class="PopupPanel" id="loadingDiv">
+		<button class="button-center btn btn-lg btn-warning"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>  Đang tải ...</button>
+	</div>
 	<div id="mainDiv">
 		<tiles:insertAttribute name="header" ignore="true" />
 		<div class="container">
@@ -176,456 +179,456 @@
 
 
 		var list_table = [ {
-			label : 'Ban 1',
+			label : ' ',
 			value : 2,
 			parent : 'Khu B',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b1'
+				tableNumber : 'b1'
 			}
 		}, {
-			label : 'Ban 2',
+			label : ' ',
 			value : 2,
 			parent : 'Khu B',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b2'
+				tableNumber : 'b2'
 			}
 		}, {
-			label : 'Ban 3',
+			label : ' ',
 			value : 2,
 			parent : 'Khu B',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b3'
+				tableNumber : 'b3'
 			}
 		}, {
-			label : 'Ban 4',
+			label : ' ',
 			value : 2,
 			parent : 'Khu B',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b4'
+				tableNumber : 'b4'
 			}
 		}, {
-			label : 'Ban 5',
+			label : ' ',
 			value : 2,
 			parent : 'Khu B',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b5'
+				tableNumber : 'b5'
 			}
 		}, {
-			label : 'Ban 6',
+			label : ' ',
 			value : 2,
 			parent : 'Khu B',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b6'
+				tableNumber : 'b6'
 			}
 		}, {
-			label : 'Ban 7',
+			label : ' ',
 			value : 2,
 			parent : 'Khu C',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b7'
+				tableNumber : 'b7'
 			}
 		}, {
-			label : 'Ban 8',
+			label : ' ',
 			value : 2,
 			parent : 'Khu C',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b8'
+				tableNumber : 'b8'
 			}
 		}, {
-			label : 'Ban 9',
+			label : ' ',
 			value : 2,
 			parent : 'Khu C',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b9'
+				tableNumber : 'b9'
 			}
 		}, {
-			label : 'Ban 10',
+			label : ' ',
 			value : 2,
 			parent : 'Khu C',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b10'
+				tableNumber : 'b10'
 			}
 		}, {
-			label : 'Ban 11',
+			label : ' ',
 			value : 2,
 			parent : 'Khu C',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b11'
+				tableNumber : 'b11'
 			}
 		}, {
-			label : 'Ban 12',
+			label : ' ',
 			value : 2,
 			parent : 'Khu C',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b12'
+				tableNumber : 'b12'
 			}
 		}, {
-			label : 'Ban 13',
+			label : ' ',
 			value : 2,
 			parent : 'Khu D',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b13'
+				tableNumber : 'b13'
 			}
 		}, {
-			label : 'Ban 14',
+			label : ' ',
 			value : 2,
 			parent : 'Khu D',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b14'
+				tableNumber : 'b14'
 			}
 
 		}, {
-			label : 'Ban 15',
+			label : ' ',
 			value : 2,
 			parent : 'Khu D',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b15'
+				tableNumber : 'b15'
 			}
 		}, {
-			label : 'Ban 16',
+			label : ' ',
 			value : 2,
 			parent : 'Khu D',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b16'
+				tableNumber : 'b16'
 			}
 		}, {
-			label : 'Ban 17',
+			label : ' ',
 			value : 2,
 			parent : 'Khu D',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b17'
+				tableNumber : 'b17'
 			}
 		}, {
-			label : 'Ban 18',
+			label : ' ',
 			value : 2,
 			parent : 'Khu D',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b18'
+				tableNumber : 'b18'
 			}
 		}, {
-			label : 'Ban 19',
+			label : ' ',
 			value : 2,
 			parent : 'Khu E',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b19'
+				tableNumber : 'b19'
 			}
 		}, {
-			label : 'Ban 20',
+			label : ' ',
 			value : 2,
 			parent : 'Khu E',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b20'
+				tableNumber : 'b20'
 			}
 		}, {
-			label : 'Ban 21',
+			label : ' ',
 			value : 2,
 			parent : 'Khu E',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b21'
+				tableNumber : 'b21'
 			}
 		}, {
-			label : 'Ban 22',
+			label : ' ',
 			value : 2,
 			parent : 'Khu E',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b22'
+				tableNumber : 'b22'
 			}
 		}, {
-			label : 'Ban 23',
+			label : ' ',
 			value : 2,
 			parent : 'Khu E',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b23'
+				tableNumber : 'b23'
 			}
 		}, {
-			label : 'Ban 24',
+			label : ' ',
 			value : 2,
 			parent : 'Khu E',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b24'
+				tableNumber : 'b24'
 			}
 		}, {
-			label : 'Ban 25',
+			label : ' ',
 			value : 2,
 			parent : 'Vòm 1',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b25'
+				tableNumber : 'b25'
 			}
 		}, {
-			label : 'Ban 26',
+			label : ' ',
 			value : 2,
 			parent : 'Vòm 1',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b26'
+				tableNumber : 'b26'
 			}
 		}, {
-			label : 'Ban 27',
+			label : ' ',
 			value : 2,
 			parent : 'Vòm 1',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b27'
+				tableNumber : 'b27'
 			}
 		}, {
-			label : 'Ban 28',
+			label : ' ',
 			value : 2,
 			parent : 'Vòm 1',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b28'
+				tableNumber : 'b28'
 			}
 		}, {
-			label : 'Ban 29',
+			label : ' ',
 			value : 2,
 			parent : 'Vòm 1',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b29'
+				tableNumber : 'b29'
 			}
 		}, {
-			label : 'Ban 30',
+			label : ' ',
 			value : 2,
 			parent : 'Vòm 1',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b30'
+				tableNumber : 'b30'
 			}
 		}, {
-			label : 'Ban 31',
+			label : ' ',
 			value : 2,
 			parent : 'Vòm 2',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b31'
+				tableNumber : 'b31'
 			}
 		}, {
-			label : 'Ban 32',
+			label : ' ',
 			value : 2,
 			parent : 'Vòm 2',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b32'
+				tableNumber : 'b32'
 			}
 		}, {
-			label : 'Ban 33',
+			label : ' ',
 			value : 2,
 			parent : 'Vòm 2',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b33'
+				tableNumber : 'b33'
 			}
 		}, {
-			label : 'Ban 34',
+			label : ' ',
 			value : 2,
 			parent : 'Vòm 2',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b34'
+				tableNumber : 'b34'
 			}
 		}, {
-			label : 'Ban 35',
+			label : ' ',
 			value : 2,
 			parent : 'Vòm 2',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b35'
+				tableNumber : 'b35'
 			}
 		}, {
-			label : 'Ban 36',
+			label : ' ',
 			value : 2,
 			parent : 'Vòm 2',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b36'
+				tableNumber : 'b36'
 			}
 		}, {
-			label : 'Ban 37',
+			label : ' ',
 			value : 2,
 			parent : 'Sân thượng',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b37'
+				tableNumber : 'b37'
 			}
 		}, {
-			label : 'Ban 38',
+			label : ' ',
 			value : 2,
 			parent : 'Sân thượng',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b38'
+				tableNumber : 'b38'
 			}
 		}, {
-			label : 'Ban 39',
+			label : ' ',
 			value : 2,
 			parent : 'Sân thượng',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b39'
+				tableNumber : 'b39'
 			}
 		}, {
-			label : 'Ban 40',
+			label : ' ',
 			value : 2,
 			parent : 'Sân thượng',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b40'
+				tableNumber : 'b40'
 			}
 		}, {
-			label : 'Ban 41',
+			label : ' ',
 			value : 2,
 			parent : 'Sân thượng',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b41'
+				tableNumber : 'b41'
 			}
 		}, {
-			label : 'Ban 42',
+			label : ' ',
 			value : 2,
 			parent : 'Sân thượng',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b42'
+				tableNumber : 'b42'
 			}
 		}, {
-			label : 'Ban 43',
+			label : ' ',
 			value : 2,
 			parent : 'Trong nhà',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b43'
+				tableNumber : 'b43'
 			}
 		}, {
-			label : 'Ban 44',
+			label : ' ',
 			value : 2,
 			parent : 'Trong nhà',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b44'
+				tableNumber : 'b44'
 			}
 		}, {
-			label : 'Ban 45',
+			label : ' ',
 			value : 2,
 			parent : 'Mận dù',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b45'
+				tableNumber : 'b45'
 			}
 		}, {
-			label : 'Ban 46',
+			label : ' ',
 			value : 2,
 			parent : 'Mận dù',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b46'
+				tableNumber : 'b46'
 			}
 		}, {
-			label : 'Ban 47',
+			label : ' ',
 			value : 2,
 			parent : 'Mận giữa',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b47'
+				tableNumber : 'b47'
 			}
 
 		}, {
-			label : 'Ban 48',
+			label : ' ',
 			value : 2,
 			parent : 'Mận giữa',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b48'
+				tableNumber : 'b48'
 			}
 		}, {
-			label : 'Ban 49',
+			label : ' ',
 			value : 2,
 			parent : 'Xích đu',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b49'
+				tableNumber : 'b49'
 			}
 		}, {
-			label : 'Ban 50',
+			label : ' ',
 			value : 2,
 			parent : 'Xích đu',
 			data : {
 				customerName : null,
 				totalMoney : null,
-				tableid : 'b50'
+				tableNumber : 'b50'
 			}
 
 		} ];
@@ -662,17 +665,20 @@
 		function updateTreeMap() {
 
 			<c:forEach var="table" items ="${table}">
-
-			for ( var item in data) {
+			for ( var item in list_table) {
 				var tableNumber = "${table.tableNumber}";
-				if (data[item].data != null) {
-					if (data[item].data.tableid == tableNumber) {
-						data[item].data.customerName = "${table.customerName}";
+				var tableName = '${table.tableName}';
+				if (list_table[item].data != null) {
+					if (list_table[item].data.tableNumber == tableNumber) {
+						if (tableName)
+							list_table[item].label = tableName;
+						list_table[item].data.customerName = "${table.customerName}";
 						var money = "${table.totalMoney}";
 						money = formatCurrency(money, '$');
-						data[item].data.totalMoney = money;
+						list_table[item].data.totalMoney = money;
 
 					}
+					
 				}
 			}
 
@@ -690,7 +696,7 @@
 					var tableStatus = "${table.status}";
 					//<![CDATA[
 						if (tableStatus == status || status == 'BOTH')
-							if (list_table[item].data.tableid == tableNumber) {
+							if (list_table[item].data.tableNumber == tableNumber) {
 								newData.push(list_table[item]);
 							}
 
@@ -741,19 +747,17 @@
 									'*' : function(element, value) {
 
 										if (value.data) {
-											//	console.log(value);
 											element.css('cursor', 'pointer');
 											<c:forEach var="table" items ="${table}">
-											//console.log("${table.tableNumber}" + value.label);
 											if ("${table.status}" == 'DRINKING') {
-												if ("${table.tableNumber}" == value.data.tableid) {
+												if ("${table.tableNumber}" == value.data.tableNumber) {
 													element
 															.css({
 																border : '3px solid red'
 															});
 												}
 											} else if ("${table.status}" == 'PAID') {
-												if ("${table.tableNumber}" == value.data.tableid) {
+												if ("${table.tableNumber}" == value.data.tableNumber) {
 													element
 															.css({
 																border : '3px solid green'
@@ -772,7 +776,7 @@
 											element.click(function() {
 
 												window.location = 'quanlyban/'
-														+ value.data.tableid
+														+ value.data.tableNumber
 														+ '?tableacr';
 											});
 
@@ -788,6 +792,11 @@
 
 							});
 		}
+		
+	$(document).ready(function(){
+			// your code
+		$("#loadingDiv").hide();	
+	});	
 	</script>
 
 </body>

@@ -49,7 +49,7 @@
 		<title><spring:message code="welcome_h3" arguments="${app_name}" /></title>
 	</head>
 	
-  	<body>
+  	<body onload="setDivActive('productsID')">
 		<div id="main">
   	        <tiles:insertAttribute name="header" ignore="true" />
 	    	<tiles:insertAttribute name="body"/> 

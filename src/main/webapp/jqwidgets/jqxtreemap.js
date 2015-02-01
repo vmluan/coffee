@@ -573,14 +573,33 @@ License: http://jqwidgets.com/license/
 								//luan
 								var displayText = f.label;
 								if(f.data && f.data.customerName){
-									if(f.data.customerName)
+									if(f.data.customerName){
 										displayText = f.label + '<br> <br>' + f.data.customerName + ' - ' + 
 									f.data.totalMoney;
-								} else if(f.data && f.data.totalMoney)
-									displayText = f.label + '<br> <br>' + f.data.totalMoney;
+									j.html('<span style="max-width:' + e
+											+ 'px;" class="jqx-treemap-table-number-label">'
+											+ f.label + '</span>'
+											+ 
+											'<span style="max-width:' + e
+											+ 'px;" class="jqx-treemap-label-center">'
+											+  f.data.customerName + ' - ' + f.data.totalMoney 
+											+ '</span>');	
+											
+									}
+								} else if(f.data && f.data.totalMoney){
+										j.html('<span style="max-width:' + e
+											+ 'px;" class="jqx-treemap-table-number-label">'
+											+ f.label + '</span>'
+											+ 
+											'<span style="max-width:' + e
+											+ 'px;" class="jqx-treemap-label-center">'
+											+ f.data.totalMoney 
+											+ '</span>');							
+									}
+								else	
 								j.html('<span style="max-width:' + e
 										+ 'px;" class="jqx-treemap-label">'
-										+ displayText + "</span>")
+										+ displayText + "</span>");
 							}
 							return j
 						},

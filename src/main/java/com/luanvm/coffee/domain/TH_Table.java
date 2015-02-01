@@ -18,6 +18,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.hibernate.annotations.Index;
 import org.hibernate.annotations.Synchronize;
 
@@ -36,6 +38,7 @@ public class TH_Table implements Serializable {
 	@Index(name = "tableacr")
 	private String tableAcr;
 	
+	//sample value is b1, b2. This is hidden field
 	@Column(name = "tablenumber")
 	private String tableNumber;
 	
@@ -51,6 +54,9 @@ public class TH_Table implements Serializable {
 	@Column(name = "status")
 	private TH_TableStatus status;
 	
+	//sample value is ban 1, ban 2
+	@Column(name = "tablename")
+	private String tableName;
 	//use @Version to implement Optimistic Locking. When 2 or more concurrency update on same records. Exception will be raised
 	// This helps to avoid losing data of previous update.
 	@Version
@@ -65,6 +71,14 @@ public class TH_Table implements Serializable {
 		this.version = version;
 	}
 
+	public String getTableName() {
+		return tableName;
+	}
+
+	public void setTableName(String tableName) {
+		this.tableName = tableName;
+	}
+
 	public String getTableAcr() {
 		return tableAcr;
 	}
@@ -72,7 +86,6 @@ public class TH_Table implements Serializable {
 	public void setTableAcr(String tableAcr) {
 		this.tableAcr = tableAcr;
 	}
-
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "table")
 	List<TH_Encounter> encounters; //
 
@@ -92,7 +105,6 @@ public class TH_Table implements Serializable {
 		this.customerName = customerName;
 	}
 
-
 	public List<TH_Encounter> getEncounters() {
 		return encounters;
 	}
@@ -108,7 +120,6 @@ public class TH_Table implements Serializable {
 	public void setTableNumber(String tableNumber) {
 		this.tableNumber = tableNumber;
 	}
-
 	public long getTotalMoney() {
 		return totalMoney;
 	}
@@ -140,8 +151,5 @@ public class TH_Table implements Serializable {
 	public void setStatus(TH_TableStatus status) {
 		this.status = status;
 	}
-	
-	
-	
 
 }

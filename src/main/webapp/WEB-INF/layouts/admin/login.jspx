@@ -18,16 +18,16 @@
   	<body>
   	<div class="loginBox">  
   		<div class="loginHead">
-            <img src="/resources/styles/aquarius-theme/img/logo.png" alt="Aquarius -  responsive admin panel" title="Aquarius -  responsive admin panel"/>
+            <img src="/resources/styles/aquarius-theme/img/logo.png" alt="iCoffee" title="Aquarius -  responsive admin panel"/>
         </div>
         
         <form name="loginForm" action="${loginUrl}" method="post">
            <div class="control-group">
-               <label for="inputEmail">User Name</label>       
+               <label for="inputEmail">Tên Đăng nhập</label>       
                <input type="text" name="j_username" id="j_username"/>
            </div>
            <div class="control-group">
-                <label for="inputPassword">Password</label>                
+                <label for="inputPassword">Mật khẩu</label>                
                 <input type="password" id="j_password" name="j_password"/>                
             </div>
             
@@ -35,7 +35,7 @@
 		        <div id="message" class="${message.type}">${message.message}</div>
 		    </c:if>
             <div class="form-actions">
-                <button type="submit" class="btn btn-block">Sign in</button>
+                <button type="submit" class="btn btn-block">Đăng nhập</button>
             </div>
        </form>
     </div> 
