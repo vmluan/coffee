@@ -1,12 +1,13 @@
 package com.luanvm.coffee.web.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang.StringUtils;
 import org.hibernate.StaleObjectStateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,10 +25,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.luanvm.coffee.domain.Product;
+import com.luanvm.coffee.domain.TH_Category;
 import com.luanvm.coffee.domain.TH_Encounter;
 import com.luanvm.coffee.domain.TH_Table;
 import com.luanvm.coffee.domain.TH_TableStatus;
 import com.luanvm.coffee.helper.Utilities;
+import com.luanvm.coffee.service.CategoryService;
 import com.luanvm.coffee.service.EncounterService;
 import com.luanvm.coffee.service.ProductService;
 import com.luanvm.coffee.service.TableService;
@@ -48,6 +51,9 @@ public class TableController {
 	
 	@Autowired
 	private ProductService productService;
+	
+	@Autowired
+	private CategoryService categoryService;
 	
 	//The method is to save a new table
 	//@Transactional
@@ -212,6 +218,9 @@ public class TableController {
 		
 		System.err.println("========= tableAcr = " + tableAcr);
 		
+		List<TH_Category> categories = categoryService.findAll();
+		uiModel.addAttribute("categories", categories);
+		
 		if (!isNewTable)
 			tables = tableService.findTableBuyTableNumber(tableNumber);
 		
@@ -300,6 +309,45 @@ public class TableController {
 		}
 		String result = Utilities.jSonSerialization(encounters);
 		return result;
+	}
+	// to filter products by categories
+	@RequestMapping(value = "/findProductByCategories", method = RequestMethod.GET, produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public String getProductList(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(value = "ids[]") int[] ids){
+		System.out.println("============== findProductByCategories ");
+		System.out.println(ids[0]);
+		
+		List<Integer> listIds = new ArrayList<Integer>();
+		for(int i=0; i< ids.length; i++){
+			listIds.add(ids[i]);
+		}
+		
+		List<Product> products = new ArrayList<Product>();
+		
+		String allCates = request.getParameter("allCats");
+		if(allCates != null && !allCates.equals("")){
+			products = productService.findAll();
+		}else{
+			List<TH_Category> categories = categoryService.findByIds(listIds);
+			for (TH_Category category : categories){
+				List<Product> list = category.getProducts();
+				for(Product product : list){
+					if(!products.contains(product))
+						products.add(product);
+				}
+			}
+		}
+		
+		
+
+		String productString = products.toString();
+
+		productString = '{' + productString.substring(1,
+				productString.length() - 1) + '}';
+		
+		return productString;
+		
 	}
 
 }

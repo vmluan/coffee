@@ -18,4 +18,47 @@ function setDivActive(newActiveDiv){
 	var newElem = document.getElementById(newActiveDiv);
 	if(newElem)
 		newElem.className="active";
-} 
+}
+function reloadProducts(){
+	categories = [];
+	var selectedBoxes = $(".table-filter");
+	var j = 0;
+	for(var i = 0; i < selectedBoxes.length; i++){
+		var checkBox = selectedBoxes[i];
+		
+		if (checkBox.checked == true){
+			categories[j] = checkBox.value;
+			j++;
+			}
+	}
+	var url = '/quanlyban/findProductByCategories';
+	var allCats;
+	if(categories.length ==0){
+		allCats = 'all';
+		categories[0] = 0; //to avoid error
+	}
+		$.ajax({
+			url : url,
+			type : 'GET',
+			dataType: 'json',
+			 data: { ids: categories, allCats: allCats},
+			success : function(data) {
+			},
+			error : function(xhr, ajaxOptions, thrownError) {
+				//On error do this
+
+				if (xhr.status == 200) {
+					products=  eval('(' + xhr.responseText + ')' );
+					$('.draggable-demo-product').remove();
+					productsRendering();
+					addEventListeners();
+					$('.draggable-demo-product').css('cursor', 'pointer');
+					
+				} else {
+					alert(xhr.status);
+					alert(thrownError);
+				}
+			}
+		});	
+	
+}

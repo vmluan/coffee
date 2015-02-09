@@ -2,15 +2,22 @@ package com.luanvm.coffee.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.web.multipart.MultipartFile;
 @Entity
 @Table(name = "th_product", catalog = "coffee")
@@ -37,6 +44,9 @@ public class Product implements Serializable {
 	
 	@Transient
 	String productPriceWrapper;
+
+	@Transient
+	String [] categoriesList;
 	
 	@Column(name="isdeleted")
 	private boolean isDeleted;
@@ -48,6 +58,28 @@ public class Product implements Serializable {
 	private Date deltedDate;
 	
 	
+	
+	public String[] getCategoriesList() {
+		return categoriesList;
+	}
+
+	public void setCategoriesList(String[] categoriesList) {
+		this.categoriesList = categoriesList;
+	}
+	
+	@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@JoinTable(name="product_category", joinColumns={@JoinColumn(name="productid")}
+			, inverseJoinColumns={@JoinColumn(name="categoryid")})
+	private List<TH_Category> categories;
+
+
+	public List<TH_Category> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(List<TH_Category> categories) {
+		this.categories = categories;
+	}
 
 	public boolean isDeleted() {
 		return isDeleted;

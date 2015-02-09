@@ -93,7 +93,7 @@
    
 	<script type="text/javascript" src="/resources/jqwidgets/jqxtooltip.js"><jsp:text/></script>
 	<script type="text/javascript" src="/resources/jqwidgets/jqxnotification.js"><jsp:text/></script>
-	
+	<script type="text/javascript" src="/resources/jqwidgets/jqxlistbox.js"><jsp:text/></script>
 	
 	<script type="text/javascript" src="/resources/products.js?${sysDate }">
 		<jsp:text/>

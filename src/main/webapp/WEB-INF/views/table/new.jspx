@@ -5,8 +5,19 @@
 	 class="draggable-demo-shop jqx-rc-all" id="shop">
     <jsp:directive.page contentType="text/html;charset=UTF-8" />  
     <jsp:directive.page pageEncoding="UTF-8" />     
-    <jsp:output omit-xml-declaration="yes"/>  
-        <div id="catalog" class="draggable-demo-catalog jqx-rc-all"><jsp:text /></div>
+    <jsp:output omit-xml-declaration="yes"/>
+		
+        <div id="catalog" class="draggable-demo-catalog jqx-rc-all"><jsp:text />
+			<div id="categories"><jsp:text />
+				<c:forEach items="${categories }" var="category">
+						<div class="col-xs2 col-sm-2">
+							<input type="checkbox" class="jqx-checkbox-default table-filter" onchange="reloadProducts();"
+								value="${category.categoryID}"> ${category.categoryName }</input>
+						</div>	
+					<jsp:text />			
+				</c:forEach>				
+			</div>
+		</div>
 		
 
         <div class="draggable-demo-cart-wrapper jqx-rc-all" id = "productcart">

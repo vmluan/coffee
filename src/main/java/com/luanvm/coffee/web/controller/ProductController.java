@@ -3,6 +3,7 @@ package com.luanvm.coffee.web.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -34,8 +35,10 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.luanvm.coffee.domain.Product;
+import com.luanvm.coffee.domain.TH_Category;
 import com.luanvm.coffee.helper.ProductHepler;
 import com.luanvm.coffee.helper.Utilities;
+import com.luanvm.coffee.service.CategoryService;
 import com.luanvm.coffee.service.ProductService;
 import com.luanvm.coffee.web.util.UrlUtil;
 
@@ -49,6 +52,9 @@ public class ProductController {
 	
 	@Autowired
 	private ProductService productService;
+	
+	@Autowired
+	private CategoryService categoryService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String getProductPage(Model ciModel,@RequestParam(value="lang", required=false)String id) {
@@ -87,6 +93,9 @@ public class ProductController {
 		
 		uiModel.addAttribute("products", products);
 		
+		List<TH_Category> categories = categoryService.findAll();
+		uiModel.addAttribute("categories", categories);
+		
 		httpServletRequest.setCharacterEncoding("UTF-8");
 		return "products/new";
 	}
@@ -106,14 +115,22 @@ public class ProductController {
 			return "products/new";
 		}
 		
+		String []categoriesList = product.getCategoriesList();
+		if(categoriesList != null){
+			ArrayList<TH_Category> categories = new ArrayList<TH_Category>();
+			for (int i=0; i< categoriesList.length; i++){
+				TH_Category category = categoryService.findById(Integer.valueOf(categoriesList[i]));
+				categories.add(category);
+			}
+			product.setCategories(categories);
+		}
+		
         String productPriceWrapper = product.getProductPriceWrapper();
         if(productPriceWrapper == null || productPriceWrapper.equals(""))
         	productPriceWrapper = httpServletRequest.getParameter("productPriceWrapper");
-        System.out.println("==================== " + productPriceWrapper);
         productPriceWrapper = productPriceWrapper.replace(",", "").replace(" ", "").replace(".", "");
         
         long price = Long.valueOf(productPriceWrapper);
-        System.out.println("==================== " + product.getProductName());
         product.setProductPrice(price);
         
         //handle attachments
@@ -142,7 +159,7 @@ public class ProductController {
 			, @RequestParam(value="recordendindex", required=false) Integer recordendindex
 			, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse){
 		List<Product> products =  productService.findAll();
-		
+		System.out.println(products);
 		String result = Utilities.jSonSerialization(products);
 		//httpServletResponse.setContentType("application/json; charset=UTF-8");
 		return result;
@@ -153,6 +170,10 @@ public class ProductController {
 		Product product = productService.findById(id);
 		product.setProductPriceWrapper(String.valueOf(product.getProductPrice()));
 		uiModel.addAttribute("product", product);
+		
+		List<TH_Category> categories = categoryService.findAll();
+		uiModel.addAttribute("categories", categories);
+		
         return "products/update";
 	}
 	@RequestMapping(value = "/{id}", params = "form", method = RequestMethod.POST)

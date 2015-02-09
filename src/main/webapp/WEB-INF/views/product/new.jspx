@@ -10,44 +10,49 @@
        <div class="tap-hoa-main-div" id="san-pham">
 		
 		<form:form modelAttribute="product" id="userUpdateForm" acceptCharset="UTF-8" method="post" enctype="multipart/form-data">
-			<div class="col-xs2 col-sm-3">
-				<form:label path="productName">
-					Tên San Pham* 
-				</form:label>
-				<form:input path="productName" />
-				<div>
-					<form:errors path="productName" cssClass="error" />
+			<div>
+				<div class="col-xs2 col-sm-3">
+					<form:label path="productName">
+						Tên SP* 
+					</form:label>
+					<form:input path="productName" />
+					<div>
+						<form:errors path="productName" cssClass="error" />
+					</div>
+				</div>	
+				<p/>
+				<div class="col-xs2 col-sm-3">
+						<form:label path="productPriceWrapper">
+							Gia San Pham* 
+						</form:label>
+						<form:input path="productPriceWrapper" />
+						<div>
+							<form:errors path="productPriceWrapper" cssClass="error" />
+						</div>
+						<p/>
 				</div>
+				<div class="col-xs2 col-sm-3">	
+					Please select a file to upload : <input type="file" name="file" />
+				
+				</div>
+				<button type="submit" class="btn btn-lg btn-success">
+					<span class="ui-button-text">Save</span>
+				</button>				
+			</div>
+			<div>
+				<div class="col-sm-10">
+						<form:label path="categoriesList">
+							Category 
+						</form:label>
+						<c:forEach items="${categories }" var="category">
+							<form:checkbox path="categoriesList"  value="${category.categoryID }"/>${category.categoryName }
+						</c:forEach>
+						<div>
+							<form:errors path="categoriesList" cssClass="error" />
+						</div>
+						<p/>
+				</div>							
 			</div>	
-			<p/>
-		<div class="col-xs2 col-sm-3">
-				<form:label path="productPriceWrapper">
-					Gia San Pham* 
-				</form:label>
-				<form:input path="productPriceWrapper" />
-				<div>
-					<form:errors path="productPriceWrapper" cssClass="error" />
-				</div>
-				<p/>
-		</div>
-		<div class="col-xs2 col-sm-2">
-				<form:label path="common">
-					SP ban chay 
-				</form:label>
-				<form:checkbox path="common" />
-				<div>
-					<form:errors path="common" cssClass="error" />
-				</div>
-				<p/>
-		</div>				
-		<div class="col-xs2 col-sm-3">	
-			Please select a file to upload : <input type="file" name="file" />
-		
-		</div>
-	
-        <button type="submit" class="btn btn-lg btn-success">
-            <span class="ui-button-text">Save</span>
-        </button> 
 	 </form:form>
     </div> <!-- /San Pham -->
         <div style="clear: both;"></div>
