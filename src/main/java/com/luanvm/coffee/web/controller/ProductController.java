@@ -171,7 +171,19 @@ public class ProductController {
 		product.setProductPriceWrapper(String.valueOf(product.getProductPrice()));
 		uiModel.addAttribute("product", product);
 		
+		List<TH_Category> existingCategories = product.getCategories();
+		String []categoriesList = new String[existingCategories.size()];
+		int i = 0;
+		for(TH_Category category : existingCategories){
+			categoriesList[i] = String.valueOf(category.getCategoryID());
+			i++;
+		}
+		System.out.println("==========  categoriesList = " + categoriesList);
+		product.setCategoriesList(categoriesList);
+		
 		List<TH_Category> categories = categoryService.findAll();
+		
+		
 		uiModel.addAttribute("categories", categories);
 		
         return "products/update";
@@ -196,6 +208,17 @@ public class ProductController {
         
         product.setProductPrice(price);
         product.setProductName(updatedProduct.getProductName());
+        
+		String []categoriesList = updatedProduct.getCategoriesList();
+		if(categoriesList != null){
+			ArrayList<TH_Category> categories = new ArrayList<TH_Category>();
+			for (int i=0; i< categoriesList.length; i++){
+				TH_Category category = categoryService.findById(Integer.valueOf(categoriesList[i]));
+				categories.add(category);
+				System.out.println("====== categoryname = " + category.getCategoryName());
+			}
+			product.setCategories(categories);
+		}
         
         redirectAttributes.addFlashAttribute("message", "Updating Product");        
 

@@ -42,21 +42,21 @@ var url = "products/getproductsjson";
 				//rowsheight: 115,
 				autorowheight: true,
                 columns: [
-				{ text: '', datafield: 'Edit' , width: 100,
+				{ text: '', datafield: 'Edit' , width: '15%',
 					cellsrenderer: function (row, column, value) {
                           return '<input type ="button" value="Sua" onClick = "updateProduct(' + row + ')"></input>'
 						  + '<input type ="button" value="Xoa" onClick = "deleteProduct(' + row + ')"></input>'
 						  ;
                       }
 				  },
-                  { text: 'STT', datafield: 'stt', width: 50, columntype:'number',
+                  { text: 'STT', datafield: 'stt', width: '5%', columntype:'number',
 					cellsrenderer: function (row, column, value) {
 						return row + 1;
                       }
 				  },				  
-				  { text: 'Ten SP', datafield: 'productName', width: 250 },
-                  { text: 'Gia', datafield: 'productPrice', align: 'right', cellsalign: 'right', cellsformat: 'c0', columntype: 'numberinput', width: 100 },
-                  { text: 'Hinh anh', datafield: 'picLocation', width: 230,
+				  { text: 'Ten SP', datafield: 'productName', width: '30%' },
+                  { text: 'Gia', datafield: 'productPrice', align: 'right', cellsalign: 'right', cellsformat: 'c0', columntype: 'numberinput', width: '15%' },
+                  { text: 'Hinh anh', datafield: 'picLocation', width: '35%',
 					cellsrenderer: function (row, column, value) {
 						if (value)
 							return '<img src="../../images/t-shirts/' + value + '"/>';
