@@ -25,7 +25,7 @@
 <link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Custom styles for this template -->
-<link href="/resources/taphoa.css" rel="stylesheet" />
+<link href="/resources/coffee.css" rel="stylesheet" />
 
 
 
@@ -34,19 +34,33 @@
 	<div id="mainDiv">
 		<tiles:insertAttribute name="header" ignore="true" />
 <div class='container'>
-	<label  style="margin-left: 10px; text-align: right;" class="col-xs6 col-sm-2">Chọn ngày:
-	</label>
-	<div style="margin-left: 10px;" id='jqxDateTimeInput'></div>
-</div>		
+
+	<div id="searchDiv" >
+		<div class="col-xs6 col-sm-4">
+			<h3>Danh sách bàn uống</h3><jsp:text/>
+		</div>	
+		<div style="margin-left: 10px;" id='jqxDateTimeInput'><jsp:text/></div>
+
+	</div>
+</div>
+
     <div id='jqxWidget' class="container">
-        <h3>Danh sách bàn uống</h3>
+        
         <div id="customersGrid">
 		<jsp:text/>
         </div>
+           <div style='float: left;'>
+                <input type="button" value="Xuất ra Excel" id='excelTableExport' />
+                <br /><br />
+            </div>		
         <h3>
             DS thức uống theo bàn</h3>
         <div id="ordersGrid"><jsp:text/>
         </div>
+           <div style='float: left;'>
+                <input type="button" value="Xuất ra Excel" id='excelOrderxport' />
+                <br /><br />
+            </div>			
 		<jsp:text/>
     </div>
 	<jsp:text/>
@@ -98,6 +112,15 @@
 	</script>
 	<script type="text/javascript" src="/resources/jqwidgets/jqxbuttons.js">
 		<jsp:text/>
+	</script>
+	<script type="text/javascript" src="/resources/jqwidgets/jqxdata.js">
+		<jsp:text/>
+	</script>
+	<script type="text/javascript" src="/resources/jqwidgets/jqxdata.export.js">
+		<jsp:text/>
+	</script>
+	<script type="text/javascript" src="/resources/jqwidgets/jqxgrid.export.js">
+		<jsp:text/>
 	</script>	
 	<script type="text/javascript"
 		src="/resources/jqwidgets/jqxscrollbar.js">
@@ -126,5 +149,14 @@
 			var date2 = $("#jqxDateTimeInput").val();
 			reloadGrids(date2);
 		});
+		$("#excelTableExport").click(function () {
+			$("#customersGrid").jqxGrid('exportdata', 'xls', 'DS Bàn');           
+		});
+		$("#excelOrderxport").click(function () {
+			$("#ordersGrid").jqxGrid('exportdata', 'xls', 'DS Thức uống theo bàn');           
+		});		
+$( document ).ready(function() {
+//  alert('test');
+});		
 </script>
 </html>

@@ -1,5 +1,7 @@
 var dateTimeFormat = 'dd/MM/yyyy HH.mm.ss';
 var url = "/quanlyban/tablelistjson";
+var sysDate = new Date();
+var date = sysDate.getDate() + '/' + (sysDate.getMonth() + 1) + '/' + sysDate.getFullYear();
 var sourceTables =
             {
 		datatype: "json",        
@@ -19,7 +21,14 @@ var sourceTables =
             var dataAdapterTables = new $.jqx.dataAdapter(sourceTables, {
                 downloadComplete: function (data, status, xhr) { },
                 loadComplete: function (data) { },
-                loadError: function (xhr, status, error) { }
+                loadError: function (xhr, status, error) { },
+				formatData: function (data) {
+							$.extend(data, {
+								startdate: date,
+								enddate: date
+							});
+							return data;
+						}
             });
             $("#customersGrid").jqxGrid(
             {
@@ -89,18 +98,23 @@ var sourceTables =
                     { text: 'Tên SP', datafield: 'product', width: '35%' },
                     { text: 'SL', datafield: 'quantity', width: '5%',align: 'right', cellsalign: 'right' },
                     { text: 'Gia', datafield: 'productPrice',  width: '10%', align: 'right', cellsalign: 'right' },
-					{ text: 'Thành Tiền', width: '10%', align: 'right', cellsalign: 'right' },				
+					{ text: 'Thành Tiền', width: '10%', align: 'right', cellsalign: 'right',
+					   cellsrenderer: function (row, columnfield, value, defaulthtml, columnproperties) {
+								var rowdata = $("#ordersGrid").jqxGrid('getrowdata', row);
+								return '<span style="margin: 4px; float: ' + columnproperties.cellsalign + '; color: #0000ff;">' + rowdata.productPrice * rowdata.quantity + '</span>';
+							}
+					},				
                     { text: 'Thời gian', datafield: 'encounterTime', cellsformat: dateTimeFormat, align: 'right', cellsalign: 'right' }
                 ]
             });
             
-			function reloadGrids(date){
+			function reloadGrids(date, date2){
 				dataAdapterTables = new $.jqx.dataAdapter(sourceTables,
 					{
 						formatData: function (data) {
 							$.extend(data, {
 								startdate: date,
-								enddate: date
+								enddate: date2
 							});
 							return data;
 						}

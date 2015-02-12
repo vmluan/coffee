@@ -28,6 +28,7 @@ var url = "products/getproductsjson";
            $("#jqxgridProducts").jqxGrid(
             {
                 width: 1000,
+				height: 1000,
                 source: dataAdapter,
                sortable: true,
                 pageable: true,
@@ -39,8 +40,8 @@ var url = "products/getproductsjson";
                 showfilterrow: true,
                 filterable: true,				
                 columnsresize: true,
-				//rowsheight: 115,
-				autorowheight: true,
+				rowsheight: 140,
+			//	autorowheight: true,
                 columns: [
 				{ text: '', datafield: 'Edit' , width: '15%',
 					cellsrenderer: function (row, column, value) {
