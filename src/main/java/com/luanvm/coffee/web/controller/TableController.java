@@ -2,6 +2,7 @@ package com.luanvm.coffee.web.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
@@ -285,8 +286,13 @@ public class TableController {
 		else
 			tables = tableService.findAll();
 		//exclude encounters from json serialization
-		for(TH_Table table : tables)
+		Iterator<TH_Table> iter = tables.iterator();
+		while(iter.hasNext()){
+			TH_Table table = iter.next();
 			table.setEncounters(null);
+			if(table.getTotalMoney() ==0)
+				iter.remove();
+		}
 		String result = Utilities.jSonSerialization(tables);
 		return result;
 	}

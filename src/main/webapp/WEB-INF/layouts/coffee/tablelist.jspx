@@ -121,6 +121,9 @@
 	</script>
 	<script type="text/javascript" src="/resources/jqwidgets/jqxgrid.export.js">
 		<jsp:text/>
+	</script>
+	<script type="text/javascript" src="/resources/jqwidgets/jqxgrid.aggregates.js">
+		<jsp:text/>
 	</script>	
 	<script type="text/javascript"
 		src="/resources/jqwidgets/jqxscrollbar.js">

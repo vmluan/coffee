@@ -36,11 +36,22 @@ var sourceTables =
                 height: 250,
                 source: dataAdapterTables,                
                 keyboardnavigation: false,
+				showstatusbar: true,
+                statusbarheight: 25,
+                altrows: true,
+                showaggregates: true,
                 columns: [
                     { text: 'Bàn Số', datafield: 'tableNumber', width: '10%' },
                     { text: 'Khu', datafield: 'area', width: '10%' },
                     { text: 'Tên KH', datafield: 'customerName', width: '25%' },
-					{ text: 'Tổng tiền', datafield: 'totalMoney', width: '15%', cellsformat: 'c', align: 'right', cellsalign: 'right'},
+					{ text: 'Tổng tiền', datafield: 'totalMoney', width: '15%', cellsformat: 'c', align: 'right', cellsalign: 'right', aggregates: [{ '<b>Tổng</b>':
+                            function (aggregatedValue, currentValue, column, record) {
+                                var total = currentValue;
+                                return aggregatedValue + total;
+                            }
+                      }]  
+					
+					},
                     { text: 'Thời gian vào', datafield: 'openTime', width: '20%', cellsformat: dateTimeFormat,align: 'right', cellsalign: 'right'},
 					{ text: 'Thời gian ra', datafield: 'closedTime', width: '20%', cellsformat: dateTimeFormat,align: 'right', cellsalign: 'right'}
                     
