@@ -40,14 +40,20 @@ function reloadProducts(){
 		$.ajax({
 			url : url,
 			type : 'GET',
-			dataType: 'json',
+			dataType: 'text',
 			 data: { ids: categories, allCats: allCats},
 			success : function(data) {
+					products=  eval('(' + data + ')' );
+					$('.draggable-demo-product').remove();
+					productsRendering();
+					addEventListeners();
+					$('.draggable-demo-product').css('cursor', 'pointer');
 			},
 			error : function(xhr, ajaxOptions, thrownError) {
 				//On error do this
-
+				alert('eror' + thrownError);
 				if (xhr.status == 200) {
+					
 					products=  eval('(' + xhr.responseText + ')' );
 					$('.draggable-demo-product').remove();
 					productsRendering();

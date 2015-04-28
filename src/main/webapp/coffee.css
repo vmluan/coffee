@@ -70,7 +70,7 @@ body {
 	position: relative;
 	width: 55%;
 	border: 1px solid #bbb;
-	height: 580px;
+	height: 600px;
 	float: left;
 	//overflow: scroll;
 	overflow: auto;
@@ -266,4 +266,18 @@ width: 100%;
 .tao-hoa-thanh-toan{
 	display:block;
 	overflow: auto;
+}
+.categories {
+	padding-left: 0px; ! important;
+	padding-right: 0px; ! important;
+	border-top-color: red;
+	border-style: inset;
+	height: 30px;
+	border-color: red;
+	display: table;
+	position: relative;
+	width: 55%;
+}
+.category-item{
+	display: table-row;
 }

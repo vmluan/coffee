@@ -11,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import org.codehaus.jackson.map.ObjectMapper;
@@ -104,11 +105,18 @@ public class ContactServiceTest {
 //		}
 //		System.out.println(products);
 //		System.out.println(category.getProducts());
-		
-		List<Product> products =  productService.findAll();
-		System.out.println(products);
-		String result = Utilities.jSonSerialization(products);
-		System.out.println("=======" + result);
+		List<TH_Table> tables;
+		tables = tableService.findAll();
+		Iterator<TH_Table> iter = tables.iterator();
+		while(iter.hasNext()){
+			TH_Table table = iter.next();
+			table.setEncounters(null);
+			if(table.getTotalMoney() ==0)
+				iter.remove();
+		}
+		System.out.println(tables);
+		String result = Utilities.jSonSerialization(tables);
+		System.out.println(result);
 	}
 
 }

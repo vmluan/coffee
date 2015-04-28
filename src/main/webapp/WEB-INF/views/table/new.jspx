@@ -7,16 +7,22 @@
     <jsp:directive.page pageEncoding="UTF-8" />     
     <jsp:output omit-xml-declaration="yes"/>
 		
+		<div id="categories" class="categories"><jsp:text />
+			<c:forEach items="${categories }" var="category">
+					<div class="col-xs2 col-sm-3 category-item">
+						<input type="checkbox" class="jqx-checkbox-default table-filter" onchange="reloadProducts();"
+							value="${category.categoryID}"> ${category.categoryName }</input>
+					</div>	
+				<jsp:text />			
+			</c:forEach>
+					<div class="col-xs2 col-sm-3 category-item" style="
+    left: 90%;
+    top: 0px;
+    position: absolute;
+">An/Hien
+					</div>			
+		</div>		
         <div id="catalog" class="draggable-demo-catalog jqx-rc-all"><jsp:text />
-			<div id="categories"><jsp:text />
-				<c:forEach items="${categories }" var="category">
-						<div class="col-xs2 col-sm-2">
-							<input type="checkbox" class="jqx-checkbox-default table-filter" onchange="reloadProducts();"
-								value="${category.categoryID}"> ${category.categoryName }</input>
-						</div>	
-					<jsp:text />			
-				</c:forEach>				
-			</div>
 		</div>
 		
 
